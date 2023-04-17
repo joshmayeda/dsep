@@ -23,7 +23,4 @@ dist-ssr
 *.sln
 *.sw?
 Firebase.js
-.firebaserc
 .env
-firestore.indexes.json
-firestore.rules
