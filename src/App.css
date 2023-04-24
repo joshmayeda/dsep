@@ -102,6 +102,7 @@ li{
 
 .grid-item-slot {
   border: 1px solid rgb(72, 243, 229);
+  background-color: transparent;
   text-align: center;
   justify-content: center;
   background-image: url(images/ds_slot.png);
@@ -180,6 +181,10 @@ input[type=number] {
   text-align: center;
 }
 
+.slot-name{
+  color: white;
+  font-family: DS-Text;
+}
 
 
 

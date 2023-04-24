@@ -6,8 +6,13 @@ import { AttunementSlots } from './Components/AttunementSlots'
 import { Stat } from './Components/Stat'
 import { Resistance } from './Components/Resistance'
 import { EquippedSpell } from './Components/EquippedSpell'
+// import { HandSlot } from './Components/HandSlot'
+import { RingSlot } from './Components/RingSlot'
+// import { ArrowSlot } from './Components/ArrowSlot'
+// import { ArmorSlot } from './Components/ArmorSlot'
 import bg from './images/ds_inventory.png'
 import './App.css'
+
 
 export default function App() {
   return (
@@ -31,8 +36,8 @@ export default function App() {
         <div className="grid-item-equipment">
           Rings & Arrows
           <div className="grid-item-container" id="rings-and-arrows">
-            <ItemSlot id="ring1" title="Ring 1"/>
-            <ItemSlot id="ring2" title="Ring 2"/>
+            <RingSlot id="ring1" title="Ring 1"/>
+            <RingSlot id="ring2" title="Ring 2"/>
             <ItemSlot id="arrow" title="Arrow"/>
             <ItemSlot id="bolt" title="Bolt"/>
           </div>

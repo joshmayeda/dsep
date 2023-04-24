@@ -1,4 +1,8 @@
 import {useState} from 'react';
+import Popup from 'reactjs-popup';
+import { RingModal } from './RingModal';
+import axios from 'axios';
+import APIInterface from '../API_Interface/API_Interface';
 
 export function ItemSlot(props) {
     const [slotColor, setSlotColor] = useState("");
@@ -8,12 +12,8 @@ export function ItemSlot(props) {
     }
 
   return (
-    <div className="grid-item-slot"
-        style={styles}
-        onMouseEnter={() => setSlotColor("#676949")}
-        onMouseLeave={() => setSlotColor("")}
-    >
-      <p>{props.title}</p>
-    </div>
+    <>
+
+    </>
   );
 }
