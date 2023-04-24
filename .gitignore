@@ -24,4 +24,3 @@ dist-ssr
 *.sw?
 Firebase.js
 .env
-./server/config/db.js
