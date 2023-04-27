@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { ItemSlot } from './Components/ItemSlot'
 import { Attribute } from './Components/Attribute'
 import { LevelCounter } from './Components/LevelCounter'
 import { AttunementSlots } from './Components/AttunementSlots'
@@ -10,7 +9,10 @@ import { HandSlot } from './Components/Hands/HandSlot'
 import { RingSlot } from './Components/Rings/RingSlot'
 import { ArrowSlot } from './Components/Arrows/ArrowSlot'
 import { BoltSlot } from './Components/Arrows/BoltSlot'
-// import { ArmorSlot } from './Components/ArmorSlot'
+import { HelmSlot } from './Components/Armor/HelmSlot'
+import { ChestSlot } from './Components/Armor/ChestSlot'
+import { GauntletSlot } from './Components/Armor/GauntletSlot'
+import { LegSlot } from './Components/Armor/LegSlot'
 //import bg from './images/ds_inventory.png'
 import './App.css'
 import axios from 'axios';
@@ -58,13 +60,29 @@ export default function App() {
     "ImageURL": "/images/transparent.png"
   }
 
+  const currentHelmInfo = {
+    "Name": "Helm",
+    "ImageURL": "/images/transparent.png"
+  }
+  const currentChestInfo = {
+    "Name": "Chest",
+    "ImageURL": "/images/transparent.png"
+  }
+  const currentGauntletInfo = {
+    "Name": "Gauntlet",
+    "ImageURL": "/images/transparent.png"
+  }
+  const currentLegInfo = {
+    "Name": "Leg",
+    "ImageURL": "/images/transparent.png"
+  }
+
   //Hands State
   const [allHandsArray, setAllHandsArray] = useState([]);
   const [allWeaponsArray, setAllWeaponsArray] = useState([]);
   const [allShieldsArray, setAllShieldsArray] = useState([]);
   const [allFociArray, setAllFociArray] = useState([]);
   const [currentHandSlots, setCurrentHandSlots] = useState(handSlotsArray);
-
 
   //Rings State
   const [allRingsArray, setAllRingsArray] = useState([]);
@@ -75,6 +93,16 @@ export default function App() {
   const [currentArrow, setCurrentArrow] = useState(currentArrowInfo);
   const [allBoltsArray, setAllBoltsArray] = useState([]);
   const [currentBolt, setCurrentBolt] = useState(currentBoltInfo);
+
+  //Armor State
+  const [allHelmsArray, setAllHelmsArray] = useState([]);
+  const [currentHelm, setCurrentHelm] = useState(currentHelmInfo);
+  const [allChestsArray, setAllChestsArray] = useState([]);
+  const [currentChest, setCurrentChest] = useState(currentChestInfo);
+  const [allGauntletsArray, setAllGauntletsArray] = useState([]);
+  const [currentGauntlet, setCurrentGauntlet] = useState(currentGauntletInfo);
+  const [allLegsArray, setAllLegsArray] = useState([]);
+  const [currentLeg, setCurrentLeg] = useState(currentLegInfo);
 
 
   useEffect(() => {
@@ -114,15 +142,47 @@ export default function App() {
             setAllFociArray(JSON.parse(JSON.stringify(response.data)));
       });
     }
+    async function getAllHelms(){
+      await axios.get("http://localhost:8080/api/armor/helms").then((response) => {
+            //console.log('response: ' + JSON.stringify(response.data));
+            setAllHelmsArray(JSON.parse(JSON.stringify(response.data)));
+      });
+    }
+    async function getAllChests(){
+      await axios.get("http://localhost:8080/api/armor/chest_armor").then((response) => {
+            //console.log('response: ' + JSON.stringify(response.data));
+            setAllChestsArray(JSON.parse(JSON.stringify(response.data)));
+      });
+    }
+    async function getAllGauntlets(){
+      await axios.get("http://localhost:8080/api/armor/gauntlets").then((response) => {
+            //console.log('response: ' + JSON.stringify(response.data));
+            setAllGauntletsArray(JSON.parse(JSON.stringify(response.data)));
+      });
+    }
+    async function getAllLegs(){
+      await axios.get("http://localhost:8080/api/armor/leg_armor").then((response) => {
+            //console.log('response: ' + JSON.stringify(response.data));
+            setAllLegsArray(JSON.parse(JSON.stringify(response.data)));
+      });
+    }
     getAllRings();
     getAllArrows();
     getAllBolts();
     getAllWeapons();
     getAllShields();
     getAllFoci();
+    getAllHelms();
+    getAllChests();
+    getAllGauntlets();
+    getAllLegs();
   }, []);
 
 
+  function handleHandState (newHandArray) {
+    console.log('handleHandState: ' + JSON.stringify(newHandArray))
+    setCurrentHandSlots(newHandArray)
+  }
 
   function handleRingState (newRingArray) {
     console.log('handleRingState: ' + JSON.stringify(newRingArray))
@@ -139,9 +199,24 @@ export default function App() {
     setCurrentBolt(newBolt)
   }
 
-  function handleHandState (newHandArray) {
-    console.log('handleHandState: ' + JSON.stringify(newHandArray))
-    setCurrentHandSlots(newHandArray)
+  function handleHelmState (newHelm){
+    console.log('handleHelmState: ' + JSON.stringify(newHelm))
+    setCurrentHelm(newHelm)
+  }
+
+  function handleChestState (newChest){
+    console.log('handleChestState: ' + JSON.stringify(newChest))
+    setCurrentChest(newChest)
+  }
+
+  function handleGauntletState (newGauntlet){
+    console.log('handleGaunletState: ' + JSON.stringify(newGauntlet))
+    setCurrentGauntlet(newGauntlet)
+  }
+
+  function handleLegState (newLeg){
+    console.log('handleLegState: ' + JSON.stringify(newLeg))
+    setCurrentLeg(newLeg)
   }
 
   return (
@@ -226,10 +301,28 @@ export default function App() {
         <div className="grid-item-equipment">
           Armor
           <div className="grid-item-container" id="armor">
-            <ItemSlot id="helm" title="Helm"/>
-            <ItemSlot id="body" title="Body"/>
-            <ItemSlot id="legs" title="Legs"/>
-            <ItemSlot id="arms" title="Arms"/>
+            <HelmSlot id="helm" title="Helm"
+              currentHelmInfo={currentHelmInfo}
+              allHelmsArray={allHelmsArray}
+              handleHelmState={handleHelmState}
+            />
+            <ChestSlot id="chest" title="Chest"
+              currentChestInfo={currentChestInfo}
+              allChestsArray={allChestsArray}
+              handleChestState={handleChestState}
+            />
+            <GauntletSlot id="gauntlet" title="Gauntlet"
+              currentGauntletInfo={currentGauntletInfo}
+              allGauntletsArray={allGauntletsArray}
+              handleGauntletState={handleGauntletState}
+            />
+            <LegSlot id="gauntlet" title="Leg"
+              currentLegInfo={currentLegInfo}
+              allLegsArray={allLegsArray}
+              handleLegState={handleLegState}
+            />
+            {/* <ItemSlot id="legs" title="Legs"/>
+            <ItemSlot id="arms" title="Arms"/> */}
           </div>
         </div>
       </div>
