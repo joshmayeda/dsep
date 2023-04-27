@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import Popup from 'reactjs-popup';
-import { RingModal } from './RingModal';
+import { RingModal } from './Rings/RingModal';
 import axios from 'axios';
 import APIInterface from '../API_Interface/API_Interface';
 

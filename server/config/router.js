@@ -73,7 +73,6 @@ const ringsRouter = require("koa-router")({
     prefix: "/rings"
 })
 const RingsController = require('../controllers/RingsController.js');
-
 ringsRouter.get("/", RingsController.allRings, (err) => console.log(`Error in allRings: ${err}`));
 
 //Magic Controllers
@@ -85,7 +84,19 @@ magicRouter.get("/miracles", MagicController.allMiracles, (err) => console.log(`
 magicRouter.get("/pyromancies", MagicController.allPyromancies, (err) => console.log(`Error in allPyromancies: ${err}`));
 magicRouter.get("/sorceries", MagicController.allSorceries, (err) => console.log(`Error in allSorceries: ${err}`));
 
+// //Arrows Controllers
+// const arrowsRouter = require("koa-router")({
+//     prefix: "/arrows"
+// })
+// const ArrowsController = require('../controllers/ArrowsController.js');
+// arrowsRouter.get("/", ArrowsController.allArrows, (err) => console.log(`Error in allArrows: ${err}`));
 
+// //Bolts Controllers
+// const boltsRouter = require("koa-router")({
+//     prefix: "/bolts"
+// })
+// const BoltsController = require('../controllers/BoltsController.js');
+// boltsRouter.get("/", BoltsController.allBolts, (err) => console.log(`Error in allBolts: ${err}`));
 
 // app.post('/:name', (req, res) => {
 
@@ -124,7 +135,9 @@ router.use(
     weaponsRouter.routes(),
     armorRouter.routes(),
     ringsRouter.routes(),
-    magicRouter.routes()
+    magicRouter.routes(),
+    // arrowsRouter.routes(),
+    // boltsRouter.routes()
 );
 
 module.exports = function(app) {

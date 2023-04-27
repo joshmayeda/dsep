@@ -24,10 +24,6 @@ header {
   padding-bottom: 1rem;
 }
 
-li{
-
-}
-
 .grid-container {
     display: grid;
     border: 1px solid red;
@@ -103,13 +99,10 @@ li{
 .grid-item-slot {
   border: 1px solid rgb(72, 243, 229);
   background-color: transparent;
-  text-align: center;
-  justify-content: center;
-  background-image: url(images/ds_slot.png);
+  background-image: url(../images/ds_slot.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  aspect-ratio: 4/3;
 }
 
 .grid-item-stats {
@@ -182,10 +175,19 @@ input[type=number] {
 }
 
 .slot-name{
+  position: relative;
+  top: 1.5rem;
+  border: 1px solid white;
+  padding: 0.3rem;
+  background-color: #3a3535;
   color: white;
   font-family: DS-Text;
 }
 
+img{
+  height: 90px;
+  width: 80px;
+}
 
 
 

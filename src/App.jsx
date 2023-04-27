@@ -1,20 +1,82 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { ItemSlot } from './Components/ItemSlot'
 import { Attribute } from './Components/Attribute'
 import { LevelCounter } from './Components/LevelCounter'
 import { AttunementSlots } from './Components/AttunementSlots'
 import { Stat } from './Components/Stat'
 import { Resistance } from './Components/Resistance'
-import { EquippedSpell } from './Components/EquippedSpell'
+import { EquippedSpell } from './Components/Spells/EquippedSpell'
 // import { HandSlot } from './Components/HandSlot'
-import { RingSlot } from './Components/RingSlot'
-// import { ArrowSlot } from './Components/ArrowSlot'
+import { RingSlot } from './Components/Rings/RingSlot'
+import { ArrowSlot } from './Components/Arrows/ArrowSlot'
 // import { ArmorSlot } from './Components/ArmorSlot'
-import bg from './images/ds_inventory.png'
+//import bg from './images/ds_inventory.png'
 import './App.css'
+import axios from 'axios';
 
 
 export default function App() {
+
+  const ringSlotsArray = [
+    {
+    "Name": "Ring 1",
+    "ImageURL": "/images/transparent.png"
+    },
+    {
+    "Name": "Ring 2",
+    "ImageURL": "/images/transparent.png"
+    }
+  ]
+
+  const currentArrowInfo = {
+    "Name": "Arrow",
+    "ImageURL": "/images/transparent.png"
+  }
+
+  const [allRingsArray, setAllRingsArray] = useState([]);
+  const [currentRingSlots, setCurrentRingSlots] = useState(ringSlotsArray);
+  const [renderCount, setRenderCount] = useState(0);
+  const [allArrowsArray, setAllArrowsArray] = useState([]);
+  const [currentArrow, setCurrentArrow] = useState(currentArrowInfo);
+  const [allBoltsArray, setAllBoltsArray] = useState([]);
+  const [currentBolt, setCurrentBolt] = useState({});
+
+
+
+  useEffect(() => {
+    async function getAllRings() {
+        await axios.get("http://localhost:8080/api/rings").then((response) => {
+          console.log('response: ' + JSON.stringify(response.data));
+          setAllRingsArray(JSON.parse(JSON.stringify(response.data)));
+        });
+    }
+    getAllRings();
+    setRenderCount(renderCount + 1);
+  }, []);
+
+  // async function getAllArrows(){
+  //   await axios.get("http://localhost:8080/api/arrows").then((response) => {
+  //         //console.log('response: ' + JSON.stringify(response.data));
+  //         setAllArrowsArray(JSON.parse(JSON.stringify(response.data)));
+  //   });
+  // }
+  // getAllArrows();
+
+  function handleRingState (newRingArray) {
+    console.log('handleRingState: ' + JSON.stringify(newRingArray))
+    setCurrentRingSlots(newRingArray)
+  }
+
+  // function handleArrowState (newArrow){
+  //   console.log('handleArrowState: ' + JSON.stringify(newArrow))
+  //   setCurrentArrow(newArrow)
+  // }
+
+  // function handleBoltState (newBolt){
+  //   console.log('handleBoltState: ' + JSON.stringify(newBolt))
+  //   setCurrentBolt(newBolt)
+  //}
+
   return (
     <>
     <header>
@@ -36,10 +98,10 @@ export default function App() {
         <div className="grid-item-equipment">
           Rings & Arrows
           <div className="grid-item-container" id="rings-and-arrows">
-            <RingSlot id="ring1" title="Ring 1"/>
-            <RingSlot id="ring2" title="Ring 2"/>
-            <ItemSlot id="arrow" title="Arrow"/>
-            <ItemSlot id="bolt" title="Bolt"/>
+            <RingSlot id="ring1" title="Ring 1" ringSlotsArray={ringSlotsArray} ringSlotNum="0" allRingsArray={allRingsArray} handleRingState={handleRingState} currentSlots={currentRingSlots} />
+            <RingSlot id="ring2" title="Ring 2" ringSlotsArray={ringSlotsArray} ringSlotNum="1" allRingsArray={allRingsArray} handleRingState={handleRingState} currentSlots={currentRingSlots} />
+            {/*<ArrowSlot id="arrow" title="Arrow" allArrowsArray={allArrowsArray} handleArrowState={handleArrowState} currentArrow={currentArrow} />
+            <ArrowSlot id="bolt" title="Bolt" allBoltsArray={allBoltsArray} handleBoltState={handleBoltState} currentBolt={currentBolt} /> */}
           </div>
         </div>
         <div className="grid-item-equipment">
