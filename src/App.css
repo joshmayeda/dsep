@@ -27,7 +27,7 @@ header {
 .grid-container {
     display: grid;
     border: 1px solid red;
-    grid-template-columns: 1.5fr 1fr;
+    grid-template-columns: 1.2fr 1fr;
     grid-gap: 1rem;
 }
 
@@ -70,7 +70,6 @@ header {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr;
   grid-gap: 2rem;
-  padding-top: 1rem;
   list-style-type: none;
   padding-left: 1rem;
 }
@@ -91,7 +90,7 @@ header {
 
 
 #resistances {
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1fr 1.8fr;
   grid-template-columns: auto;
   grid-gap: 0.5rem;
 }
@@ -126,10 +125,14 @@ input[type=number] {
 }
 
 .attribute {
-  font-size: 1.7rem;
+  font-size: 1.3rem;
 }
 
 .stats {
+  font-size: 1.3rem;
+}
+
+.stat-number {
   font-size: 1.3rem;
 }
 
@@ -155,6 +158,10 @@ input[type=number] {
   grid-template-columns: 7fr 1fr;
   grid-template-rows: 1fr;
   font-size: 1.4rem;
+}
+
+.attunement-slot-number{
+  padding-right: 0.5rem;
 }
 
 .equipped-spells {

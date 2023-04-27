@@ -77,14 +77,15 @@ const ringsRouter = require("koa-router")({
 const RingsController = require('../controllers/RingsController.js');
 ringsRouter.get("/", RingsController.allRings, (err) => console.log(`Error in allRings: ${err}`));
 
-//Magic Controllers
-const magicRouter = require("koa-router")({
-    prefix: "/magic"
+//Spells Controllers
+const spellsRouter = require("koa-router")({
+    prefix: "/spells"
 })
-const MagicController = require('../controllers/MagicController.js');
-magicRouter.get("/miracles", MagicController.allMiracles, (err) => console.log(`Error in allMiracles: ${err}`));
-magicRouter.get("/pyromancies", MagicController.allPyromancies, (err) => console.log(`Error in allPyromancies: ${err}`));
-magicRouter.get("/sorceries", MagicController.allSorceries, (err) => console.log(`Error in allSorceries: ${err}`));
+const SpellsController = require('../controllers/SpellsController.js');
+//spellsRouter.get("/", SpellsController.allSpells, (err) => console.log(`Error in allSpells: ${err}`));
+spellsRouter.get("/miracles", SpellsController.allMiracles, (err) => console.log(`Error in allMiracles: ${err}`));
+spellsRouter.get("/pyromancies", SpellsController.allPyromancies, (err) => console.log(`Error in allPyromancies: ${err}`));
+spellsRouter.get("/sorceries", SpellsController.allSorceries, (err) => console.log(`Error in allSorceries: ${err}`));
 
 //Arrows Controllers
 const arrowsRouter = require("koa-router")({
@@ -137,7 +138,7 @@ router.use(
     handsRouter.routes(),
     armorRouter.routes(),
     ringsRouter.routes(),
-    magicRouter.routes(),
+    spellsRouter.routes(),
     arrowsRouter.routes(),
     boltsRouter.routes()
 );

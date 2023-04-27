@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Attribute } from './Components/Attribute'
 import { LevelCounter } from './Components/LevelCounter'
-import { AttunementSlots } from './Components/AttunementSlots'
+import { AttunementSlots } from './Components/Spells/AttunementSlots'
 import { Stat } from './Components/Stat'
 import { Resistance } from './Components/Resistance'
-import { EquippedSpell } from './Components/Spells/EquippedSpell'
+import { EquippedSpellSlot } from './Components/Spells/EquippedSpellSlot'
 import { HandSlot } from './Components/Hands/HandSlot'
 import { RingSlot } from './Components/Rings/RingSlot'
 import { ArrowSlot } from './Components/Arrows/ArrowSlot'
@@ -28,6 +28,57 @@ export default function App() {
     {
     "Name": "Ring 2",
     "ImageURL": "/images/transparent.png"
+    }
+  ]
+
+  const equippedSpellsArray = [
+    {
+      "Name": "Spell 1",
+      "ImageURL": "/images/transparent.png"
+    },
+    {
+      "Name": "Spell 2",
+      "ImageURL": "/images/transparent.png"
+    },
+    {
+      "Name": "Spell 3",
+      "ImageURL": "/images/transparent.png"
+    },
+    {
+      "Name": "Spell 4",
+      "ImageURL": "/images/transparent.png"
+    },
+    {
+      "Name": "Spell 5",
+      "ImageURL": "/images/transparent.png"
+    },
+    {
+      "Name": "Spell 6",
+      "ImageURL": "/images/transparent.png"
+    },
+    {
+      "Name": "Spell 7",
+      "ImageURL": "/images/transparent.png"
+    },
+    {
+      "Name": "Spell 8",
+      "ImageURL": "/images/transparent.png"
+    },
+    {
+      "Name": "Spell 9",
+      "ImageURL": "/images/transparent.png"
+    },
+    {
+      "Name": "Spell 10",
+      "ImageURL": "/images/transparent.png"
+    },
+    {
+      "Name": "Spell 11",
+      "ImageURL": "/images/transparent.png"
+    },
+    {
+      "Name": "Spell 12",
+      "ImageURL": "/images/transparent.png"
     }
   ]
 
@@ -104,6 +155,9 @@ export default function App() {
   const [allLegsArray, setAllLegsArray] = useState([]);
   const [currentLeg, setCurrentLeg] = useState(currentLegInfo);
 
+  //Equipped Spells State
+  const [allSpellsArray, setAllSpellsArray] = useState([]);
+  const [currentEquippedSpells, setCurrentEquippedSpells] = useState(equippedSpellsArray);
 
   useEffect(() => {
     async function getAllRings() {
@@ -166,6 +220,27 @@ export default function App() {
             setAllLegsArray(JSON.parse(JSON.stringify(response.data)));
       });
     }
+    async function getAllSpells(){
+      var sorceries = [];
+      var miracles = [];
+      var pyromancies = [];
+      await axios.get("http://localhost:8080/api/spells/sorceries").then((response) => {
+            //console.log('response: ' + JSON.stringify(response.data));
+            sorceries = JSON.parse(JSON.stringify(response.data));
+      });
+      await axios.get("http://localhost:8080/api/spells/miracles").then((response) => {
+            //console.log('response: ' + JSON.stringify(response.data));
+            miracles = JSON.parse(JSON.stringify(response.data));
+      });
+      await axios.get("http://localhost:8080/api/spells/pyromancies").then((response) => {
+            //console.log('response: ' + JSON.stringify(response.data));
+            pyromancies = JSON.parse(JSON.stringify(response.data));
+      });
+      var tempArray = [...sorceries, ...miracles, ...pyromancies];
+      //console.log('tempArray: ' + JSON.stringify(tempArray));
+
+      setAllSpellsArray(tempArray);
+    }
     getAllRings();
     getAllArrows();
     getAllBolts();
@@ -176,8 +251,11 @@ export default function App() {
     getAllChests();
     getAllGauntlets();
     getAllLegs();
+    getAllSpells();
   }, []);
 
+
+  //State Handlers
 
   function handleHandState (newHandArray) {
     console.log('handleHandState: ' + JSON.stringify(newHandArray))
@@ -217,6 +295,11 @@ export default function App() {
   function handleLegState (newLeg){
     console.log('handleLegState: ' + JSON.stringify(newLeg))
     setCurrentLeg(newLeg)
+  }
+
+  function handleSpellState (newSpellArray) {
+    console.log('handleSpellState: ' + JSON.stringify(newSpellArray))
+    setCurrentEquippedSpells(newSpellArray)
   }
 
   return (
@@ -321,8 +404,6 @@ export default function App() {
               allLegsArray={allLegsArray}
               handleLegState={handleLegState}
             />
-            {/* <ItemSlot id="legs" title="Legs"/>
-            <ItemSlot id="arms" title="Arms"/> */}
           </div>
         </div>
       </div>
@@ -376,22 +457,94 @@ export default function App() {
 
               <div className="spells">
 
-                <AttunementSlots value="12"/>
+                <AttunementSlots slotsLeft="12" maxSlots="12" />
 
                 <div className="equipped-spells">
 
-                  <EquippedSpell position="1" />
-                  <EquippedSpell position="2" />
-                  <EquippedSpell position="3" />
-                  <EquippedSpell position="4" />
-                  <EquippedSpell position="5" />
-                  <EquippedSpell position="6" />
-                  <EquippedSpell position="7" />
-                  <EquippedSpell position="8" />
-                  <EquippedSpell position="9" />
-                  <EquippedSpell position="10" />
-                  <EquippedSpell position="11" />
-                  <EquippedSpell position="12" />
+                  <EquippedSpellSlot id="spell1" title="Spell 1"
+                    equippedSpellsArray={equippedSpellsArray}
+                    position="0"
+                    allSpellsArray={allSpellsArray}
+                    handleSpellState={handleSpellState}
+                    currentSlots={currentEquippedSpells}
+                  />
+                  <EquippedSpellSlot id="spell2" title="Spell 2"
+                    equippedSpellsArray={equippedSpellsArray}
+                    position="1"
+                    allSpellsArray={allSpellsArray}
+                    handleSpellState={handleSpellState}
+                    currentSlots={currentEquippedSpells}
+                  />
+                  <EquippedSpellSlot id="spell3" title="Spell 3"
+                    equippedSpellsArray={equippedSpellsArray}
+                    position="2"
+                    allSpellsArray={allSpellsArray}
+                    handleSpellState={handleSpellState}
+                    currentSlots={currentEquippedSpells}
+                  />
+                  <EquippedSpellSlot id="spell4" title="Spell 4"
+                    equippedSpellsArray={equippedSpellsArray}
+                    position="3"
+                    allSpellsArray={allSpellsArray}
+                    handleSpellState={handleSpellState}
+                    currentSlots={currentEquippedSpells}
+                  />
+                  <EquippedSpellSlot id="spell5" title="Spell 5"
+                    equippedSpellsArray={equippedSpellsArray}
+                    position="4"
+                    allSpellsArray={allSpellsArray}
+                    handleSpellState={handleSpellState}
+                    currentSlots={currentEquippedSpells}
+                  />
+                  <EquippedSpellSlot id="spell6" title="Spell 6"
+                    equippedSpellsArray={equippedSpellsArray}
+                    position="5"
+                    allSpellsArray={allSpellsArray}
+                    handleSpellState={handleSpellState}
+                    currentSlots={currentEquippedSpells}
+                  />
+                  <EquippedSpellSlot id="spell7" title="Spell 7"
+                    equippedSpellsArray={equippedSpellsArray}
+                    position="6"
+                    allSpellsArray={allSpellsArray}
+                    handleSpellState={handleSpellState}
+                    currentSlots={currentEquippedSpells}
+                  />
+                  <EquippedSpellSlot id="spell8" title="Spell 8"
+                    equippedSpellsArray={equippedSpellsArray}
+                    position="7"
+                    allSpellsArray={allSpellsArray}
+                    handleSpellState={handleSpellState}
+                    currentSlots={currentEquippedSpells}
+                  />
+                  <EquippedSpellSlot id="spell9" title="Spell 9"
+                    equippedSpellsArray={equippedSpellsArray}
+                    position="8"
+                    allSpellsArray={allSpellsArray}
+                    handleSpellState={handleSpellState}
+                    currentSlots={currentEquippedSpells}
+                  />
+                  <EquippedSpellSlot id="spell10" title="Spell 10"
+                    equippedSpellsArray={equippedSpellsArray}
+                    position="9"
+                    allSpellsArray={allSpellsArray}
+                    handleSpellState={handleSpellState}
+                    currentSlots={currentEquippedSpells}
+                  />
+                  <EquippedSpellSlot id="spell11" title="Spell 11"
+                    equippedSpellsArray={equippedSpellsArray}
+                    position="10"
+                    allSpellsArray={allSpellsArray}
+                    handleSpellState={handleSpellState}
+                    currentSlots={currentEquippedSpells}
+                  />
+                  <EquippedSpellSlot id="spell12" title="Spell 12"
+                    equippedSpellsArray={equippedSpellsArray}
+                    position="11"
+                    allSpellsArray={allSpellsArray}
+                    handleSpellState={handleSpellState}
+                    currentSlots={currentEquippedSpells}
+                  />
 
                 </div>
               </div>

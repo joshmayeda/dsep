@@ -1,4 +1,4 @@
-export function AttunementSlots(props) {
+export function AttunementSlots({slotsLeft, maxSlots}) {
     return (
         <>
         <div className="attunement-slots">
@@ -6,7 +6,7 @@ export function AttunementSlots(props) {
                 Attunement Slots
             </div>
             <div className="attunement-slot-number" id="attunement-slot-number">
-                {props.value}
+                {slotsLeft}/{maxSlots}
             </div>
         </div>
         </>
