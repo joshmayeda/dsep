@@ -91,12 +91,12 @@ const arrowsRouter = require("koa-router")({
 const ArrowsController = require('../controllers/ArrowsController.js');
 arrowsRouter.get("/", ArrowsController.allArrows, (err) => console.log(`Error in allArrows: ${err}`));
 
-// //Bolts Controllers
-// const boltsRouter = require("koa-router")({
-//     prefix: "/bolts"
-// })
-// const BoltsController = require('../controllers/BoltsController.js');
-// boltsRouter.get("/", BoltsController.allBolts, (err) => console.log(`Error in allBolts: ${err}`));
+//Bolts Controllers
+const boltsRouter = require("koa-router")({
+    prefix: "/bolts"
+})
+const BoltsController = require('../controllers/BoltsController.js');
+boltsRouter.get("/", BoltsController.allBolts, (err) => console.log(`Error in allBolts: ${err}`));
 
 // app.post('/:name', (req, res) => {
 
@@ -137,7 +137,7 @@ router.use(
     ringsRouter.routes(),
     magicRouter.routes(),
     arrowsRouter.routes(),
-    // boltsRouter.routes()
+    boltsRouter.routes()
 );
 
 module.exports = function(app) {

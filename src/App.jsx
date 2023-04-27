@@ -9,6 +9,7 @@ import { EquippedSpell } from './Components/Spells/EquippedSpell'
 // import { HandSlot } from './Components/HandSlot'
 import { RingSlot } from './Components/Rings/RingSlot'
 import { ArrowSlot } from './Components/Arrows/ArrowSlot'
+import { BoltSlot } from './Components/Arrows/BoltSlot'
 // import { ArmorSlot } from './Components/ArmorSlot'
 //import bg from './images/ds_inventory.png'
 import './App.css'
@@ -33,13 +34,18 @@ export default function App() {
     "ImageURL": "/images/transparent.png"
   }
 
+  const currentBoltInfo = {
+    "Name": "Bolt",
+    "ImageURL": "/images/transparent.png"
+  }
+
   const [allRingsArray, setAllRingsArray] = useState([]);
   const [currentRingSlots, setCurrentRingSlots] = useState(ringSlotsArray);
   const [renderCount, setRenderCount] = useState(0);
   const [allArrowsArray, setAllArrowsArray] = useState([]);
   const [currentArrow, setCurrentArrow] = useState(currentArrowInfo);
   const [allBoltsArray, setAllBoltsArray] = useState([]);
-  const [currentBolt, setCurrentBolt] = useState({});
+  const [currentBolt, setCurrentBolt] = useState(currentBoltInfo);
 
 
 
@@ -56,19 +62,20 @@ export default function App() {
             setAllArrowsArray(JSON.parse(JSON.stringify(response.data)));
       });
     }
+    async function getAllBolts(){
+      await axios.get("http://localhost:8080/api/bolts").then((response) => {
+            //console.log('response: ' + JSON.stringify(response.data));
+            setAllBoltsArray(JSON.parse(JSON.stringify(response.data)));
+      });
+    }
     getAllRings();
     getAllArrows();
+    getAllBolts();
     setRenderCount(renderCount + 1);
     console.log('renderCount: ' + renderCount);
   }, []);
 
-  // async function getAllArrows(){
-  //   await axios.get("http://localhost:8080/api/arrows").then((response) => {
-  //         //console.log('response: ' + JSON.stringify(response.data));
-  //         setAllArrowsArray(JSON.parse(JSON.stringify(response.data)));
-  //   });
-  // }
-  // getAllArrows();
+
 
   function handleRingState (newRingArray) {
     console.log('handleRingState: ' + JSON.stringify(newRingArray))
@@ -80,10 +87,10 @@ export default function App() {
     setCurrentArrow(newArrow)
   }
 
-  // function handleBoltState (newBolt){
-  //   console.log('handleBoltState: ' + JSON.stringify(newBolt))
-  //   setCurrentBolt(newBolt)
-  //}
+  function handleBoltState (newBolt){
+    console.log('handleBoltState: ' + JSON.stringify(newBolt))
+    setCurrentBolt(newBolt)
+  }
 
   return (
     <>
@@ -109,7 +116,7 @@ export default function App() {
             <RingSlot id="ring1" title="Ring 1" ringSlotsArray={ringSlotsArray} ringSlotNum="0" allRingsArray={allRingsArray} handleRingState={handleRingState} currentSlots={currentRingSlots} />
             <RingSlot id="ring2" title="Ring 2" ringSlotsArray={ringSlotsArray} ringSlotNum="1" allRingsArray={allRingsArray} handleRingState={handleRingState} currentSlots={currentRingSlots} />
             <ArrowSlot id="arrow" title="Arrow" currentArrowInfo={currentArrowInfo} allArrowsArray={allArrowsArray} handleArrowState={handleArrowState} />
-            {/*<ArrowSlot id="bolt" title="Bolt" allBoltsArray={allBoltsArray} handleBoltState={handleBoltState} currentBolt={currentBolt} /> */}
+            <BoltSlot id="bolt" title="Bolt" currentBoltInfo={currentBoltInfo} allBoltsArray={allBoltsArray} handleBoltState={handleBoltState} />
           </div>
         </div>
         <div className="grid-item-equipment">
