@@ -28,34 +28,36 @@ router.get('/', (req, res) => {
     console.log('hello world');
 })
 
-//Weapons Controllers
-const weaponsRouter = require("koa-router")({
-	prefix: "/weapons"
+//Hands Controllers
+const handsRouter = require("koa-router")({
+	prefix: "/hands"
 })
-const WeaponsController = require('../controllers/WeaponsController.js');
+const HandsController = require('../controllers/HandsController.js');
 
-weaponsRouter.get("/", WeaponsController.allWeapons, (err) => console.log(`Error in allWeapons: ${err}`));
-weaponsRouter.get("/axes", WeaponsController.allAxes, (err) => console.log(`Error in allAxes: ${err}`));
-weaponsRouter.get("/bows", WeaponsController.allBows, (err) => console.log(`Error in allBows: ${err}`));
-weaponsRouter.get("/catalysts", WeaponsController.allCatalysts, (err) => console.log(`Error in allCatalysts: ${err}`));
-weaponsRouter.get("/crossbows", WeaponsController.allCrossbows, (err) => console.log(`Error in allCrossbows: ${err}`));
-weaponsRouter.get("/curved_greatswords", WeaponsController.allCurvedGreatswords, (err) => console.log(`Error in allCurvedGreatswords: ${err}`));
-weaponsRouter.get("/curved_swords", WeaponsController.allCurvedSwords, (err) => console.log(`Error in allCurvedSwords: ${err}`));
-weaponsRouter.get("/daggers", WeaponsController.allDaggers, (err) => console.log(`Error in allDaggers: ${err}`));
-weaponsRouter.get("/fists", WeaponsController.allFists, (err) => console.log(`Error in allFists: ${err}`));
-weaponsRouter.get("/flames", WeaponsController.allFlames, (err) => console.log(`Error in allFlames: ${err}`));
-weaponsRouter.get("/great_hammers", WeaponsController.allGreatHammers, (err) => console.log(`Error in allGreatHammers: ${err}`));
-weaponsRouter.get("/greataxes", WeaponsController.allGreataxes, (err) => console.log(`Error in allGreataxes: ${err}`));
-weaponsRouter.get("/greatswords", WeaponsController.allGreatswords, (err) => console.log(`Error in allGreatSwords: ${err}`));
-weaponsRouter.get("/halberds", WeaponsController.allHalberds, (err) => console.log(`Error in allHalberds: ${err}`));
-weaponsRouter.get("/hammers", WeaponsController.allHammers, (err) => console.log(`Error in allHammers: ${err}`));
-weaponsRouter.get("/katanas", WeaponsController.allKatanas, (err) => console.log(`Error in allKatanas: ${err}`));
-weaponsRouter.get("/piercing_swords", WeaponsController.allPiercingSwords, (err) => console.log(`Error in allPiercingSwords: ${err}`));
-weaponsRouter.get("/spears", WeaponsController.allSpears, (err) => console.log(`Error in allSpears: ${err}`));
-weaponsRouter.get("/straight_swords", WeaponsController.allStraightSwords, (err) => console.log(`Error in allStraightSwords: ${err}`));
-weaponsRouter.get("/talismans", WeaponsController.allTalismans, (err) => console.log(`Error in allTalismans: ${err}`));
-weaponsRouter.get("/ultra_greatswords", WeaponsController.allUltraGreatswords, (err) => console.log(`Error in allUltraGreatswords: ${err}`));
-weaponsRouter.get("/whips", WeaponsController.allWhips, (err) => console.log(`Error in allWhips: ${err}`));
+handsRouter.get("/weapons", HandsController.allWeapons, (err) => console.log(`Error in allWeapons: ${err}`));
+handsRouter.get("/shields", HandsController.allShields, (err) => console.log(`Error in allShields: ${err}`));
+handsRouter.get("/foci", HandsController.allFoci, (err) => console.log(`Error in allFoci: ${err}`));
+// handsRouter.get("/axes", HandsController.allAxes, (err) => console.log(`Error in allAxes: ${err}`));
+// handsRouter.get("/bows", HandsController.allBows, (err) => console.log(`Error in allBows: ${err}`));
+// handsRouter.get("/catalysts", HandsController.allCatalysts, (err) => console.log(`Error in allCatalysts: ${err}`));
+// handsRouter.get("/crossbows", HandsController.allCrossbows, (err) => console.log(`Error in allCrossbows: ${err}`));
+// handsRouter.get("/curved_greatswords", HandsController.allCurvedGreatswords, (err) => console.log(`Error in allCurvedGreatswords: ${err}`));
+// handsRouter.get("/curved_swords", HandsController.allCurvedSwords, (err) => console.log(`Error in allCurvedSwords: ${err}`));
+// handsRouter.get("/daggers", HandsController.allDaggers, (err) => console.log(`Error in allDaggers: ${err}`));
+// handsRouter.get("/fists", HandsController.allFists, (err) => console.log(`Error in allFists: ${err}`));
+// handsRouter.get("/flames", HandsController.allFlames, (err) => console.log(`Error in allFlames: ${err}`));
+// handsRouter.get("/great_hammers", HandsController.allGreatHammers, (err) => console.log(`Error in allGreatHammers: ${err}`));
+// handsRouter.get("/greataxes", HandsController.allGreataxes, (err) => console.log(`Error in allGreataxes: ${err}`));
+// handsRouter.get("/greatswords", HandsController.allGreatswords, (err) => console.log(`Error in allGreatSwords: ${err}`));
+// handsRouter.get("/halberds", HandsController.allHalberds, (err) => console.log(`Error in allHalberds: ${err}`));
+// handsRouter.get("/hammers", HandsController.allHammers, (err) => console.log(`Error in allHammers: ${err}`));
+// handsRouter.get("/katanas", HandsController.allKatanas, (err) => console.log(`Error in allKatanas: ${err}`));
+// handsRouter.get("/piercing_swords", HandsController.allPiercingSwords, (err) => console.log(`Error in allPiercingSwords: ${err}`));
+// handsRouter.get("/spears", HandsController.allSpears, (err) => console.log(`Error in allSpears: ${err}`));
+// handsRouter.get("/straight_swords", HandsController.allStraightSwords, (err) => console.log(`Error in allStraightSwords: ${err}`));
+// handsRouter.get("/talismans", HandsController.allTalismans, (err) => console.log(`Error in allTalismans: ${err}`));
+// handsRouter.get("/ultra_greatswords", HandsController.allUltraGreatswords, (err) => console.log(`Error in allUltraGreatswords: ${err}`));
+// handsRouter.get("/whips", HandsController.allWhips, (err) => console.log(`Error in allWhips: ${err}`));
 
 //Armor Controllers
 const armorRouter = require("koa-router")({
@@ -132,7 +134,7 @@ boltsRouter.get("/", BoltsController.allBolts, (err) => console.log(`Error in al
 
 router.use(
     "",
-    weaponsRouter.routes(),
+    handsRouter.routes(),
     armorRouter.routes(),
     ringsRouter.routes(),
     magicRouter.routes(),

@@ -1,18 +1,16 @@
 const dbConnection = require("../config/db.js");
 
 const allWeapons = async (req, res) => {
-	console.log("weapons allWeapons called.");
+	console.log("hands allWeapons called.");
 	return new Promise((resolve, reject) => {
 		const query = `
         select * from axes
         union select * from bows
-        union select * from catalysts
         union select * from crossbows
         union select * from curved_greatswords
         union select * from curved_swords
         union select * from daggers
         union select * from fists
-        union select * from flames
         union select * from great_hammers
         union select * from greataxes
         union select * from greatbows
@@ -22,7 +20,6 @@ const allWeapons = async (req, res) => {
         union select * from katanas
         union select * from piercing_swords
         union select * from spears
-        union select * from talismans
         union select * from ultra_greatswords
         union select * from whips
         ;
@@ -33,7 +30,7 @@ const allWeapons = async (req, res) => {
 			},
 			(error, tuples) => {
 				if (error) {
-					console.log("Connection error in WeaponController::allWeapons", error);
+					console.log("Connection error in HandController::allWeapons", error);
 					return reject(error);
 				}
 				req.body = tuples;
@@ -51,8 +48,70 @@ const allWeapons = async (req, res) => {
 	});
 };
 
+const allShields = async (req, res) => {
+	console.log("hands allShields called.");
+	return new Promise((resolve, reject) => {
+		const query = `
+        select * from small_shields
+		union select * from standard_shields
+		union select * from greatshields;`;
+		dbConnection.query(
+			{
+				sql: query,
+			},
+			(error, tuples) => {
+				if (error) {
+					console.log("Connection error in HandController::allShields", error);
+					return reject(error);
+				}
+				req.body = tuples;
+				req.status = 200;
+				return resolve();
+			}
+		);
+        //console.log(req.body);
+	}).catch((err) => {
+		console.log("Database connection error in allShields.", err);
+		// The UI side will have to look for the value of status and
+		// if it is not 200, act appropriately.
+		req.body = [];
+		req.status = 500;
+	});
+};
+
+const allFoci = async (req, res) => {
+	console.log("hands allFoci called.");
+	return new Promise((resolve, reject) => {
+		const query = `
+        select * from catalysts
+		union select * from talismans
+		union select * from flames;`;
+		dbConnection.query(
+			{
+				sql: query,
+			},
+			(error, tuples) => {
+				if (error) {
+					console.log("Connection error in HandController::allFoci", error);
+					return reject(error);
+				}
+				req.body = tuples;
+				req.status = 200;
+				return resolve();
+			}
+		);
+        //console.log(req.body);
+	}).catch((err) => {
+		console.log("Database connection error in allFoci.", err);
+		// The UI side will have to look for the value of status and
+		// if it is not 200, act appropriately.
+		req.body = [];
+		req.status = 500;
+	});
+};
+
 const allAxes = async (req, res) => {
-	console.log("weapons allAxes called.");
+	console.log("hands allAxes called.");
 	return new Promise((resolve, reject) => {
 		const query = `
         select * from axes;`;
@@ -62,7 +121,7 @@ const allAxes = async (req, res) => {
 			},
 			(error, tuples) => {
 				if (error) {
-					console.log("Connection error in WeaponController::allAxes", error);
+					console.log("Connection error in HandController::allAxes", error);
 					return reject(error);
 				}
 				req.body = tuples;
@@ -81,7 +140,7 @@ const allAxes = async (req, res) => {
 };
 
 const allBows = async (req, res) => {
-	console.log("weapons allBows called.");
+	console.log("hands allBows called.");
 	return new Promise((resolve, reject) => {
 		const query = `
         select * from bows;`;
@@ -91,7 +150,7 @@ const allBows = async (req, res) => {
 			},
 			(error, tuples) => {
 				if (error) {
-					console.log("Connection error in WeaponController::allBows", error);
+					console.log("Connection error in HandController::allBows", error);
 					return reject(error);
 				}
 				req.body = tuples;
@@ -110,7 +169,7 @@ const allBows = async (req, res) => {
 };
 
 const allCatalysts = async (req, res) => {
-	console.log("weapons allCatalysts called.");
+	console.log("hands allCatalysts called.");
 	return new Promise((resolve, reject) => {
 		const query = `
         select * from catalysts;`;
@@ -120,7 +179,7 @@ const allCatalysts = async (req, res) => {
 			},
 			(error, tuples) => {
 				if (error) {
-					console.log("Connection error in WeaponController::allCatalysts", error);
+					console.log("Connection error in HandController::allCatalysts", error);
 					return reject(error);
 				}
 				req.body = tuples;
@@ -139,7 +198,7 @@ const allCatalysts = async (req, res) => {
 };
 
 const allCrossbows = async (req, res) => {
-	console.log("weapons allCrossbows called.");
+	console.log("hands allCrossbows called.");
 	return new Promise((resolve, reject) => {
 		const query = `
         select * from crossbows;`;
@@ -149,7 +208,7 @@ const allCrossbows = async (req, res) => {
 			},
 			(error, tuples) => {
 				if (error) {
-					console.log("Connection error in WeaponController::allCrossbows", error);
+					console.log("Connection error in HandController::allCrossbows", error);
 					return reject(error);
 				}
 				req.body = tuples;
@@ -168,7 +227,7 @@ const allCrossbows = async (req, res) => {
 };
 
 const allCurvedGreatswords = async (req, res) => {
-	console.log("weapons allCurvedGreatswords called.");
+	console.log("hands allCurvedGreatswords called.");
 	return new Promise((resolve, reject) => {
 		const query = `
         select * from curved_greatswords;`;
@@ -178,7 +237,7 @@ const allCurvedGreatswords = async (req, res) => {
 			},
 			(error, tuples) => {
 				if (error) {
-					console.log("Connection error in WeaponController::allCurvedGreatswords", error);
+					console.log("Connection error in HandController::allCurvedGreatswords", error);
 					return reject(error);
 				}
 				req.body = tuples;
@@ -197,7 +256,7 @@ const allCurvedGreatswords = async (req, res) => {
 };
 
 const allCurvedSwords = async (req, res) => {
-	console.log("weapons allSwords called.");
+	console.log("hands allSwords called.");
 	return new Promise((resolve, reject) => {
 		const query = `
         select * from curved_swords;`;
@@ -207,7 +266,7 @@ const allCurvedSwords = async (req, res) => {
 			},
 			(error, tuples) => {
 				if (error) {
-					console.log("Connection error in WeaponController::allCurvedSwords", error);
+					console.log("Connection error in HandController::allCurvedSwords", error);
 					return reject(error);
 				}
 				req.body = tuples;
@@ -226,7 +285,7 @@ const allCurvedSwords = async (req, res) => {
 };
 
 const allDaggers = async (req, res) => {
-	console.log("weapons allDaggers called.");
+	console.log("hands allDaggers called.");
 	return new Promise((resolve, reject) => {
 		const query = `
         select * from daggers;`;
@@ -236,7 +295,7 @@ const allDaggers = async (req, res) => {
 			},
 			(error, tuples) => {
 				if (error) {
-					console.log("Connection error in WeaponController::allCurvedDaggers", error);
+					console.log("Connection error in HandController::allCurvedDaggers", error);
 					return reject(error);
 				}
 				req.body = tuples;
@@ -255,7 +314,7 @@ const allDaggers = async (req, res) => {
 };
 
 const allFists = async (req, res) => {
-	console.log("weapons allFists called.");
+	console.log("hands allFists called.");
 	return new Promise((resolve, reject) => {
 		const query = `
         select * from fists;`;
@@ -265,7 +324,7 @@ const allFists = async (req, res) => {
 			},
 			(error, tuples) => {
 				if (error) {
-					console.log("Connection error in WeaponController::allCurvedFists", error);
+					console.log("Connection error in HandController::allCurvedFists", error);
 					return reject(error);
 				}
 				req.body = tuples;
@@ -284,7 +343,7 @@ const allFists = async (req, res) => {
 };
 
 const allFlames = async (req, res) => {
-	console.log("weapons allFlames called.");
+	console.log("hands allFlames called.");
 	return new Promise((resolve, reject) => {
 		const query = `
         select * from flames;`;
@@ -294,7 +353,7 @@ const allFlames = async (req, res) => {
 			},
 			(error, tuples) => {
 				if (error) {
-					console.log("Connection error in WeaponController::allFlames", error);
+					console.log("Connection error in HandController::allFlames", error);
 					return reject(error);
 				}
 				req.body = tuples;
@@ -313,7 +372,7 @@ const allFlames = async (req, res) => {
 };
 
 const allGreatHammers = async (req, res) => {
-	console.log("weapons allGreatHammers called.");
+	console.log("hands allGreatHammers called.");
 	return new Promise((resolve, reject) => {
 		const query = `
         select * from great_hammers;`;
@@ -323,7 +382,7 @@ const allGreatHammers = async (req, res) => {
 			},
 			(error, tuples) => {
 				if (error) {
-					console.log("Connection error in WeaponController::allGreatHammers", error);
+					console.log("Connection error in HandController::allGreatHammers", error);
 					return reject(error);
 				}
 				req.body = tuples;
@@ -342,7 +401,7 @@ const allGreatHammers = async (req, res) => {
 };
 
 const allGreataxes = async (req, res) => {
-	console.log("weapons allGreataxes called.");
+	console.log("hands allGreataxes called.");
 	return new Promise((resolve, reject) => {
 		const query = `
         select * from greataxes;`;
@@ -352,7 +411,7 @@ const allGreataxes = async (req, res) => {
 			},
 			(error, tuples) => {
 				if (error) {
-					console.log("Connection error in WeaponController::allGreataxes", error);
+					console.log("Connection error in HandController::allGreataxes", error);
 					return reject(error);
 				}
 				req.body = tuples;
@@ -371,7 +430,7 @@ const allGreataxes = async (req, res) => {
 };
 
 const allGreatswords = async (req, res) => {
-	console.log("weapons allGreatswords called.");
+	console.log("hands allGreatswords called.");
 	return new Promise((resolve, reject) => {
 		const query = `
         select * from greatswords;`;
@@ -381,7 +440,7 @@ const allGreatswords = async (req, res) => {
 			},
 			(error, tuples) => {
 				if (error) {
-					console.log("Connection error in WeaponController::allGreatswords", error);
+					console.log("Connection error in HandController::allGreatswords", error);
 					return reject(error);
 				}
 				req.body = tuples;
@@ -400,7 +459,7 @@ const allGreatswords = async (req, res) => {
 };
 
 const allHalberds = async (req, res) => {
-	console.log("weapons allHalberds called.");
+	console.log("hands allHalberds called.");
 	return new Promise((resolve, reject) => {
 		const query = `
         select * from halberds;`;
@@ -410,7 +469,7 @@ const allHalberds = async (req, res) => {
 			},
 			(error, tuples) => {
 				if (error) {
-					console.log("Connection error in WeaponController::allHalberds", error);
+					console.log("Connection error in HandController::allHalberds", error);
 					return reject(error);
 				}
 				req.body = tuples;
@@ -429,7 +488,7 @@ const allHalberds = async (req, res) => {
 };
 
 const allHammers = async (req, res) => {
-	console.log("weapons allHammers called.");
+	console.log("hands allHammers called.");
 	return new Promise((resolve, reject) => {
 		const query = `
         select * from hammers;`;
@@ -439,7 +498,7 @@ const allHammers = async (req, res) => {
 			},
 			(error, tuples) => {
 				if (error) {
-					console.log("Connection error in WeaponController::allHammers", error);
+					console.log("Connection error in HandController::allHammers", error);
 					return reject(error);
 				}
 				req.body = tuples;
@@ -458,7 +517,7 @@ const allHammers = async (req, res) => {
 };
 
 const allKatanas = async (req, res) => {
-	console.log("weapons allKatanas called.");
+	console.log("hands allKatanas called.");
 	return new Promise((resolve, reject) => {
 		const query = `
         select * from katanas;`;
@@ -468,7 +527,7 @@ const allKatanas = async (req, res) => {
 			},
 			(error, tuples) => {
 				if (error) {
-					console.log("Connection error in WeaponController::allKatanas", error);
+					console.log("Connection error in HandController::allKatanas", error);
 					return reject(error);
 				}
 				req.body = tuples;
@@ -487,7 +546,7 @@ const allKatanas = async (req, res) => {
 };
 
 const allPiercingSwords = async (req, res) => {
-	console.log("weapons allPiercingSwords called.");
+	console.log("hands allPiercingSwords called.");
 	return new Promise((resolve, reject) => {
 		const query = `
         select * from piercing_swords;`;
@@ -497,7 +556,7 @@ const allPiercingSwords = async (req, res) => {
 			},
 			(error, tuples) => {
 				if (error) {
-					console.log("Connection error in WeaponController::allPiercingSwords", error);
+					console.log("Connection error in HandController::allPiercingSwords", error);
 					return reject(error);
 				}
 				req.body = tuples;
@@ -516,7 +575,7 @@ const allPiercingSwords = async (req, res) => {
 };
 
 const allSpears = async (req, res) => {
-	console.log("weapons allSpears called.");
+	console.log("hands allSpears called.");
 	return new Promise((resolve, reject) => {
 		const query = `
         select * from spears;`;
@@ -526,7 +585,7 @@ const allSpears = async (req, res) => {
 			},
 			(error, tuples) => {
 				if (error) {
-					console.log("Connection error in WeaponController::allSpears", error);
+					console.log("Connection error in HandController::allSpears", error);
 					return reject(error);
 				}
 				req.body = tuples;
@@ -545,7 +604,7 @@ const allSpears = async (req, res) => {
 };
 
 const allStraightSwords = async (req, res) => {
-	console.log("weapons allStraightSwords called.");
+	console.log("hands allStraightSwords called.");
 	return new Promise((resolve, reject) => {
 		const query = `
         select * from straight_swords;`;
@@ -555,7 +614,7 @@ const allStraightSwords = async (req, res) => {
 			},
 			(error, tuples) => {
 				if (error) {
-					console.log("Connection error in WeaponController::allStraightSwords", error);
+					console.log("Connection error in HandController::allStraightSwords", error);
 					return reject(error);
 				}
 				req.body = tuples;
@@ -574,7 +633,7 @@ const allStraightSwords = async (req, res) => {
 };
 
 const allTalismans = async (req, res) => {
-	console.log("weapons allTalismans called.");
+	console.log("hands allTalismans called.");
 	return new Promise((resolve, reject) => {
 		const query = `
         select * from talismans;`;
@@ -584,7 +643,7 @@ const allTalismans = async (req, res) => {
 			},
 			(error, tuples) => {
 				if (error) {
-					console.log("Connection error in WeaponController::allTalismans", error);
+					console.log("Connection error in HandController::allTalismans", error);
 					return reject(error);
 				}
 				req.body = tuples;
@@ -603,7 +662,7 @@ const allTalismans = async (req, res) => {
 };
 
 const allUltraGreatswords = async (req, res) => {
-	console.log("weapons allUltraGreatswords called.");
+	console.log("hands allUltraGreatswords called.");
 	return new Promise((resolve, reject) => {
 		const query = `
         select * from ultra_greatswords;`;
@@ -613,7 +672,7 @@ const allUltraGreatswords = async (req, res) => {
 			},
 			(error, tuples) => {
 				if (error) {
-					console.log("Connection error in WeaponController::allUltraGreatswords", error);
+					console.log("Connection error in HandController::allUltraGreatswords", error);
 					return reject(error);
 				}
 				req.body = tuples;
@@ -632,7 +691,7 @@ const allUltraGreatswords = async (req, res) => {
 };
 
 const allWhips = async (req, res) => {
-	console.log("weapons allWhips called.");
+	console.log("hands allWhips called.");
 	return new Promise((resolve, reject) => {
 		const query = `
         select * from whips;`;
@@ -642,7 +701,7 @@ const allWhips = async (req, res) => {
 			},
 			(error, tuples) => {
 				if (error) {
-					console.log("Connection error in WeaponController::allWhips", error);
+					console.log("Connection error in HandController::allWhips", error);
 					return reject(error);
 				}
 				req.body = tuples;
@@ -661,7 +720,9 @@ const allWhips = async (req, res) => {
 };
 
 module.exports = {
-    allWeapons,
+	allWeapons,
+	allShields,
+	allFoci,
     allAxes,
     allBows,
     allCatalysts,

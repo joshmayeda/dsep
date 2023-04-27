@@ -21,34 +21,33 @@ export function RingModal({ ringSlotNum, allRingsArray, handleRingState, current
 
   return (
     <div className="modal">
-      <Searchbar rings={allRingsArray} />
-        <div className="ring-modal">
-          {allRingsArray?.map((ring) => (
-            <Popup ref={ref} trigger={
-            <div key={ring.Name} className="ring-modal-item" onClick={() => handleOnClick(ring)}>
-              <img className="ring-modal-item-image"
-              src={ring.ImageURL}></img>
-              <div className="ring-modal-item-name">
-                {ring.Name}
+      <div className="ring-modal">
+        {allRingsArray?.map((ring) => (
+          <Popup ref={ref} trigger={
+          <div key={ring.Name} className="ring-modal-item" onClick={() => handleOnClick(ring)}>
+            <img className="ring-modal-item-image"
+            src={ring.ImageURL}></img>
+            <div className="ring-modal-item-name">
+              {ring.Name}
+            </div>
+          </div>} position = "right bottom" on="hover" arrow={false}>
+            <div className="ring-modal-item-description">
+              <div className="header">
+                Effects
               </div>
-            </div>} position = "right bottom" on="hover" arrow={false}>
-              <div className="ring-modal-item-description">
-                <div className="header">
-                  Effects
-                </div>
-                <div className="header">
-                  Acquired From
-                </div>
-                <div className="ring-effects">
-                  {ring.Effects}
-                </div>
-                <div className="ring-acquired-from">
-                  {ring.AcquiredFrom}
-                </div>
+              <div className="header">
+                Acquired From
               </div>
-            </Popup>
-          ))}
-        </div>
+              <div className="ring-effects">
+                {ring.Effects}
+              </div>
+              <div className="ring-acquired-from">
+                {ring.AcquiredFrom}
+              </div>
+            </div>
+          </Popup>
+        ))}
+      </div>
     </div>
   )
 }

@@ -17,7 +17,6 @@ export function BoltModal({currentBolt, allBoltsArray, handleBoltState, handleBo
 
     return (
         <div className="modal">
-      <Searchbar allBoltsArray={allBoltsArray} />
         <div className="arrow-modal">
           {allBoltsArray?.map((bolt) => (
             <Popup trigger={

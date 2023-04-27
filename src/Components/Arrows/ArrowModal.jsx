@@ -17,7 +17,6 @@ export function ArrowModal({currentArrow, allArrowsArray, handleArrowState, hand
 
     return (
         <div className="modal">
-      <Searchbar allArrowsArray={allArrowsArray} />
         <div className="arrow-modal">
           {allArrowsArray?.map((arrow) => (
             <Popup trigger={

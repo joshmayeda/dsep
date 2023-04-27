@@ -6,7 +6,7 @@ import { AttunementSlots } from './Components/AttunementSlots'
 import { Stat } from './Components/Stat'
 import { Resistance } from './Components/Resistance'
 import { EquippedSpell } from './Components/Spells/EquippedSpell'
-// import { HandSlot } from './Components/HandSlot'
+import { HandSlot } from './Components/Hands/HandSlot'
 import { RingSlot } from './Components/Rings/RingSlot'
 import { ArrowSlot } from './Components/Arrows/ArrowSlot'
 import { BoltSlot } from './Components/Arrows/BoltSlot'
@@ -29,6 +29,25 @@ export default function App() {
     }
   ]
 
+  const handSlotsArray = [
+    {
+    "Name": "R. Hand 1",
+    "ImageURL": "/images/transparent.png"
+    },
+    {
+    "Name": "R. Hand 2",
+    "ImageURL": "/images/transparent.png"
+    },
+    {
+      "Name": "L. Hand 1",
+      "ImageURL": "/images/transparent.png"
+      },
+      {
+      "Name": "L. Hand 2",
+      "ImageURL": "/images/transparent.png"
+      }
+  ]
+
   const currentArrowInfo = {
     "Name": "Arrow",
     "ImageURL": "/images/transparent.png"
@@ -39,14 +58,23 @@ export default function App() {
     "ImageURL": "/images/transparent.png"
   }
 
+  //Hands State
+  const [allHandsArray, setAllHandsArray] = useState([]);
+  const [allWeaponsArray, setAllWeaponsArray] = useState([]);
+  const [allShieldsArray, setAllShieldsArray] = useState([]);
+  const [allFociArray, setAllFociArray] = useState([]);
+  const [currentHandSlots, setCurrentHandSlots] = useState(handSlotsArray);
+
+
+  //Rings State
   const [allRingsArray, setAllRingsArray] = useState([]);
   const [currentRingSlots, setCurrentRingSlots] = useState(ringSlotsArray);
-  const [renderCount, setRenderCount] = useState(0);
+
+  //Arrow and Bolt State
   const [allArrowsArray, setAllArrowsArray] = useState([]);
   const [currentArrow, setCurrentArrow] = useState(currentArrowInfo);
   const [allBoltsArray, setAllBoltsArray] = useState([]);
   const [currentBolt, setCurrentBolt] = useState(currentBoltInfo);
-
 
 
   useEffect(() => {
@@ -68,11 +96,30 @@ export default function App() {
             setAllBoltsArray(JSON.parse(JSON.stringify(response.data)));
       });
     }
+    async function getAllWeapons(){
+      await axios.get("http://localhost:8080/api/hands/weapons").then((response) => {
+            //console.log('response: ' + JSON.stringify(response.data));
+            setAllWeaponsArray(JSON.parse(JSON.stringify(response.data)));
+      });
+    }
+    async function getAllShields(){
+      await axios.get("http://localhost:8080/api/hands/shields").then((response) => {
+            //console.log('response: ' + JSON.stringify(response.data));
+            setAllShieldsArray(JSON.parse(JSON.stringify(response.data)));
+      });
+    }
+    async function getAllFoci(){
+      await axios.get("http://localhost:8080/api/hands/foci").then((response) => {
+            //console.log('response: ' + JSON.stringify(response.data));
+            setAllFociArray(JSON.parse(JSON.stringify(response.data)));
+      });
+    }
     getAllRings();
     getAllArrows();
     getAllBolts();
-    setRenderCount(renderCount + 1);
-    console.log('renderCount: ' + renderCount);
+    getAllWeapons();
+    getAllShields();
+    getAllFoci();
   }, []);
 
 
@@ -92,6 +139,11 @@ export default function App() {
     setCurrentBolt(newBolt)
   }
 
+  function handleHandState (newHandArray) {
+    console.log('handleHandState: ' + JSON.stringify(newHandArray))
+    setCurrentHandSlots(newHandArray)
+  }
+
   return (
     <>
     <header>
@@ -104,19 +156,71 @@ export default function App() {
         <div className="grid-item-equipment">
           Hands
           <div className="grid-item-container" id="hands">
-            <ItemSlot id="rwep1" title="Right Hand 1"/>
-            <ItemSlot id="rwep2" title="Right Hand 2"/>
-            <ItemSlot id="lwep1" title="Left Hand 1"/>
-            <ItemSlot id="lwep2" title="Left Hand 2"/>
+            <HandSlot id="rwep1" title="Right Hand 1"
+              handSlotsArray={handSlotsArray}
+              handSlotNum="0"
+              allWeaponsArray={allWeaponsArray}
+              allShieldsArray={allShieldsArray}
+              allFociArray={allFociArray}
+              handleHandState={handleHandState}
+              currentSlots={currentHandSlots}
+            />
+            <HandSlot id="rwep2" title="Right Hand 2"
+              handSlotsArray={handSlotsArray}
+              handSlotNum="1"
+              allWeaponsArray={allWeaponsArray}
+              allShieldsArray={allShieldsArray}
+              allFociArray={allFociArray}
+              handleHandState={handleHandState}
+              currentSlots={currentHandSlots}
+            />
+            <HandSlot id="lwep1" title="Left Hand 1"
+              handSlotsArray={handSlotsArray}
+              handSlotNum="2"
+              allWeaponsArray={allWeaponsArray}
+              allShieldsArray={allShieldsArray}
+              allFociArray={allFociArray}
+              handleHandState={handleHandState}
+              currentSlots={currentHandSlots}
+            />
+            <HandSlot id="lwep2" title="Left Hand 2"
+              handSlotsArray={handSlotsArray}
+              handSlotNum="3"
+              allWeaponsArray={allWeaponsArray}
+              allShieldsArray={allShieldsArray}
+              allFociArray={allFociArray}
+              handleHandState={handleHandState}
+              currentSlots={currentHandSlots}
+            />
           </div>
         </div>
         <div className="grid-item-equipment">
           Rings & Arrows
           <div className="grid-item-container" id="rings-and-arrows">
-            <RingSlot id="ring1" title="Ring 1" ringSlotsArray={ringSlotsArray} ringSlotNum="0" allRingsArray={allRingsArray} handleRingState={handleRingState} currentSlots={currentRingSlots} />
-            <RingSlot id="ring2" title="Ring 2" ringSlotsArray={ringSlotsArray} ringSlotNum="1" allRingsArray={allRingsArray} handleRingState={handleRingState} currentSlots={currentRingSlots} />
-            <ArrowSlot id="arrow" title="Arrow" currentArrowInfo={currentArrowInfo} allArrowsArray={allArrowsArray} handleArrowState={handleArrowState} />
-            <BoltSlot id="bolt" title="Bolt" currentBoltInfo={currentBoltInfo} allBoltsArray={allBoltsArray} handleBoltState={handleBoltState} />
+            <RingSlot id="ring1" title="Ring 1"
+              ringSlotsArray={ringSlotsArray}
+              ringSlotNum="0"
+              allRingsArray={allRingsArray}
+              handleRingState={handleRingState}
+              currentSlots={currentRingSlots}
+            />
+            <RingSlot id="ring2" title="Ring 2"
+              ringSlotsArray={ringSlotsArray}
+              ringSlotNum="1"
+              allRingsArray={allRingsArray}
+              handleRingState={handleRingState}
+              currentSlots={currentRingSlots}
+            />
+            <ArrowSlot id="arrow" title="Arrow"
+              currentArrowInfo={currentArrowInfo}
+              allArrowsArray={allArrowsArray}
+              handleArrowState={handleArrowState}
+            />
+            <BoltSlot id="bolt" title="Bolt"
+              currentBoltInfo={currentBoltInfo}
+              allBoltsArray={allBoltsArray}
+              handleBoltState={handleBoltState}
+            />
           </div>
         </div>
         <div className="grid-item-equipment">
