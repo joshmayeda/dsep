@@ -1,29 +1,26 @@
-import { Searchbar } from '../Searchbar';
-import Popup from 'reactjs-popup';
-import { useRef } from 'react';
-import '../../modal.css';
+import { Searchbar } from "../Searchbar";
+import Popup from "reactjs-popup";
 
-export function ArrowModal({ allArrowsArray, handleArrowState, currentArrow, handleArrowClicked, handleArrowChange }) {
 
-  const ref = useRef(null);
+export function ArrowModal({currentArrow, allArrowsArray, handleArrowState, handleArrowClicked, handleArrowChange}){
 
-  function handleOnClick(newArrow){
-    // console.log('handleOnClick: ' + JSON.stringify(ring));
-    // console.log('ringSlotNum: ' + ringSlotNum);
-    currentArrow.Name = newArrow.Name;
-    currentArrow.ImageURL = newArrow.ImageURL;
-    //console.log('currentArrow: ' + JSON.stringify(currentArrow));
-    handleArrowChange(newArrow);
-    handleArrowState(currentArrow);
-    handleArrowClicked();
-  }
+    function handleOnClick(newArrow){
+        // console.log('handleOnClick: ' + JSON.stringify(ring));
+        // console.log('ringSlotNum: ' + ringSlotNum);
+        currentArrow.Name = newArrow.Name;
+        currentArrow.ImageURL = newArrow.ImageURL;
+        console.log('currentArrow: ' + JSON.stringify(currentArrow));
+        handleArrowChange(newArrow);
+        handleArrowState(currentArrow);
+        handleArrowClicked();
+      }
 
-  return (
-    <div className="modal">
-      <Searchbar arrows={allArrowsArray} />
+    return (
+        <div className="modal">
+      <Searchbar allArrowsArray={allArrowsArray} />
         <div className="arrow-modal">
           {allArrowsArray?.map((arrow) => (
-            <Popup ref={ref} trigger={
+            <Popup trigger={
             <div key={arrow.Name} className="arrow-modal-item" onClick={() => handleOnClick(arrow)}>
               <img className="arrow-modal-item-image"
               src={arrow.ImageURL}></img>
@@ -33,19 +30,19 @@ export function ArrowModal({ allArrowsArray, handleArrowState, currentArrow, han
             </div>} position = "right bottom" on="hover" arrow={false}>
               <div className="arrow-modal-item-description">
                 <div className="header">
-                  Phys. Damage
+                  Physical Dmg.
                 </div>
                 <div className="header">
-                  Magic Damage
+                  Magic Dmg.
                 </div>
                 <div className="header">
-                  Fire Damage
+                  Fire Dmg.
                 </div>
                 <div className="header">
-                  Lightning Damage
+                  Lightning Dmg.
                 </div>
                 <div className="header">
-                  Crit. Damage
+                  Crit. Dmg.
                 </div>
                 <div className="header">
                   Merchant
@@ -53,16 +50,16 @@ export function ArrowModal({ allArrowsArray, handleArrowState, currentArrow, han
                 <div className="arrow-effects">
                   {arrow.AttackPower}
                 </div>
-                <div className="arrow-effects">
+                <div className="arrow-acquired-from">
                   {arrow.MagicAttackPower}
                 </div>
-                <div className="arrow-effects">
+                <div className="arrow-acquired-from">
                   {arrow.FireAttackPower}
                 </div>
-                <div className="arrow-effects">
+                <div className="arrow-acquired-from">
                   {arrow.LightningAttackPower}
                 </div>
-                <div className="arrow-effects">
+                <div className="arrow-acquired-from">
                   {arrow.CriticalAttackPower}
                 </div>
                 <div className="arrow-acquired-from">
@@ -73,5 +70,5 @@ export function ArrowModal({ allArrowsArray, handleArrowState, currentArrow, han
           ))}
         </div>
     </div>
-  )
+    )
 }

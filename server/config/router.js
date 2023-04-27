@@ -84,12 +84,12 @@ magicRouter.get("/miracles", MagicController.allMiracles, (err) => console.log(`
 magicRouter.get("/pyromancies", MagicController.allPyromancies, (err) => console.log(`Error in allPyromancies: ${err}`));
 magicRouter.get("/sorceries", MagicController.allSorceries, (err) => console.log(`Error in allSorceries: ${err}`));
 
-// //Arrows Controllers
-// const arrowsRouter = require("koa-router")({
-//     prefix: "/arrows"
-// })
-// const ArrowsController = require('../controllers/ArrowsController.js');
-// arrowsRouter.get("/", ArrowsController.allArrows, (err) => console.log(`Error in allArrows: ${err}`));
+//Arrows Controllers
+const arrowsRouter = require("koa-router")({
+    prefix: "/arrows"
+})
+const ArrowsController = require('../controllers/ArrowsController.js');
+arrowsRouter.get("/", ArrowsController.allArrows, (err) => console.log(`Error in allArrows: ${err}`));
 
 // //Bolts Controllers
 // const boltsRouter = require("koa-router")({
@@ -136,7 +136,7 @@ router.use(
     armorRouter.routes(),
     ringsRouter.routes(),
     magicRouter.routes(),
-    // arrowsRouter.routes(),
+    arrowsRouter.routes(),
     // boltsRouter.routes()
 );
 

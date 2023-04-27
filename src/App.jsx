@@ -46,12 +46,20 @@ export default function App() {
   useEffect(() => {
     async function getAllRings() {
         await axios.get("http://localhost:8080/api/rings").then((response) => {
-          console.log('response: ' + JSON.stringify(response.data));
+          //console.log('response: ' + JSON.stringify(response.data));
           setAllRingsArray(JSON.parse(JSON.stringify(response.data)));
         });
     }
+    async function getAllArrows(){
+      await axios.get("http://localhost:8080/api/arrows").then((response) => {
+            //console.log('response: ' + JSON.stringify(response.data));
+            setAllArrowsArray(JSON.parse(JSON.stringify(response.data)));
+      });
+    }
     getAllRings();
+    getAllArrows();
     setRenderCount(renderCount + 1);
+    console.log('renderCount: ' + renderCount);
   }, []);
 
   // async function getAllArrows(){
@@ -67,10 +75,10 @@ export default function App() {
     setCurrentRingSlots(newRingArray)
   }
 
-  // function handleArrowState (newArrow){
-  //   console.log('handleArrowState: ' + JSON.stringify(newArrow))
-  //   setCurrentArrow(newArrow)
-  // }
+  function handleArrowState (newArrow){
+    console.log('handleArrowState: ' + JSON.stringify(newArrow))
+    setCurrentArrow(newArrow)
+  }
 
   // function handleBoltState (newBolt){
   //   console.log('handleBoltState: ' + JSON.stringify(newBolt))
@@ -100,8 +108,8 @@ export default function App() {
           <div className="grid-item-container" id="rings-and-arrows">
             <RingSlot id="ring1" title="Ring 1" ringSlotsArray={ringSlotsArray} ringSlotNum="0" allRingsArray={allRingsArray} handleRingState={handleRingState} currentSlots={currentRingSlots} />
             <RingSlot id="ring2" title="Ring 2" ringSlotsArray={ringSlotsArray} ringSlotNum="1" allRingsArray={allRingsArray} handleRingState={handleRingState} currentSlots={currentRingSlots} />
-            {/*<ArrowSlot id="arrow" title="Arrow" allArrowsArray={allArrowsArray} handleArrowState={handleArrowState} currentArrow={currentArrow} />
-            <ArrowSlot id="bolt" title="Bolt" allBoltsArray={allBoltsArray} handleBoltState={handleBoltState} currentBolt={currentBolt} /> */}
+            <ArrowSlot id="arrow" title="Arrow" currentArrowInfo={currentArrowInfo} allArrowsArray={allArrowsArray} handleArrowState={handleArrowState} />
+            {/*<ArrowSlot id="bolt" title="Bolt" allBoltsArray={allBoltsArray} handleBoltState={handleBoltState} currentBolt={currentBolt} /> */}
           </div>
         </div>
         <div className="grid-item-equipment">

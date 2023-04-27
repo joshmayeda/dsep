@@ -1,7 +1,6 @@
-import {useState, useRef, useEffect} from 'react';
+import {useState, useRef} from 'react';
 import Popup from 'reactjs-popup';
 import { RingModal } from './RingModal';
-import APIInterface from '../../API_Interface/API_Interface';
 
 export function RingSlot({ ringSlotsArray, ringSlotNum, allRingsArray, handleRingState, currentSlots }) {
 
@@ -14,10 +13,6 @@ export function RingSlot({ ringSlotsArray, ringSlotNum, allRingsArray, handleRin
         "backgroundColor": slotColor,
         "boxShadow": "0 0 1rem 1rem #1f1d1d inset",
     }
-
-
-
-    const api = new APIInterface();
 
     function handleRingClicked(){
       closeModal();

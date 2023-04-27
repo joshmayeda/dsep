@@ -60,15 +60,25 @@
 }
 
 .header {
-  border-bottom: 1px solid #3a3535
+  border-bottom: 1px solid #3a3535;
 }
 
 .arrow-modal {
-
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1rem;
+  padding: 0.5rem;
 }
 
 .arrow-modal-item{
-
+  padding: 1rem;
+  background-color: #3a3535;
+  color: white;
+  background-image: url(../images/ds_slot.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  max-height: 80%;
 }
 
 .arrow-modal-item:hover{
@@ -96,7 +106,7 @@
 .arrow-modal-item-description{
 display: grid;
 padding: 0.5rem;
-grid-template-columns: auto auto;
+grid-template-columns: auto auto auto auto auto auto;
 max-width: 30rem;
 background-color: white;
 color:black;
