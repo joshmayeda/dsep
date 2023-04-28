@@ -15,6 +15,66 @@ body {
     position: relative;
 }
 
+.spacer {
+  border: none;
+}
+
+.modal{
+  display: grid;
+  min-height: 100%;
+  min-width: 100%;
+  background-color: #423d3d;
+  z-index: 1;
+  position: absolute;
+  overflow-y: hidden;
+  top: 7%;
+}
+
+.modal-header{
+  font-size: 2rem;
+  color: white;
+  font-family: DS-Text-SemiBold;
+  text-align: center;
+  padding-top: 0.5rem;
+  text-decoration: underline;
+
+}
+
+.modal-body {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  grid-template-rows: auto auto;
+  grid-gap: 5rem;
+  padding-top: 1rem;
+}
+
+.class{
+  padding: 1rem;
+}
+
+.class:hover{
+  cursor: pointer;
+  background-color: #676949;
+  box-shadow: 0 0 0.5rem 0.5rem #3a3535 inset;
+}
+
+.class-name{
+  color: white;
+  background-color: #968484;
+  font-family: DS-Text;
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 0.5rem;
+  border: 1px solid white;
+  padding-left: 1rem;
+}
+
+.class-image{
+  width: 70%;
+  height: 100%;
+  padding-left: 2.7rem;
+}
+
 header {
   color: white;
   text-align: center;
@@ -196,7 +256,18 @@ img{
   width: 80px;
 }
 
+.class-description{
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  grid-template-rows: auto auto;
+  background-color: white;
+  grid-gap: 0.5rem;
+  padding: 0.5rem;
+}
 
+.class-header{
+  border-bottom: 1px solid black;
+}
 
 
 

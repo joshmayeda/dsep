@@ -59,7 +59,7 @@ handsRouter.get("/foci", HandsController.allFoci, (err) => console.log(`Error in
 // handsRouter.get("/ultra_greatswords", HandsController.allUltraGreatswords, (err) => console.log(`Error in allUltraGreatswords: ${err}`));
 // handsRouter.get("/whips", HandsController.allWhips, (err) => console.log(`Error in allWhips: ${err}`));
 
-//Armor Controllers
+//Armor Routers
 const armorRouter = require("koa-router")({
     prefix: "/armor"
 })
@@ -70,14 +70,14 @@ armorRouter.get("/chest_armor", ArmorController.allChestArmor, (err) => console.
 armorRouter.get("/gauntlets", ArmorController.allGauntlets, (err) => console.log(`Error in allGauntlets: ${err}`));
 armorRouter.get("/leg_armor", ArmorController.allLegArmor, (err) => console.log(`Error in allLegArmor: ${err}`));
 
-//Rings Controllers
+//Rings Routers
 const ringsRouter = require("koa-router")({
     prefix: "/rings"
 })
 const RingsController = require('../controllers/RingsController.js');
 ringsRouter.get("/", RingsController.allRings, (err) => console.log(`Error in allRings: ${err}`));
 
-//Spells Controllers
+//Spells Routers
 const spellsRouter = require("koa-router")({
     prefix: "/spells"
 })
@@ -87,19 +87,26 @@ spellsRouter.get("/miracles", SpellsController.allMiracles, (err) => console.log
 spellsRouter.get("/pyromancies", SpellsController.allPyromancies, (err) => console.log(`Error in allPyromancies: ${err}`));
 spellsRouter.get("/sorceries", SpellsController.allSorceries, (err) => console.log(`Error in allSorceries: ${err}`));
 
-//Arrows Controllers
+//Arrows Routers
 const arrowsRouter = require("koa-router")({
     prefix: "/arrows"
 })
 const ArrowsController = require('../controllers/ArrowsController.js');
 arrowsRouter.get("/", ArrowsController.allArrows, (err) => console.log(`Error in allArrows: ${err}`));
 
-//Bolts Controllers
+//Bolts Routers
 const boltsRouter = require("koa-router")({
     prefix: "/bolts"
 })
 const BoltsController = require('../controllers/BoltsController.js');
 boltsRouter.get("/", BoltsController.allBolts, (err) => console.log(`Error in allBolts: ${err}`));
+
+//Classes Routers
+const classesRouter = require("koa-router")({
+    prefix: "/classes"
+})
+const ClassesController = require('../controllers/ClassesController.js');
+classesRouter.get("/", ClassesController.allClasses, (err) => console.log(`Error in allClasses: ${err}`));
 
 // app.post('/:name', (req, res) => {
 
@@ -140,7 +147,8 @@ router.use(
     ringsRouter.routes(),
     spellsRouter.routes(),
     arrowsRouter.routes(),
-    boltsRouter.routes()
+    boltsRouter.routes(),
+    classesRouter.routes()
 );
 
 module.exports = function(app) {

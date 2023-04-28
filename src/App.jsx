@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { Attribute } from './Components/Attribute'
 import { LevelCounter } from './Components/LevelCounter'
 import { AttunementSlots } from './Components/Spells/AttunementSlots'
@@ -13,7 +13,8 @@ import { HelmSlot } from './Components/Armor/HelmSlot'
 import { ChestSlot } from './Components/Armor/ChestSlot'
 import { GauntletSlot } from './Components/Armor/GauntletSlot'
 import { LegSlot } from './Components/Armor/LegSlot'
-//import bg from './images/ds_inventory.png'
+import { ClassSlot } from './ClassSlot'
+import allClassesArray from "./classes.json"
 import './App.css'
 import axios from 'axios';
 
@@ -128,8 +129,15 @@ export default function App() {
     "ImageURL": "/images/transparent.png"
   }
 
+  //Classes State
+  const [currentClass, setCurrentClass] = useState("");
+  const [showModal, setShowModal] = useState("grid");
+
+  const classModalStyle = {
+    "display" : showModal
+  }
+
   //Hands State
-  const [allHandsArray, setAllHandsArray] = useState([]);
   const [allWeaponsArray, setAllWeaponsArray] = useState([]);
   const [allShieldsArray, setAllShieldsArray] = useState([]);
   const [allFociArray, setAllFociArray] = useState([]);
@@ -254,7 +262,6 @@ export default function App() {
     getAllSpells();
   }, []);
 
-
   //State Handlers
 
   function handleHandState (newHandArray) {
@@ -302,9 +309,96 @@ export default function App() {
     setCurrentEquippedSpells(newSpellArray)
   }
 
+  function handleClassState (newClass){
+    console.log('handleClassState: ' + JSON.stringify(newClass))
+    setCurrentClass(newClass);
+    setShowModal("none");
+    console.log('currentClass: ' + JSON.stringify(currentClass));
+
+  }
+
   return (
     <>
-    <header>
+    <div className="modal" id="modal" style={classModalStyle}>
+      <div className="modal-content">
+        <div className="modal-header">
+          Starting Class
+        </div>
+        <div className="modal-body">
+          <ClassSlot
+            className="class"
+            id="warrior"
+            selectedClass={allClassesArray[0]}
+            position="right center"
+            handleClassState={handleClassState}
+          />
+          <ClassSlot
+            className="class"
+            id="knight"
+            selectedClass={allClassesArray[1]}
+            position="right center"
+            handleClassState={handleClassState}
+          />
+          <ClassSlot
+            className="class"
+            id="wanderer"
+            selectedClass={allClassesArray[2]}
+            position="right center"
+            handleClassState={handleClassState}
+          />
+          <ClassSlot
+            className="class"
+            id="thief"
+            selectedClass={allClassesArray[3]}
+            position="left center"
+            handleClassState={handleClassState}
+          />
+          <ClassSlot
+            className="class"
+            id="bandit"
+            selectedClass={allClassesArray[4]}
+            position="left center"
+            handleClassState={handleClassState}
+          />
+          <ClassSlot
+            className="class"
+            id="hunter"
+            selectedClass={allClassesArray[5]}
+            position="right center"
+            handleClassState={handleClassState}
+          />
+          <ClassSlot
+            className="class"
+            id="sorcerer"
+            selectedClass={allClassesArray[6]}
+            position="right center"
+            handleClassState={handleClassState}
+          />
+          <ClassSlot
+            className="class"
+            id="pyromancer"
+            selectedClass={allClassesArray[7]}
+            position="right center"
+            handleClassState={handleClassState}
+          />
+          <ClassSlot
+            className="class"
+            id="cleric"
+            selectedClass={allClassesArray[8]}
+            position="left center"
+            handleClassState={handleClassState}
+          />
+          <ClassSlot
+            className="class"
+            id="deprived"
+            selectedClass={allClassesArray[9]}
+            position="left center"
+            handleClassState={handleClassState}
+          />
+        </div>
+      </div>
+    </div>
+    <header className="App-header">
     Dark Souls Equipment Planner
     </header>
     <div className="grid-container">
@@ -551,7 +645,13 @@ export default function App() {
             </div>
           </div>
       </div>
+
+      <div className="grid-item" id="current-class">
+        Current Starting Class: {currentClass}
+      </div>
+
     </div>
     </>
   )
 }
+
