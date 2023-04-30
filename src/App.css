@@ -269,5 +269,37 @@ img{
   border-bottom: 1px solid black;
 }
 
+.attribute-number{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.current-attribute-number {
+  background-color: transparent;
+  color: white;
+  width: 2rem;
+  font-size: 1.3rem;
+  font-family: DS-Text;
+  border: none;
+}
+
+#input {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  grid-gap: 1rem;
+  padding-left: 1rem;
+}
+
+.attribute-increment {
+  background-color: transparent;
+  color: white;
+  border: none;
+}
+
+.attribute-increment:hover{
+  background-color: #302c2c;
+}
+
 
 

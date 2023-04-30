@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { Attribute } from './Components/Attribute'
-import { LevelCounter } from './Components/LevelCounter'
+import { Attribute } from './Components/Stats/Attribute'
+import { LevelCounter } from './Components/Stats/LevelCounter'
 import { AttunementSlots } from './Components/Spells/AttunementSlots'
-import { Stat } from './Components/Stat'
-import { Resistance } from './Components/Resistance'
+import { Stat } from './Components/Stats/Stat'
+import { Resistance } from './Components/Stats/Resistance'
 import { EquippedSpellSlot } from './Components/Spells/EquippedSpellSlot'
 import { HandSlot } from './Components/Hands/HandSlot'
 import { RingSlot } from './Components/Rings/RingSlot'
@@ -130,12 +130,23 @@ export default function App() {
   }
 
   //Classes State
-  const [currentClass, setCurrentClass] = useState("");
+  const [currentClass, setCurrentClass] = useState({});
   const [showModal, setShowModal] = useState("grid");
 
   const classModalStyle = {
     "display" : showModal
   }
+
+  //Attributes State
+  const [currentVitality, setCurrentVitality] = useState(0);
+  const [currentAttunement, setCurrentAttunement] = useState(0);
+  const [currentEndurance, setCurrentEndurance] = useState(0);
+  const [currentStrength, setCurrentStrength] = useState(0);
+  const [currentDexterity, setCurrentDexterity] = useState(0);
+  const [currentResistance, setCurrentResistance] = useState(0);
+  const [currentIntelligence, setCurrentIntelligence] = useState(0);
+  const [currentFaith, setCurrentFaith] = useState(0);
+  const [currentHumanity, setCurrentHumanity] = useState(0);
 
   //Hands State
   const [allWeaponsArray, setAllWeaponsArray] = useState([]);
@@ -166,6 +177,9 @@ export default function App() {
   //Equipped Spells State
   const [allSpellsArray, setAllSpellsArray] = useState([]);
   const [currentEquippedSpells, setCurrentEquippedSpells] = useState(equippedSpellsArray);
+
+  //Stats State
+  const [currentLevel, setCurrentLevel] = useState(1);
 
   useEffect(() => {
     async function getAllRings() {
@@ -310,11 +324,23 @@ export default function App() {
   }
 
   function handleClassState (newClass){
-    console.log('handleClassState: ' + JSON.stringify(newClass))
-    setCurrentClass(newClass);
+    //console.log('handleClassState: ' + JSON.stringify(newClass));
+    //console.log('allClassesArray: ' + JSON.stringify(allClassesArray));
+    const classObject = allClassesArray.find(obj => obj.Name === newClass);
+    //console.log('classObject: ' + JSON.stringify(classObject));
+    setCurrentClass(classObject);
+    setCurrentLevel(classObject.Level);
+    setCurrentVitality(classObject.Vitality);
+    setCurrentAttunement(classObject.Attunement);
+    setCurrentEndurance(classObject.Endurance);
+    setCurrentStrength(classObject.Strength);
+    setCurrentDexterity(classObject.Dexterity);
+    setCurrentResistance(classObject.Resistance);
+    setCurrentIntelligence(classObject.Intelligence);
+    setCurrentFaith(classObject.Faith);
+    //console.log('currentClass: ' + JSON.stringify(currentClass));
     setShowModal("none");
-    console.log('currentClass: ' + JSON.stringify(currentClass));
-
+    //console.log('currentClass: ' + JSON.stringify(classObject));
   }
 
   return (
@@ -327,70 +353,70 @@ export default function App() {
         <div className="modal-body">
           <ClassSlot
             className="class"
-            id="warrior"
+            id="Warrior"
             selectedClass={allClassesArray[0]}
             position="right center"
             handleClassState={handleClassState}
           />
           <ClassSlot
             className="class"
-            id="knight"
+            id="Knight"
             selectedClass={allClassesArray[1]}
             position="right center"
             handleClassState={handleClassState}
           />
           <ClassSlot
             className="class"
-            id="wanderer"
+            id="Wanderer"
             selectedClass={allClassesArray[2]}
             position="right center"
             handleClassState={handleClassState}
           />
           <ClassSlot
             className="class"
-            id="thief"
+            id="Thief"
             selectedClass={allClassesArray[3]}
             position="left center"
             handleClassState={handleClassState}
           />
           <ClassSlot
             className="class"
-            id="bandit"
+            id="Bandit"
             selectedClass={allClassesArray[4]}
             position="left center"
             handleClassState={handleClassState}
           />
           <ClassSlot
             className="class"
-            id="hunter"
+            id="Hunter"
             selectedClass={allClassesArray[5]}
             position="right center"
             handleClassState={handleClassState}
           />
           <ClassSlot
             className="class"
-            id="sorcerer"
+            id="Sorcerer"
             selectedClass={allClassesArray[6]}
             position="right center"
             handleClassState={handleClassState}
           />
           <ClassSlot
             className="class"
-            id="pyromancer"
+            id="Pyromancer"
             selectedClass={allClassesArray[7]}
             position="right center"
             handleClassState={handleClassState}
           />
           <ClassSlot
             className="class"
-            id="cleric"
+            id="Cleric"
             selectedClass={allClassesArray[8]}
             position="left center"
             handleClassState={handleClassState}
           />
           <ClassSlot
             className="class"
-            id="deprived"
+            id="Deprived"
             selectedClass={allClassesArray[9]}
             position="left center"
             handleClassState={handleClassState}
@@ -507,16 +533,16 @@ export default function App() {
           <div className="grid-item-stats">
             <ul className="grid-item-container" id="attributes">
 
-              <LevelCounter />
-              <Attribute title="Vitality" id="vitality"/>
-              <Attribute title="Attunement" id="attunement"/>
-              <Attribute title="Endurance" id="endurance"/>
-              <Attribute title="Strength" id="strength"/>
-              <Attribute title="Dexterity" id="dexterity"/>
-              <Attribute title="Resistance" id="resistance"/>
-              <Attribute title="Intelligence" id="intelligence"/>
-              <Attribute title="Faith" id="faith"/>
-              <Attribute title="Humanity" id="humanity"/>
+              <LevelCounter currentLevel={currentLevel} />
+              <Attribute title="Vitality" id="vitality" currentStatValue={currentVitality} setCurrentAttribute={setCurrentVitality} />
+              <Attribute title="Attunement" id="attunement" currentStatValue={currentAttunement} setCurrentAttribute={setCurrentAttunement}/>
+              <Attribute title="Endurance" id="endurance" currentStatValue={currentEndurance} setCurrentAttribute={setCurrentEndurance}/>
+              <Attribute title="Strength" id="strength" currentStatValue={currentStrength} setCurrentAttribute={setCurrentStrength}/>
+              <Attribute title="Dexterity" id="dexterity" currentStatValue={currentDexterity} setCurrentAttribute={setCurrentDexterity}/>
+              <Attribute title="Resistance" id="resistance" currentStatValue={currentResistance} setCurrentAttribute={setCurrentResistance}/>
+              <Attribute title="Intelligence" id="intelligence" currentStatValue={currentIntelligence} setCurrentAttribute={setCurrentIntelligence}/>
+              <Attribute title="Faith" id="faith" currentStatValue={currentFaith} setCurrentAttribute={setCurrentFaith}/>
+              <Attribute title="Humanity" id="humanity" currentStatValue={currentHumanity} setCurrentAttribute={setCurrentHumanity}/>
 
             </ul>
 
@@ -647,7 +673,7 @@ export default function App() {
       </div>
 
       <div className="grid-item" id="current-class">
-        Current Starting Class: {currentClass}
+        Current Starting Class: {currentClass.Name}
       </div>
 
     </div>

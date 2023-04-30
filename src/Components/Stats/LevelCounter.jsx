@@ -1,11 +1,11 @@
-export function LevelCounter(props) {
+export function LevelCounter({currentLevel}) {
     return (
         <>
         <li className="attribute">
             Level
         </li>
         <li className="level-number">
-            0
+            {currentLevel}
         </li>
         </>
     )
