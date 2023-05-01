@@ -1,9 +1,17 @@
+import AttunementSlots_Table from './Tables/AttunementSlots.json'
 
-export function Attribute({title, id, currentStatValue, setCurrentAttribute}) {
+export function Attribute({title, id, currentStatValue, setCurrentAttribute, setMaxSlots, setCurrentSlotsUsed}) {
 
     function handleOnClick(value) {
-        console.log(title + ' ' + value + ' ' + 'clicked');
-        setCurrentAttribute(value);
+        if(id !== "attunement"){
+            //console.log(title + ' ' + value + ' ' + 'clicked');
+            setCurrentAttribute(value);
+        }else{
+            //console.log(title + ' ' + value + ' ' + 'clicked');
+            setCurrentAttribute(value);
+            //console.log('attunementSlots: ' + AttunementSlots_Table[value].Slots);
+            setMaxSlots(AttunementSlots_Table[value].Slots);
+        }
     }
 
     return (
@@ -11,10 +19,9 @@ export function Attribute({title, id, currentStatValue, setCurrentAttribute}) {
         <li className="attribute">
             {title}
         </li>
-        {/* <input type="number" onClick={() => handleOnClick(value)} placeholder={currentStatValue} min={currentStatValue} max="99" id={`${id}-input`} /> */}
         <li className="attribute-number" id={`${id}-number`}>
             <div id="input">
-                <input className="current-attribute-number" value={currentStatValue}></input>
+                <div className="current-attribute-number" value={currentStatValue}>{currentStatValue}</div>
             </div>
             <div>
                 <button className="attribute-increment" onClick={() => handleOnClick(currentStatValue + 1)}>🠭</button>

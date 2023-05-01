@@ -12,40 +12,356 @@
       "Poison Resistance": 30
     },
     {
+      "Resistance": 11,
+      "Poison Resistance": 36
+    },
+    {
+      "Resistance": 12,
+      "Poison Resistance": 42
+    },
+    {
+      "Resistance": 13,
+      "Poison Resistance": 48
+    },
+    {
+      "Resistance": 14,
+      "Poison Resistance": 54
+    },
+    {
       "Resistance": 15,
       "Poison Resistance": 60
+    },
+    {
+      "Resistance": 16,
+      "Poison Resistance": 63
+    },
+    {
+      "Resistance": 17,
+      "Poison Resistance": 65
+    },
+    {
+      "Resistance": 18,
+      "Poison Resistance": 68
+    },
+    {
+      "Resistance": 19,
+      "Poison Resistance": 71
     },
     {
       "Resistance": 20,
       "Poison Resistance": 73
     },
     {
+      "Resistance": 21,
+      "Poison Resistance": 76
+    },
+    {
+      "Resistance": 22,
+      "Poison Resistance": 79
+    },
+    {
+      "Resistance": 23,
+      "Poison Resistance": 81
+    },
+    {
+      "Resistance": 24,
+      "Poison Resistance": 84
+    },
+    {
+      "Resistance": 25,
+      "Poison Resistance": 87
+    },
+    {
+      "Resistance": 26,
+      "Poison Resistance": 89
+    },
+    {
+      "Resistance": 27,
+      "Poison Resistance": 92
+    },
+    {
+      "Resistance": 28,
+      "Poison Resistance": 95
+    },
+    {
+      "Resistance": 29,
+      "Poison Resistance": 97
+    },
+    {
       "Resistance": 30,
       "Poison Resistance": 100
+    },
+    {
+      "Resistance": 31,
+      "Poison Resistance": 101
+    },
+    {
+      "Resistance": 32,
+      "Poison Resistance": 101
+    },
+    {
+      "Resistance": 33,
+      "Poison Resistance": 102
+    },
+    {
+      "Resistance": 34,
+      "Poison Resistance": 103
+    },
+    {
+      "Resistance": 35,
+      "Poison Resistance": 104
+    },
+    {
+      "Resistance": 36,
+      "Poison Resistance": 104
+    },
+    {
+      "Resistance": 37,
+      "Poison Resistance": 105
+    },
+    {
+      "Resistance": 38,
+      "Poison Resistance": 106
+    },
+    {
+      "Resistance": 39,
+      "Poison Resistance": 107
     },
     {
       "Resistance": 40,
       "Poison Resistance": 107
     },
     {
+      "Resistance": 41,
+      "Poison Resistance": 108
+    },
+    {
+      "Resistance": 42,
+      "Poison Resistance": 109
+    },
+    {
+      "Resistance": 43,
+      "Poison Resistance": 109
+    },
+    {
+      "Resistance": 44,
+      "Poison Resistance": 110
+    },
+    {
+      "Resistance": 45,
+      "Poison Resistance": 111
+    },
+    {
+      "Resistance": 46,
+      "Poison Resistance": 112
+    },
+    {
+      "Resistance": 47,
+      "Poison Resistance": 112
+    },
+    {
+      "Resistance": 48,
+      "Poison Resistance": 113
+    },
+    {
+      "Resistance": 49,
+      "Poison Resistance": 114
+    },
+    {
       "Resistance": 50,
       "Poison Resistance": 114
+    },
+    {
+      "Resistance": 51,
+      "Poison Resistance": 115
+    },
+    {
+      "Resistance": 52,
+      "Poison Resistance": 116
+    },
+    {
+      "Resistance": 53,
+      "Poison Resistance": 117
+    },
+    {
+      "Resistance": 54,
+      "Poison Resistance": 117
+    },
+    {
+      "Resistance": 55,
+      "Poison Resistance": 118
+    },
+    {
+      "Resistance": 56,
+      "Poison Resistance": 119
+    },
+    {
+      "Resistance": 57,
+      "Poison Resistance": 120
+    },
+    {
+      "Resistance": 58,
+      "Poison Resistance": 120
+    },
+    {
+      "Resistance": 59,
+      "Poison Resistance": 121
     },
     {
       "Resistance": 60,
       "Poison Resistance": 122
     },
     {
+      "Resistance": 61,
+      "Poison Resistance": 122
+    },
+    {
+      "Resistance": 62,
+      "Poison Resistance": 123
+    },
+    {
+      "Resistance": 63,
+      "Poison Resistance": 124
+    },
+    {
+      "Resistance": 64,
+      "Poison Resistance": 125
+    },
+    {
+      "Resistance": 65,
+      "Poison Resistance": 125
+    },
+    {
+      "Resistance": 66,
+      "Poison Resistance": 126
+    },
+    {
+      "Resistance": 67,
+      "Poison Resistance": 127
+    },
+    {
+      "Resistance": 68,
+      "Poison Resistance": 128
+    },
+    {
+      "Resistance": 69,
+      "Poison Resistance": 128
+    },
+    {
       "Resistance": 70,
       "Poison Resistance": 129
+    },
+    {
+      "Resistance": 71,
+      "Poison Resistance": 130
+    },
+    {
+      "Resistance": 72,
+      "Poison Resistance": 130
+    },
+    {
+      "Resistance": 73,
+      "Poison Resistance": 131
+    },
+    {
+      "Resistance": 74,
+      "Poison Resistance": 132
+    },
+    {
+      "Resistance": 75,
+      "Poison Resistance": 133
+    },
+    {
+      "Resistance": 76,
+      "Poison Resistance": 133
+    },
+    {
+      "Resistance": 77,
+      "Poison Resistance": 134
+    },
+    {
+      "Resistance": 78,
+      "Poison Resistance": 135
+    },
+    {
+      "Resistance": 79,
+      "Poison Resistance": 136
     },
     {
       "Resistance": 80,
       "Poison Resistance": 136
     },
     {
+      "Resistance": 81,
+      "Poison Resistance": 137
+    },
+    {
+      "Resistance": 82,
+      "Poison Resistance": 138
+    },
+    {
+      "Resistance": 83,
+      "Poison Resistance": 138
+    },
+    {
+      "Resistance": 84,
+      "Poison Resistance": 139
+    },
+    {
+      "Resistance": 85,
+      "Poison Resistance": 140
+    },
+    {
+      "Resistance": 86,
+      "Poison Resistance": 141
+    },
+    {
+      "Resistance": 87,
+      "Poison Resistance": 141
+    },
+    {
+      "Resistance": 88,
+      "Poison Resistance": 142
+    },
+    {
+      "Resistance": 89,
+      "Poison Resistance": 143
+    },
+    {
       "Resistance": 90,
       "Poison Resistance": 143
+    },
+    {
+      "Resistance": 91,
+      "Poison Resistance": 144
+    },
+    {
+      "Resistance": 92,
+      "Poison Resistance": 145
+    },
+    {
+      "Resistance": 93,
+      "Poison Resistance": 146
+    },
+    {
+      "Resistance": 94,
+      "Poison Resistance": 146
+    },
+    {
+      "Resistance": 95,
+      "Poison Resistance": 147
+    },
+    {
+      "Resistance": 96,
+      "Poison Resistance": 148
+    },
+    {
+      "Resistance": 97,
+      "Poison Resistance": 149
+    },
+    {
+      "Resistance": 98,
+      "Poison Resistance": 149
     },
     {
       "Resistance": 99,

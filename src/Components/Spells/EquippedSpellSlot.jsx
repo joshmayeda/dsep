@@ -2,7 +2,7 @@ import {useState, useRef} from 'react';
 import Popup from 'reactjs-popup';
 import { SpellModal } from './SpellModal';
 
-export function EquippedSpellSlot({ equippedSpellsArray, position, allSpellsArray, handleSpellState, currentSlots }) {
+export function EquippedSpellSlot({ equippedSpellsArray, position, allSpellsArray, handleSpellState, currentSlots, setCurrentAttunementSlotsUsed }) {
 
     const ref = useRef(null);
     const closeModal = () => ref.current.close();
@@ -20,6 +20,7 @@ export function EquippedSpellSlot({ equippedSpellsArray, position, allSpellsArra
 
     function handleSpellChange(spell){
       setCurrentSpellSlot(spell);
+      setCurrentAttunementSlotsUsed(currentAttunementSlotsUsed => currentAttunementSlotsUsed + spell.Slots);
     }
 
     return (
@@ -31,7 +32,7 @@ export function EquippedSpellSlot({ equippedSpellsArray, position, allSpellsArra
                       >
                         <img className="slot-image" src={currentSpellSlot.ImageURL}></img>
                         <div>{currentSpellSlot.position}</div>
-                      </button>} position="left bottom" closeOnDocumentClick={true}>
+                      </button>} position="left" closeOnDocumentClick={true} arrow={false}>
           <SpellModal
             equippedSpellsArray={equippedSpellsArray}
             position={position}

@@ -1,5 +1,6 @@
 import { Searchbar } from "../Searchbar";
 import Popup from "reactjs-popup";
+import '../../modal.css';
 
 
 export function ArrowModal({currentArrow, allArrowsArray, handleArrowState, handleArrowClicked, handleArrowChange}){
@@ -26,7 +27,7 @@ export function ArrowModal({currentArrow, allArrowsArray, handleArrowState, hand
               <div className="arrow-modal-item-name">
                 {arrow.Name}
               </div>
-            </div>} position = "right bottom" on="hover" arrow={false}>
+            </div>} position = "left bottom" on="hover" arrow={false}>
               <div className="arrow-modal-item-description">
                 <div className="header">
                   Physical Dmg.

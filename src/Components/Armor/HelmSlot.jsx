@@ -30,7 +30,7 @@ export function HelmSlot({currentHelmInfo, allHelmsArray, handleHelmState}){
                       >
                         <img className="slot-image" src={currentHelm.ImageURL}></img>
                         <div className="slot-name">{currentHelm.Name}</div>
-                      </button>} position="right bottom" closeOnDocumentClick={true}>
+                      </button>} position="right bottom" closeOnDocumentClick={true} arrow={false}>
           <ArmorModal
             currentArmor={currentHelm}
             allArmorsArray={allHelmsArray}

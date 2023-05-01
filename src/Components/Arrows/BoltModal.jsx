@@ -17,17 +17,17 @@ export function BoltModal({currentBolt, allBoltsArray, handleBoltState, handleBo
 
     return (
         <div className="modal">
-        <div className="arrow-modal">
+        <div className="bolt-modal">
           {allBoltsArray?.map((bolt) => (
             <Popup trigger={
-            <div key={bolt.Name} className="arrow-modal-item" onClick={() => handleOnClick(bolt)}>
-              <img className="arrow-modal-item-image"
+            <div key={bolt.Name} className="bolt-modal-item" onClick={() => handleOnClick(bolt)}>
+              <img className="bolt-modal-item-image"
               src={bolt.ImageURL}></img>
-              <div className="arrow-modal-item-name">
+              <div className="bolt-modal-item-name">
                 {bolt.Name}
               </div>
-            </div>} position = "right bottom" on="hover" bolt={false}>
-              <div className="arrow-modal-item-description">
+            </div>} position = "left bottom" on="hover" bolt={false}>
+              <div className="bolt-modal-item-description">
                 <div className="header">
                   Physical Dmg.
                 </div>
@@ -46,22 +46,22 @@ export function BoltModal({currentBolt, allBoltsArray, handleBoltState, handleBo
                 <div className="header">
                   Merchant
                 </div>
-                <div className="arrow-effects">
+                <div className="bolt-effects">
                   {bolt.AttackPower}
                 </div>
-                <div className="arrow-acquired-from">
+                <div className="bolt-acquired-from">
                   {bolt.MagicAttackPower}
                 </div>
-                <div className="arrow-acquired-from">
+                <div className="bolt-acquired-from">
                   {bolt.FireAttackPower}
                 </div>
-                <div className="arrow-acquired-from">
+                <div className="bolt-acquired-from">
                   {bolt.LightningAttackPower}
                 </div>
-                <div className="arrow-acquired-from">
+                <div className="bolt-acquired-from">
                   {bolt.CriticalAttackPower}
                 </div>
-                <div className="arrow-acquired-from">
+                <div className="bolt-acquired-from">
                   {bolt.Merchant}
                 </div>
               </div>

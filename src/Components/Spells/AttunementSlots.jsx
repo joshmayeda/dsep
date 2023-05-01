@@ -1,4 +1,9 @@
-export function AttunementSlots({slotsLeft, maxSlots}) {
+import AttunementSlots_Table from '../Stats/Tables/AttunementSlots.json'
+
+export function AttunementSlots({slotsUsed, maxSlots, setMaxSlots, currentAttunement}) {
+
+
+
     return (
         <>
         <div className="attunement-slots">
@@ -6,7 +11,7 @@ export function AttunementSlots({slotsLeft, maxSlots}) {
                 Attunement Slots
             </div>
             <div className="attunement-slot-number" id="attunement-slot-number">
-                {slotsLeft}/{maxSlots}
+                {maxSlots - slotsUsed}/{maxSlots}
             </div>
         </div>
         </>

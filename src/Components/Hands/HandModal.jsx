@@ -30,7 +30,7 @@ export function HandModal({ handSlotNum, allHandsArray, allWeaponsArray, allShie
                 <div className="hand-modal-item-name">
                 {hand.Name}
                 </div>
-            </div>} position = "bottom center" on="hover" arrow={false}>
+            </div>} position = "bottom left" on="hover" arrow={false}>
                 <div className="hand-modal-item-description">
                     <div className="header">
                         Phys. Dmg.

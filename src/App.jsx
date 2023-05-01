@@ -15,6 +15,7 @@ import { GauntletSlot } from './Components/Armor/GauntletSlot'
 import { LegSlot } from './Components/Armor/LegSlot'
 import { ClassSlot } from './ClassSlot'
 import allClassesArray from "./classes.json"
+import attunementSlotsArray from "./Components/Stats/Tables/AttunementSlots.json"
 import './App.css'
 import axios from 'axios';
 
@@ -180,6 +181,8 @@ export default function App() {
 
   //Stats State
   const [currentLevel, setCurrentLevel] = useState(1);
+  const [currentMaxAttunementSlots, setCurrentMaxAttunementSlots] = useState(0);
+  const [currentAttunementSlotsUsed, setCurrentAttunementSlotsUsed] = useState(0);
 
   useEffect(() => {
     async function getAllRings() {
@@ -338,6 +341,9 @@ export default function App() {
     setCurrentResistance(classObject.Resistance);
     setCurrentIntelligence(classObject.Intelligence);
     setCurrentFaith(classObject.Faith);
+    //console.log('currentAttunementSlots: ' + JSON.stringify(attunementSlotsArray[classObject.Attunement]["Slots"]));
+    setCurrentMaxAttunementSlots(JSON.stringify(attunementSlotsArray[classObject.Attunement]["Slots"]));
+    setCurrentAttunementSlotsUsed(0);
     //console.log('currentClass: ' + JSON.stringify(currentClass));
     setShowModal("none");
     //console.log('currentClass: ' + JSON.stringify(classObject));
@@ -345,7 +351,7 @@ export default function App() {
 
   return (
     <>
-    <div className="modal" id="modal" style={classModalStyle}>
+    <div className="class-modal" id="class-modal" style={classModalStyle}>
       <div className="modal-content">
         <div className="modal-header">
           Starting Class
@@ -535,7 +541,7 @@ export default function App() {
 
               <LevelCounter currentLevel={currentLevel} />
               <Attribute title="Vitality" id="vitality" currentStatValue={currentVitality} setCurrentAttribute={setCurrentVitality} />
-              <Attribute title="Attunement" id="attunement" currentStatValue={currentAttunement} setCurrentAttribute={setCurrentAttunement}/>
+              <Attribute title="Attunement" id="attunement" currentStatValue={currentAttunement} setCurrentAttribute={setCurrentAttunement} setMaxSlots={setCurrentMaxAttunementSlots} setCurrentSlotsUsed={setCurrentAttunementSlotsUsed}/>
               <Attribute title="Endurance" id="endurance" currentStatValue={currentEndurance} setCurrentAttribute={setCurrentEndurance}/>
               <Attribute title="Strength" id="strength" currentStatValue={currentStrength} setCurrentAttribute={setCurrentStrength}/>
               <Attribute title="Dexterity" id="dexterity" currentStatValue={currentDexterity} setCurrentAttribute={setCurrentDexterity}/>
@@ -547,37 +553,37 @@ export default function App() {
             </ul>
 
             <ul className="grid-item-container" id="stats">
-              <Stat title = "hp" id="hp" value="0" />
-              <Stat title = "Stamina" id="stamina" value="0" />
-              <Stat title = "Equip Load" id="equip-load" value="0" />
-              <Stat title = "R Weapon 1" id="rwep1" value="0" />
-              <Stat title = "R Weapon 2" id="rwep2" value="0" />
-              <Stat title = "L Weapon 1" id="lwep1" value="0" />
-              <Stat title = "L Weapon 2" id="lwep2" value="0" />
-              <Stat title = "Physical Def." id="phys-def" value="0" />
-              <Stat title = "VS Strike" id="strike-def" value="0" />
-              <Stat title = "VS Slash" id="slash-def" value="0" />
-              <Stat title = "VS Thrust" id="thrust-def" value="0" />
-              <Stat title = "Magic Def." id="magic-def" value="0" />
-              <Stat title = "Flame Def." id="flame-def" value="0" />
-              <Stat title = "Lightning Def." id="lightning-def" value="0" />
+              <Stat title = "HP" id="hp" defaultValue="0" currentAttributes={currentVitality} />
+              <Stat title = "Stamina" id="stamina" defaultValue="0" currentAttributes={currentEndurance} />
+              <Stat title = "Equip Load" id="equip-load" defaultValue="0" currentAttributes={currentEndurance} />
+              <Stat title = "R Weapon 1" id="rwep1" defaultValue="0" />
+              <Stat title = "R Weapon 2" id="rwep2" defaultValue="0" />
+              <Stat title = "L Weapon 1" id="lwep1" defaultValue="0" />
+              <Stat title = "L Weapon 2" id="lwep2" defaultValue="0" />
+              <Stat title = "Physical Def." id="phys-def" defaultValue="0" />
+              <Stat title = "VS Strike" id="strike-def" defaultValue="0" />
+              <Stat title = "VS Slash" id="slash-def" defaultValue="0" />
+              <Stat title = "VS Thrust" id="thrust-def" defaultValue="0" />
+              <Stat title = "Magic Def." id="magic-def" defaultValue="0" />
+              <Stat title = "Flame Def." id="flame-def" defaultValue="0" />
+              <Stat title = "Lightning Def." id="lightning-def" defaultValue="0" />
             </ul>
 
             <div className="grid-item-container" id="resistances">
 
               <ul className="resistances">
 
-                <Resistance title="Poise" id="poise" value="0" />
-                <Resistance title="Bleed Resist" id="bleed-resist" value="0" />
-                <Resistance title="Poison Resist" id="poison-resist" value="0" />
-                <Resistance title="Curse Resist" id="curse-resist" value="0" />
-                <Resistance title="Item Discovery" id="item-discovery" value="410" />
+                <Resistance title="Poise" id="poise" defaultValue="0" />
+                <Resistance title="Bleed Resist" id="bleed-resist" defaultValue="0" currentAttributes={currentEndurance} />
+                <Resistance title="Poison Resist" id="poison-resist" defaultValue="0" currentAttributes={currentResistance}/>
+                <Resistance title="Curse Resist" id="curse-resist" defaultValue="0" currentAttributes={currentHumanity} />
+                <Resistance title="Item Discovery" id="item-discovery" defaultValue="100" currentAttributes={currentHumanity}/>
 
               </ul>
 
               <div className="spells">
 
-                <AttunementSlots slotsLeft="12" maxSlots="12" />
+                <AttunementSlots slotsUsed={currentAttunementSlotsUsed} maxSlots={currentMaxAttunementSlots} setMaxSlots={setCurrentMaxAttunementSlots} currentAttunement={currentAttunement} />
 
                 <div className="equipped-spells">
 
@@ -587,6 +593,8 @@ export default function App() {
                     allSpellsArray={allSpellsArray}
                     handleSpellState={handleSpellState}
                     currentSlots={currentEquippedSpells}
+                    setCurrentAttunementSlotsUsed={setCurrentAttunementSlotsUsed}
+                    currentAttunement={currentAttunement}
                   />
                   <EquippedSpellSlot id="spell2" title="Spell 2"
                     equippedSpellsArray={equippedSpellsArray}
@@ -594,6 +602,8 @@ export default function App() {
                     allSpellsArray={allSpellsArray}
                     handleSpellState={handleSpellState}
                     currentSlots={currentEquippedSpells}
+                    setCurrentAttunementSlotsUsed={setCurrentAttunementSlotsUsed}
+                    currentAttunement={currentAttunement}
                   />
                   <EquippedSpellSlot id="spell3" title="Spell 3"
                     equippedSpellsArray={equippedSpellsArray}
@@ -601,6 +611,8 @@ export default function App() {
                     allSpellsArray={allSpellsArray}
                     handleSpellState={handleSpellState}
                     currentSlots={currentEquippedSpells}
+                    setCurrentAttunementSlotsUsed={setCurrentAttunementSlotsUsed}
+                    currentAttunement={currentAttunement}
                   />
                   <EquippedSpellSlot id="spell4" title="Spell 4"
                     equippedSpellsArray={equippedSpellsArray}
@@ -608,6 +620,8 @@ export default function App() {
                     allSpellsArray={allSpellsArray}
                     handleSpellState={handleSpellState}
                     currentSlots={currentEquippedSpells}
+                    setCurrentAttunementSlotsUsed={setCurrentAttunementSlotsUsed}
+                    currentAttunement={currentAttunement}
                   />
                   <EquippedSpellSlot id="spell5" title="Spell 5"
                     equippedSpellsArray={equippedSpellsArray}
@@ -615,6 +629,8 @@ export default function App() {
                     allSpellsArray={allSpellsArray}
                     handleSpellState={handleSpellState}
                     currentSlots={currentEquippedSpells}
+                    setCurrentAttunementSlotsUsed={setCurrentAttunementSlotsUsed}
+                    currentAttunement={currentAttunement}
                   />
                   <EquippedSpellSlot id="spell6" title="Spell 6"
                     equippedSpellsArray={equippedSpellsArray}
@@ -622,6 +638,8 @@ export default function App() {
                     allSpellsArray={allSpellsArray}
                     handleSpellState={handleSpellState}
                     currentSlots={currentEquippedSpells}
+                    setCurrentAttunementSlotsUsed={setCurrentAttunementSlotsUsed}
+                    currentAttunement={currentAttunement}
                   />
                   <EquippedSpellSlot id="spell7" title="Spell 7"
                     equippedSpellsArray={equippedSpellsArray}
@@ -629,6 +647,8 @@ export default function App() {
                     allSpellsArray={allSpellsArray}
                     handleSpellState={handleSpellState}
                     currentSlots={currentEquippedSpells}
+                    setCurrentAttunementSlotsUsed={setCurrentAttunementSlotsUsed}
+                    currentAttunement={currentAttunement}
                   />
                   <EquippedSpellSlot id="spell8" title="Spell 8"
                     equippedSpellsArray={equippedSpellsArray}
@@ -636,6 +656,8 @@ export default function App() {
                     allSpellsArray={allSpellsArray}
                     handleSpellState={handleSpellState}
                     currentSlots={currentEquippedSpells}
+                    setCurrentAttunementSlotsUsed={setCurrentAttunementSlotsUsed}
+                    currentAttunement={currentAttunement}
                   />
                   <EquippedSpellSlot id="spell9" title="Spell 9"
                     equippedSpellsArray={equippedSpellsArray}
@@ -643,6 +665,8 @@ export default function App() {
                     allSpellsArray={allSpellsArray}
                     handleSpellState={handleSpellState}
                     currentSlots={currentEquippedSpells}
+                    setCurrentAttunementSlotsUsed={setCurrentAttunementSlotsUsed}
+                    currentAttunement={currentAttunement}
                   />
                   <EquippedSpellSlot id="spell10" title="Spell 10"
                     equippedSpellsArray={equippedSpellsArray}
@@ -650,6 +674,8 @@ export default function App() {
                     allSpellsArray={allSpellsArray}
                     handleSpellState={handleSpellState}
                     currentSlots={currentEquippedSpells}
+                    setCurrentAttunementSlotsUsed={setCurrentAttunementSlotsUsed}
+                    currentAttunement={currentAttunement}
                   />
                   <EquippedSpellSlot id="spell11" title="Spell 11"
                     equippedSpellsArray={equippedSpellsArray}
@@ -657,6 +683,8 @@ export default function App() {
                     allSpellsArray={allSpellsArray}
                     handleSpellState={handleSpellState}
                     currentSlots={currentEquippedSpells}
+                    setCurrentAttunementSlotsUsed={setCurrentAttunementSlotsUsed}
+                    currentAttunement={currentAttunement}
                   />
                   <EquippedSpellSlot id="spell12" title="Spell 12"
                     equippedSpellsArray={equippedSpellsArray}
@@ -664,6 +692,8 @@ export default function App() {
                     allSpellsArray={allSpellsArray}
                     handleSpellState={handleSpellState}
                     currentSlots={currentEquippedSpells}
+                    setCurrentAttunementSlotsUsed={setCurrentAttunementSlotsUsed}
+                    currentAttunement={currentAttunement}
                   />
 
                 </div>
