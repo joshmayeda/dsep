@@ -10,10 +10,17 @@ export function SpellModal({ equippedSpellsArray, position, allSpellsArray, hand
   function handleOnClick(spell){
     // console.log('handleOnClick: ' + JSON.stringify(ring));
     // console.log('ringSlotNum: ' + ringSlotNum);
+    var oldSpellSlots = 0;
+    if(currentSlots[position].ImageURL !== "/images/transparent.png"){
+      console.log('currentSlots[position]: ' + JSON.stringify(currentSlots[position]));
+      oldSpellSlots = currentSlots[position].Slots;
+      console.log('oldSpellSlots after: ' + oldSpellSlots);
+    }
     currentSlots[position].Name = spell.Name;
     currentSlots[position].ImageURL = spell.ImageURL;
-    console.log('currentSlots: ' + JSON.stringify(currentSlots));
-    handleSpellChange(spell);
+    currentSlots[position].Slots = spell.Slots;
+    //console.log('currentSlots: ' + JSON.stringify(currentSlots));
+    handleSpellChange(spell, oldSpellSlots);
     handleSpellState(currentSlots);
     handleSpellClicked();
   }

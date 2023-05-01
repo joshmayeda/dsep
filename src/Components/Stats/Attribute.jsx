@@ -1,14 +1,16 @@
 import AttunementSlots_Table from './Tables/AttunementSlots.json'
 
-export function Attribute({title, id, currentStatValue, setCurrentAttribute, setMaxSlots, setCurrentSlotsUsed}) {
+export function Attribute({title, id, currentStatValue, setCurrentAttribute, setMaxSlots, setCurrentSlotsUsed, setCurrentLevel, currentLevel}) {
 
     function handleOnClick(value) {
         if(id !== "attunement"){
             //console.log(title + ' ' + value + ' ' + 'clicked');
             setCurrentAttribute(value);
+            setCurrentLevel(currentLevel + 1)
         }else{
             //console.log(title + ' ' + value + ' ' + 'clicked');
             setCurrentAttribute(value);
+            setCurrentLevel(currentLevel + 1)
             //console.log('attunementSlots: ' + AttunementSlots_Table[value].Slots);
             setMaxSlots(AttunementSlots_Table[value].Slots);
         }

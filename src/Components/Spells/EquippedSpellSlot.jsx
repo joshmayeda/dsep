@@ -18,9 +18,9 @@ export function EquippedSpellSlot({ equippedSpellsArray, position, allSpellsArra
       closeModal();
     }
 
-    function handleSpellChange(spell){
+    function handleSpellChange(spell, oldSpellSlots){
       setCurrentSpellSlot(spell);
-      setCurrentAttunementSlotsUsed(currentAttunementSlotsUsed => currentAttunementSlotsUsed + spell.Slots);
+      setCurrentAttunementSlotsUsed(currentAttunementSlotsUsed => currentAttunementSlotsUsed + spell.Slots - oldSpellSlots);
     }
 
     return (

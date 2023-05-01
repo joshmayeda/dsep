@@ -548,15 +548,60 @@ export default function App() {
             <ul className="grid-item-container" id="attributes">
 
               <LevelCounter currentLevel={currentLevel} />
-              <Attribute title="Vitality" id="vitality" currentStatValue={currentVitality} setCurrentAttribute={setCurrentVitality} />
-              <Attribute title="Attunement" id="attunement" currentStatValue={currentAttunement} setCurrentAttribute={setCurrentAttunement} setMaxSlots={setCurrentMaxAttunementSlots} setCurrentSlotsUsed={setCurrentAttunementSlotsUsed}/>
-              <Attribute title="Endurance" id="endurance" currentStatValue={currentEndurance} setCurrentAttribute={setCurrentEndurance}/>
-              <Attribute title="Strength" id="strength" currentStatValue={currentStrength} setCurrentAttribute={setCurrentStrength}/>
-              <Attribute title="Dexterity" id="dexterity" currentStatValue={currentDexterity} setCurrentAttribute={setCurrentDexterity}/>
-              <Attribute title="Resistance" id="resistance" currentStatValue={currentResistance} setCurrentAttribute={setCurrentResistance}/>
-              <Attribute title="Intelligence" id="intelligence" currentStatValue={currentIntelligence} setCurrentAttribute={setCurrentIntelligence}/>
-              <Attribute title="Faith" id="faith" currentStatValue={currentFaith} setCurrentAttribute={setCurrentFaith}/>
-              <Attribute title="Humanity" id="humanity" currentStatValue={currentHumanity} setCurrentAttribute={setCurrentHumanity}/>
+              <Attribute title="Vitality" id="vitality"
+                currentStatValue={currentVitality}
+                setCurrentAttribute={setCurrentVitality}
+                setCurrentLevel={setCurrentLevel}
+                currentLevel={currentLevel}
+              />
+              <Attribute title="Attunement" id="attunement"
+                currentStatValue={currentAttunement}
+                setCurrentAttribute={setCurrentAttunement}
+                setMaxSlots={setCurrentMaxAttunementSlots}
+                setCurrentSlotsUsed={setCurrentAttunementSlotsUsed}
+                setCurrentLevel={setCurrentLevel}
+                currentLevel={currentLevel}
+              />
+              <Attribute title="Endurance" id="endurance"
+                currentStatValue={currentEndurance}
+                setCurrentAttribute={setCurrentEndurance}
+                setCurrentLevel={setCurrentLevel}
+                currentLevel={currentLevel}
+              />
+              <Attribute title="Strength" id="strength"
+                currentStatValue={currentStrength}
+                setCurrentAttribute={setCurrentStrength}
+                setCurrentLevel={setCurrentLevel}
+                currentLevel={currentLevel}
+              />
+              <Attribute title="Dexterity" id="dexterity"
+                currentStatValue={currentDexterity}
+                setCurrentAttribute={setCurrentDexterity}
+                setCurrentLevel={setCurrentLevel}
+                currentLevel={currentLevel}
+              />
+              <Attribute title="Resistance" id="resistance"
+                currentStatValue={currentResistance}
+                setCurrentAttribute={setCurrentResistance}
+                setCurrentLevel={setCurrentLevel}
+                currentLevel={currentLevel}
+              />
+              <Attribute title="Intelligence" id="intelligence"
+                currentStatValue={currentIntelligence}
+                setCurrentAttribute={setCurrentIntelligence}
+                setCurrentLevel={setCurrentLevel}
+                currentLevel={currentLevel}
+              />
+              <Attribute title="Faith" id="faith"
+                currentStatValue={currentFaith}
+                setCurrentAttribute={setCurrentFaith}
+                setCurrentLevel={setCurrentLevel}
+                currentLevel={currentLevel}
+              />
+              <Attribute title="Humanity" id="humanity"
+                currentStatValue={currentHumanity}
+                setCurrentAttribute={setCurrentHumanity}
+              />
 
             </ul>
 
