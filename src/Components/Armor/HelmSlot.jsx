@@ -2,7 +2,7 @@ import {useRef, useState} from 'react';
 import Popup from 'reactjs-popup';
 import {ArmorModal} from './ArmorModal';
 
-export function HelmSlot({currentHelmInfo, allHelmsArray, handleHelmState}){
+export function HelmSlot({currentHelmInfo, allHelmsArray, handleHelmState, position}){
 
   const ref = useRef(null);
   const closeModal = () => ref.current.close();
@@ -37,6 +37,7 @@ export function HelmSlot({currentHelmInfo, allHelmsArray, handleHelmState}){
             handleArmorState={handleHelmState}
             handleArmorClicked={handleHelmClicked}
             handleArmorChange={handleHelmChange}
+            position={position}
           />
       </Popup>
       </>

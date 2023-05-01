@@ -2,7 +2,7 @@ import {useState, useRef} from 'react';
 import Popup from 'reactjs-popup';
 import { HandModal } from './HandModal';
 
-export function HandSlot({ handSlotsArray, handSlotNum, allWeaponsArray, allShieldsArray, allFociArray, handleHandState, currentSlots }) {
+export function HandSlot({ handSlotsArray, handSlotNum, allWeaponsArray, allShieldsArray, allFociArray, handleHandState, currentSlots, position }) {
 
     const allHandsArray = [...allWeaponsArray, ...allShieldsArray, ...allFociArray];
     const ref = useRef(null);
@@ -44,6 +44,7 @@ export function HandSlot({ handSlotsArray, handSlotNum, allWeaponsArray, allShie
             currentSlots={currentSlots}
             handleHandClicked={handleHandClicked}
             handleHandChange={handleHandChange}
+            position={position}
           />
       </Popup>
       </>

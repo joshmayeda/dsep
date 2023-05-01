@@ -448,6 +448,7 @@ export default function App() {
               allFociArray={allFociArray}
               handleHandState={handleHandState}
               currentSlots={currentHandSlots}
+              position="bottom left"
             />
             <HandSlot id="rwep2" title="Right Hand 2"
               handSlotsArray={handSlotsArray}
@@ -457,6 +458,7 @@ export default function App() {
               allFociArray={allFociArray}
               handleHandState={handleHandState}
               currentSlots={currentHandSlots}
+              position="bottom left"
             />
             <HandSlot id="lwep1" title="Left Hand 1"
               handSlotsArray={handSlotsArray}
@@ -466,6 +468,7 @@ export default function App() {
               allFociArray={allFociArray}
               handleHandState={handleHandState}
               currentSlots={currentHandSlots}
+              position="bottom right"
             />
             <HandSlot id="lwep2" title="Left Hand 2"
               handSlotsArray={handSlotsArray}
@@ -475,6 +478,7 @@ export default function App() {
               allFociArray={allFociArray}
               handleHandState={handleHandState}
               currentSlots={currentHandSlots}
+              position="bottom right"
             />
           </div>
         </div>
@@ -514,21 +518,25 @@ export default function App() {
               currentHelmInfo={currentHelmInfo}
               allHelmsArray={allHelmsArray}
               handleHelmState={handleHelmState}
+              position="right bottom"
             />
             <ChestSlot id="chest" title="Chest"
               currentChestInfo={currentChestInfo}
               allChestsArray={allChestsArray}
               handleChestState={handleChestState}
+              position="right bottom"
             />
             <GauntletSlot id="gauntlet" title="Gauntlet"
               currentGauntletInfo={currentGauntletInfo}
               allGauntletsArray={allGauntletsArray}
               handleGauntletState={handleGauntletState}
+              position="left bottom"
             />
             <LegSlot id="gauntlet" title="Leg"
               currentLegInfo={currentLegInfo}
               allLegsArray={allLegsArray}
               handleLegState={handleLegState}
+              position="left bottom"
             />
           </div>
         </div>

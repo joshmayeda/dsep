@@ -3,7 +3,7 @@ import Popup from 'reactjs-popup';
 import { useRef } from 'react';
 import '../../modal.css';
 
-export function HandModal({ handSlotNum, allHandsArray, allWeaponsArray, allShieldsArray, allFociArray, handleHandState, currentSlots, handleHandClicked, handleHandChange }) {
+export function HandModal({ handSlotNum, allHandsArray, allWeaponsArray, allShieldsArray, allFociArray, handleHandState, currentSlots, handleHandClicked, handleHandChange, position }) {
 
   const ref = useRef(null);
   const closeModal = () => ref.current.close();
@@ -30,7 +30,7 @@ export function HandModal({ handSlotNum, allHandsArray, allWeaponsArray, allShie
                 <div className="hand-modal-item-name">
                 {hand.Name}
                 </div>
-            </div>} position = "bottom left" on="hover" arrow={false}>
+            </div>} position = {position} on="hover" arrow={false}>
                 <div className="hand-modal-item-description">
                     <div className="header">
                         Phys. Dmg.

@@ -2,7 +2,7 @@ import {useRef, useState} from 'react';
 import Popup from 'reactjs-popup';
 import {ArmorModal} from './ArmorModal';
 
-export function GauntletSlot({currentGauntletInfo, allGauntletsArray, handleGauntletState}){
+export function GauntletSlot({currentGauntletInfo, allGauntletsArray, handleGauntletState, position}){
 
   const ref = useRef(null);
   const closeModal = () => ref.current.close();
@@ -37,6 +37,7 @@ export function GauntletSlot({currentGauntletInfo, allGauntletsArray, handleGaun
             handleArmorState={handleGauntletState}
             handleArmorClicked={handleGauntletClicked}
             handleArmorChange={handleGauntletChange}
+            position={position}
           />
       </Popup>
       </>

@@ -2,7 +2,7 @@ import {useRef, useState} from 'react';
 import Popup from 'reactjs-popup';
 import {ArmorModal} from './ArmorModal';
 
-export function ChestSlot({currentChestInfo, allChestsArray, handleChestState}){
+export function ChestSlot({currentChestInfo, allChestsArray, handleChestState, position}){
 
   const ref = useRef(null);
   const closeModal = () => ref.current.close();
@@ -37,6 +37,7 @@ export function ChestSlot({currentChestInfo, allChestsArray, handleChestState}){
             handleArmorState={handleChestState}
             handleArmorClicked={handleChestClicked}
             handleArmorChange={handleChestChange}
+            position={position}
           />
       </Popup>
       </>

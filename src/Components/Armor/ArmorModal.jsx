@@ -2,7 +2,7 @@ import Popup from "reactjs-popup";
 import '../../modal.css';
 
 
-export function ArmorModal({currentArmor, allArmorsArray, handleArmorState, handleArmorClicked, handleArmorChange}){
+export function ArmorModal({currentArmor, allArmorsArray, handleArmorState, handleArmorClicked, handleArmorChange, position}){
 
     function handleOnClick(newArmor){
         // console.log('handleOnClick: ' + JSON.stringify(ring));
@@ -26,7 +26,7 @@ export function ArmorModal({currentArmor, allArmorsArray, handleArmorState, hand
               <div className="armor-modal-item-name">
                 {armor.Name}
               </div>
-            </div>} position = "right bottom" on="hover" armor={false}>
+            </div>} position = {position} on="hover" armor={false}>
               <div className="armor-modal-item-description">
                 <div className="header">
                   Phys. Def.

@@ -2,7 +2,7 @@ import {useRef, useState} from 'react';
 import Popup from 'reactjs-popup';
 import {ArmorModal} from './ArmorModal';
 
-export function LegSlot({currentLegInfo, allLegsArray, handleLegState}){
+export function LegSlot({currentLegInfo, allLegsArray, handleLegState, position}){
 
   const ref = useRef(null);
   const closeModal = () => ref.current.close();
@@ -37,6 +37,7 @@ export function LegSlot({currentLegInfo, allLegsArray, handleLegState}){
             handleArmorState={handleLegState}
             handleArmorClicked={handleLegClicked}
             handleArmorChange={handleLegChange}
+            position={position}
           />
       </Popup>
       </>
