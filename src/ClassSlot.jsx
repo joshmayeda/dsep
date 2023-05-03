@@ -2,7 +2,7 @@ import {useRef, useState} from 'react';
 import Popup from 'reactjs-popup';
 import "./App.css"
 
-export function ClassSlot({position, id, selectedClass, handleClassState, setShowModal}){
+export function ClassSlot({position, id, selectedClass, handleClassState }){
 
   const ref = useRef(null);
   const closeModal = () => ref.current.close();
@@ -13,6 +13,11 @@ export function ClassSlot({position, id, selectedClass, handleClassState, setSho
   }
 
   function handleClassChange(id){
+    // const classObj = classesStartingEquipment.find((obj) => obj.Name === id);
+    // const helmName = classObj.helm;
+    // const helm = allHelmsArray.find((obj) => obj.Name === helmName);
+    // console.log('helm', helm);
+    //setCurrentHelm(helm);
     handleClassState(id);
     closeModal();
   }
@@ -20,7 +25,7 @@ export function ClassSlot({position, id, selectedClass, handleClassState, setSho
   return (
     <>
       <Popup ref={ref} trigger={
-        <div className="class" id="warrior" onClick={() => handleClassChange(id)}>
+        <div className="class" id={selectedClass.Name} onClick={() => handleClassChange(id)}>
           <img className="class-image" src={selectedClass.ImageURL}/>
           <div className="class-name">{selectedClass.Name}</div>
         </div>

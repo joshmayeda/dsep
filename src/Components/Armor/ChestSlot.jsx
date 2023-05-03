@@ -2,11 +2,11 @@ import {useRef, useState} from 'react';
 import Popup from 'reactjs-popup';
 import {ArmorModal} from './ArmorModal';
 
-export function ChestSlot({currentChestInfo, allChestsArray, handleChestState, position}){
+export function ChestSlot({currentChestArmor, allChestsArray, handleChestState, position}){
 
   const ref = useRef(null);
   const closeModal = () => ref.current.close();
-  const [currentChest, setCurrentChest] = useState(currentChestInfo);
+  const [currentChest, setCurrentChest] = useState(currentChestArmor);
   const [slotColor, setSlotColor] = useState("");
   const styles = {
       "backgroundColor": slotColor,
@@ -28,8 +28,8 @@ export function ChestSlot({currentChestInfo, allChestsArray, handleChestState, p
                       onMouseEnter={() => setSlotColor("#676949")}
                       onMouseLeave={() => setSlotColor("transparent")}
                       >
-                        <img className="slot-image" src={currentChest.ImageURL}></img>
-                        <div className="slot-name">{currentChest.Name}</div>
+                        <img className="slot-image" src={currentChestArmor.ImageURL}></img>
+                        <div className="slot-name">{currentChestArmor.Name}</div>
                       </button>} position="right bottom" closeOnDocumentClick={true}>
           <ArmorModal
             currentArmor={currentChest}

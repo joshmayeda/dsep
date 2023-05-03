@@ -15,6 +15,7 @@ import { GauntletSlot } from './Components/Armor/GauntletSlot'
 import { LegSlot } from './Components/Armor/LegSlot'
 import { ClassSlot } from './ClassSlot'
 import allClassesArray from "./classes.json"
+import classesStartingEquipment from "./classesStartingEquipment.json"
 import attunementSlotsArray from "./Components/Stats/Tables/AttunementSlots.json"
 import './App.css'
 import axios from 'axios';
@@ -113,11 +114,11 @@ export default function App() {
     "ImageURL": "/images/transparent.png"
   }
 
-  const currentHelmInfo = {
+  var currentHelmInfo = {
     "Name": "Helm",
     "ImageURL": "/images/transparent.png"
   }
-  const currentChestInfo = {
+  var currentChestInfo = {
     "Name": "Chest",
     "ImageURL": "/images/transparent.png"
   }
@@ -278,7 +279,6 @@ export default function App() {
     getAllLegs();
     getAllSpells();
   }, []);
-
   //State Handlers
 
   function handleHandState (newHandArray) {
@@ -303,6 +303,9 @@ export default function App() {
 
   function handleHelmState (newHelm){
     console.log('handleHelmState: ' + JSON.stringify(newHelm))
+    currentHelmInfo = newHelm;
+    console.log('currentHelmInfo: ' + JSON.stringify(currentHelmInfo));
+
     setCurrentHelm(newHelm)
   }
 
@@ -326,11 +329,16 @@ export default function App() {
     setCurrentEquippedSpells(newSpellArray)
   }
 
+  function handleStartingEquipmentState (classEquipsNames) {
+    setCurrentHelm(allHelmsArray.find(obj => obj.Name === classEquipsNames.helm));
+    setCurrentChest(allChestsArray.find(obj => obj.Name === classEquipsNames.chest));
+    setCurrentGauntlet(allGauntletsArray.find(obj => obj.Name === classEquipsNames.gauntlets));
+    setCurrentLeg(allLegsArray.find(obj => obj.Name === classEquipsNames.legs));
+  }
+
   function handleClassState (newClass){
-    //console.log('handleClassState: ' + JSON.stringify(newClass));
-    //console.log('allClassesArray: ' + JSON.stringify(allClassesArray));
     const classObject = allClassesArray.find(obj => obj.Name === newClass);
-    //console.log('classObject: ' + JSON.stringify(classObject));
+    const classEquipsNames = classesStartingEquipment.find(obj => obj.Name === newClass);
     setCurrentClass(classObject);
     setCurrentLevel(classObject.Level);
     setCurrentVitality(classObject.Vitality);
@@ -341,94 +349,93 @@ export default function App() {
     setCurrentResistance(classObject.Resistance);
     setCurrentIntelligence(classObject.Intelligence);
     setCurrentFaith(classObject.Faith);
-    //console.log('currentAttunementSlots: ' + JSON.stringify(attunementSlotsArray[classObject.Attunement]["Slots"]));
     setCurrentMaxAttunementSlots(JSON.stringify(attunementSlotsArray[classObject.Attunement]["Slots"]));
     setCurrentAttunementSlotsUsed(0);
-    //console.log('currentClass: ' + JSON.stringify(currentClass));
+    handleStartingEquipmentState(classEquipsNames);
     setShowModal("none");
-    //console.log('currentClass: ' + JSON.stringify(classObject));
   }
 
   return (
     <>
     <div className="class-modal" id="class-modal" style={classModalStyle}>
-      <div className="modal-content">
-        <div className="modal-header">
-          Starting Class
-        </div>
-        <div className="modal-body">
-          <ClassSlot
-            className="class"
-            id="Warrior"
-            selectedClass={allClassesArray[0]}
-            position="right center"
-            handleClassState={handleClassState}
-          />
-          <ClassSlot
-            className="class"
-            id="Knight"
-            selectedClass={allClassesArray[1]}
-            position="right center"
-            handleClassState={handleClassState}
-          />
-          <ClassSlot
-            className="class"
-            id="Wanderer"
-            selectedClass={allClassesArray[2]}
-            position="right center"
-            handleClassState={handleClassState}
-          />
-          <ClassSlot
-            className="class"
-            id="Thief"
-            selectedClass={allClassesArray[3]}
-            position="left center"
-            handleClassState={handleClassState}
-          />
-          <ClassSlot
-            className="class"
-            id="Bandit"
-            selectedClass={allClassesArray[4]}
-            position="left center"
-            handleClassState={handleClassState}
-          />
-          <ClassSlot
-            className="class"
-            id="Hunter"
-            selectedClass={allClassesArray[5]}
-            position="right center"
-            handleClassState={handleClassState}
-          />
-          <ClassSlot
-            className="class"
-            id="Sorcerer"
-            selectedClass={allClassesArray[6]}
-            position="right center"
-            handleClassState={handleClassState}
-          />
-          <ClassSlot
-            className="class"
-            id="Pyromancer"
-            selectedClass={allClassesArray[7]}
-            position="right center"
-            handleClassState={handleClassState}
-          />
-          <ClassSlot
-            className="class"
-            id="Cleric"
-            selectedClass={allClassesArray[8]}
-            position="left center"
-            handleClassState={handleClassState}
-          />
-          <ClassSlot
-            className="class"
-            id="Deprived"
-            selectedClass={allClassesArray[9]}
-            position="left center"
-            handleClassState={handleClassState}
-          />
-        </div>
-      </div>
+          <div className="modal-content">
+              <div className="modal-header">
+              Starting Class
+              </div>
+          <div className="modal-body">
+            <ClassSlot
+              className="class"
+              id="Warrior"
+              selectedClass={allClassesArray[0]}
+              position="right center"
+              handleClassState={handleClassState}
+              setCurrentHelm={setCurrentHelm}
+            />
+            <ClassSlot
+              className="class"
+              id="Knight"
+              selectedClass={allClassesArray[1]}
+              position="right center"
+              handleClassState={handleClassState}
+            />
+            <ClassSlot
+              className="class"
+              id="Wanderer"
+              selectedClass={allClassesArray[2]}
+              position="right center"
+              handleClassState={handleClassState}
+            />
+            <ClassSlot
+              className="class"
+              id="Thief"
+              selectedClass={allClassesArray[3]}
+              position="left center"
+              handleClassState={handleClassState}
+            />
+            <ClassSlot
+              className="class"
+              id="Bandit"
+              selectedClass={allClassesArray[4]}
+              position="left center"
+              handleClassState={handleClassState}
+            />
+            <ClassSlot
+              className="class"
+              id="Hunter"
+              selectedClass={allClassesArray[5]}
+              position="right center"
+              handleClassState={handleClassState}
+            />
+            <ClassSlot
+              className="class"
+              id="Sorcerer"
+              selectedClass={allClassesArray[6]}
+              position="right center"
+              handleClassState={handleClassState}
+            />
+            <ClassSlot
+              className="class"
+              id="Pyromancer"
+              selectedClass={allClassesArray[7]}
+              position="right center"
+              handleClassState={handleClassState}
+            />
+            <ClassSlot
+              className="class"
+              id="Cleric"
+              selectedClass={allClassesArray[8]}
+              position="left center"
+              handleClassState={handleClassState}
+            />
+            <ClassSlot
+              className="class"
+              id="Deprived"
+              selectedClass={allClassesArray[9]}
+              position="left center"
+              handleClassState={handleClassState}
+            />
+          </div>
+          </div>
     </div>
     <header className="App-header">
     Dark Souls Equipment Planner
@@ -515,25 +522,25 @@ export default function App() {
           Armor
           <div className="grid-item-container" id="armor">
             <HelmSlot id="helm" title="Helm"
-              currentHelmInfo={currentHelmInfo}
+              currentHelmet={currentHelm}
               allHelmsArray={allHelmsArray}
               handleHelmState={handleHelmState}
               position="right bottom"
             />
             <ChestSlot id="chest" title="Chest"
-              currentChestInfo={currentChestInfo}
+              currentChestArmor={currentChest}
               allChestsArray={allChestsArray}
               handleChestState={handleChestState}
               position="right bottom"
             />
             <GauntletSlot id="gauntlet" title="Gauntlet"
-              currentGauntletInfo={currentGauntletInfo}
+              currentGauntletArmor={currentGauntlet}
               allGauntletsArray={allGauntletsArray}
               handleGauntletState={handleGauntletState}
               position="left bottom"
             />
             <LegSlot id="gauntlet" title="Leg"
-              currentLegInfo={currentLegInfo}
+              currentLegArmor={currentLeg}
               allLegsArray={allLegsArray}
               handleLegState={handleLegState}
               position="left bottom"
@@ -613,13 +620,19 @@ export default function App() {
               <Stat title = "R Weapon 2" id="rwep2" defaultValue="0" />
               <Stat title = "L Weapon 1" id="lwep1" defaultValue="0" />
               <Stat title = "L Weapon 2" id="lwep2" defaultValue="0" />
-              <Stat title = "Physical Def." id="phys-def" defaultValue="0" />
-              <Stat title = "VS Strike" id="strike-def" defaultValue="0" />
-              <Stat title = "VS Slash" id="slash-def" defaultValue="0" />
-              <Stat title = "VS Thrust" id="thrust-def" defaultValue="0" />
-              <Stat title = "Magic Def." id="magic-def" defaultValue="0" />
-              <Stat title = "Flame Def." id="flame-def" defaultValue="0" />
-              <Stat title = "Lightning Def." id="lightning-def" defaultValue="0" />
+              <Stat title = "Physical Def." id="phys-def"
+                defaultValue={0}
+                currentHelm={currentHelm}
+                currentChest={currentChest}
+                currentGauntlet={currentGauntlet}
+                currentLeg={currentLeg}
+              />
+              <Stat title = "VS Strike" id="strike-def" defaultValue="0" currentHelm={currentHelm} allHelmsArray={allHelmsArray} />
+              <Stat title = "VS Slash" id="slash-def" defaultValue="0" currentHelm={currentHelm} allHelmsArray={allHelmsArray} />
+              <Stat title = "VS Thrust" id="thrust-def" defaultValue="0" currentHelm={currentHelm} allHelmsArray={allHelmsArray} />
+              <Stat title = "Magic Def." id="magic-def" defaultValue="0" currentHelm={currentHelm} allHelmsArray={allHelmsArray} />
+              <Stat title = "Flame Def." id="flame-def" defaultValue="0" currentHelm={currentHelm} allHelmsArray={allHelmsArray} />
+              <Stat title = "Lightning Def." id="lightning-def" defaultValue="0" currentHelm={currentHelm} allHelmsArray={allHelmsArray} />
             </ul>
 
             <div className="grid-item-container" id="resistances">

@@ -2,17 +2,21 @@ import AttunementSlots_Table from './Tables/AttunementSlots.json'
 
 export function Attribute({title, id, currentStatValue, setCurrentAttribute, setMaxSlots, setCurrentSlotsUsed, setCurrentLevel, currentLevel}) {
 
-    function handleOnClick(value) {
+    function handleOnClick(value, increment) {
         if(id !== "attunement"){
             //console.log(title + ' ' + value + ' ' + 'clicked');
             setCurrentAttribute(value);
-            setCurrentLevel(currentLevel + 1)
         }else{
             //console.log(title + ' ' + value + ' ' + 'clicked');
             setCurrentAttribute(value);
-            setCurrentLevel(currentLevel + 1)
             //console.log('attunementSlots: ' + AttunementSlots_Table[value].Slots);
             setMaxSlots(AttunementSlots_Table[value].Slots);
+        }
+
+        if(increment === "up"){
+            setCurrentLevel(currentLevel + 1);
+        }else if(increment === "down"){
+            setCurrentLevel(currentLevel - 1);
         }
     }
 
@@ -26,8 +30,8 @@ export function Attribute({title, id, currentStatValue, setCurrentAttribute, set
                 <div className="current-attribute-number" value={currentStatValue}>{currentStatValue}</div>
             </div>
             <div>
-                <button className="attribute-increment" onClick={() => handleOnClick(currentStatValue + 1)}>🠭</button>
-                <button className="attribute-increment" onClick={() => handleOnClick(currentStatValue - 1)}>🠯</button>
+                <button className="attribute-increment" onClick={() => handleOnClick(currentStatValue + 1, "up")}>🠭</button>
+                <button className="attribute-increment" onClick={() => handleOnClick(currentStatValue - 1, "down")}>🠯</button>
             </div>
         </li>
         </>
