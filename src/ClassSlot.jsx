@@ -13,11 +13,6 @@ export function ClassSlot({position, id, selectedClass, handleClassState }){
   }
 
   function handleClassChange(id){
-    // const classObj = classesStartingEquipment.find((obj) => obj.Name === id);
-    // const helmName = classObj.helm;
-    // const helm = allHelmsArray.find((obj) => obj.Name === helmName);
-    // console.log('helm', helm);
-    //setCurrentHelm(helm);
     handleClassState(id);
     closeModal();
   }

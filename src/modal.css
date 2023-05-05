@@ -17,6 +17,17 @@
     border: none;
   }
 
+  .loading-screen{
+    position: absolute;
+    background-color: #453f3f;
+    color: white;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-family: DS-Text;
+    font-size: 2rem;
+    z-index: 100;
+  }
 
   .hand-modal {
     display: grid;

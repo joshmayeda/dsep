@@ -13,9 +13,9 @@ export function Attribute({title, id, currentStatValue, setCurrentAttribute, set
             setMaxSlots(AttunementSlots_Table[value].Slots);
         }
 
-        if(increment === "up"){
+        if(increment === "up" && id !== "humanity"){
             setCurrentLevel(currentLevel + 1);
-        }else if(increment === "down"){
+        }else if(increment === "down" && id !== "humanity"){
             setCurrentLevel(currentLevel - 1);
         }
     }

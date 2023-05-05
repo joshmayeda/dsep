@@ -1,5 +1,37 @@
 [
     {
+      "Resistance": 0,
+      "Poison Resistance": 26
+    },
+    {
+      "Resistance": 1,
+      "Poison Resistance": 26
+    },
+    {
+      "Resistance": 2,
+      "Poison Resistance": 26
+    },
+    {
+      "Resistance": 3,
+      "Poison Resistance": 26
+    },
+    {
+      "Resistance": 4,
+      "Poison Resistance": 26
+    },
+    {
+      "Resistance": 5,
+      "Poison Resistance": 26
+    },
+    {
+      "Resistance": 6,
+      "Poison Resistance": 26
+    },
+    {
+      "Resistance": 7,
+      "Poison Resistance": 26
+    },
+    {
       "Resistance": 8,
       "Poison Resistance": 26
     },

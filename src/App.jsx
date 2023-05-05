@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState, useRef, useMemo } from 'react'
 import { Attribute } from './Components/Stats/Attribute'
 import { LevelCounter } from './Components/Stats/LevelCounter'
 import { AttunementSlots } from './Components/Spells/AttunementSlots'
@@ -13,10 +13,7 @@ import { HelmSlot } from './Components/Armor/HelmSlot'
 import { ChestSlot } from './Components/Armor/ChestSlot'
 import { GauntletSlot } from './Components/Armor/GauntletSlot'
 import { LegSlot } from './Components/Armor/LegSlot'
-import { ClassSlot } from './ClassSlot'
-import allClassesArray from "./classes.json"
-import classesStartingEquipment from "./classesStartingEquipment.json"
-import attunementSlotsArray from "./Components/Stats/Tables/AttunementSlots.json"
+import { Modal } from './Modal'
 import './App.css'
 import axios from 'axios';
 
@@ -115,24 +112,79 @@ export default function App() {
   }
 
   var currentHelmInfo = {
+    "ImageURL": "/images/transparent.png",
     "Name": "Helm",
-    "ImageURL": "/images/transparent.png"
+    "Durability": 0,
+    "Weight": 0,
+    "PhysicalProtection": 0,
+    "StrikeProtection": 0,
+    "SlashProtection": 0,
+    "ThrustProtection": 0,
+    "MagicProtection": 0,
+    "FireProtection": 0,
+    "LightningProtection": 0,
+    "BleedResistance": 0,
+    "PoisonResistance": 0,
+    "CurseResistance": 0,
+    "Stability": 0
   }
   var currentChestInfo = {
+    "ImageURL": "/images/transparent.png",
     "Name": "Chest",
-    "ImageURL": "/images/transparent.png"
+    "Durability": 0,
+    "Weight": 0,
+    "PhysicalProtection": 0,
+    "StrikeProtection": 0,
+    "SlashProtection": 0,
+    "ThrustProtection": 0,
+    "MagicProtection": 0,
+    "FireProtection": 0,
+    "LightningProtection": 0,
+    "BleedResistance": 0,
+    "PoisonResistance": 0,
+    "CurseResistance": 0,
+    "Stability": 0
   }
-  const currentGauntletInfo = {
+  var currentGauntletInfo = {
+    "ImageURL": "/images/transparent.png",
     "Name": "Gauntlet",
-    "ImageURL": "/images/transparent.png"
+    "Durability": 0,
+    "Weight": 0,
+    "PhysicalProtection": 0,
+    "StrikeProtection": 0,
+    "SlashProtection": 0,
+    "ThrustProtection": 0,
+    "MagicProtection": 0,
+    "FireProtection": 0,
+    "LightningProtection": 0,
+    "BleedResistance": 0,
+    "PoisonResistance": 0,
+    "CurseResistance": 0,
+    "Stability": 0
   }
-  const currentLegInfo = {
+  var currentLegInfo = {
+    "ImageURL": "/images/transparent.png",
     "Name": "Leg",
-    "ImageURL": "/images/transparent.png"
+    "Durability": 0,
+    "Weight": 0,
+    "PhysicalProtection": 0,
+    "StrikeProtection": 0,
+    "SlashProtection": 0,
+    "ThrustProtection": 0,
+    "MagicProtection": 0,
+    "FireProtection": 0,
+    "LightningProtection": 0,
+    "BleedResistance": 0,
+    "PoisonResistance": 0,
+    "CurseResistance": 0,
+    "Stability": 0
   }
+
+  const [loading, setLoading] = useState(true);
 
   //Classes State
   const [currentClass, setCurrentClass] = useState({});
+  const [classEquips, setClassEquips] = useState([]);
   const [showModal, setShowModal] = useState("grid");
 
   const classModalStyle = {
@@ -185,100 +237,14 @@ export default function App() {
   const [currentMaxAttunementSlots, setCurrentMaxAttunementSlots] = useState(0);
   const [currentAttunementSlotsUsed, setCurrentAttunementSlotsUsed] = useState(0);
 
-  useEffect(() => {
-    async function getAllRings() {
-        await axios.get("http://localhost:8080/api/rings").then((response) => {
-          //console.log('response: ' + JSON.stringify(response.data));
-          setAllRingsArray(JSON.parse(JSON.stringify(response.data)));
-        });
-    }
-    async function getAllArrows(){
-      await axios.get("http://localhost:8080/api/arrows").then((response) => {
-            //console.log('response: ' + JSON.stringify(response.data));
-            setAllArrowsArray(JSON.parse(JSON.stringify(response.data)));
-      });
-    }
-    async function getAllBolts(){
-      await axios.get("http://localhost:8080/api/bolts").then((response) => {
-            //console.log('response: ' + JSON.stringify(response.data));
-            setAllBoltsArray(JSON.parse(JSON.stringify(response.data)));
-      });
-    }
-    async function getAllWeapons(){
-      await axios.get("http://localhost:8080/api/hands/weapons").then((response) => {
-            //console.log('response: ' + JSON.stringify(response.data));
-            setAllWeaponsArray(JSON.parse(JSON.stringify(response.data)));
-      });
-    }
-    async function getAllShields(){
-      await axios.get("http://localhost:8080/api/hands/shields").then((response) => {
-            //console.log('response: ' + JSON.stringify(response.data));
-            setAllShieldsArray(JSON.parse(JSON.stringify(response.data)));
-      });
-    }
-    async function getAllFoci(){
-      await axios.get("http://localhost:8080/api/hands/foci").then((response) => {
-            //console.log('response: ' + JSON.stringify(response.data));
-            setAllFociArray(JSON.parse(JSON.stringify(response.data)));
-      });
-    }
-    async function getAllHelms(){
-      await axios.get("http://localhost:8080/api/armor/helms").then((response) => {
-            //console.log('response: ' + JSON.stringify(response.data));
-            setAllHelmsArray(JSON.parse(JSON.stringify(response.data)));
-      });
-    }
-    async function getAllChests(){
-      await axios.get("http://localhost:8080/api/armor/chest_armor").then((response) => {
-            //console.log('response: ' + JSON.stringify(response.data));
-            setAllChestsArray(JSON.parse(JSON.stringify(response.data)));
-      });
-    }
-    async function getAllGauntlets(){
-      await axios.get("http://localhost:8080/api/armor/gauntlets").then((response) => {
-            //console.log('response: ' + JSON.stringify(response.data));
-            setAllGauntletsArray(JSON.parse(JSON.stringify(response.data)));
-      });
-    }
-    async function getAllLegs(){
-      await axios.get("http://localhost:8080/api/armor/leg_armor").then((response) => {
-            //console.log('response: ' + JSON.stringify(response.data));
-            setAllLegsArray(JSON.parse(JSON.stringify(response.data)));
-      });
-    }
-    async function getAllSpells(){
-      var sorceries = [];
-      var miracles = [];
-      var pyromancies = [];
-      await axios.get("http://localhost:8080/api/spells/sorceries").then((response) => {
-            //console.log('response: ' + JSON.stringify(response.data));
-            sorceries = JSON.parse(JSON.stringify(response.data));
-      });
-      await axios.get("http://localhost:8080/api/spells/miracles").then((response) => {
-            //console.log('response: ' + JSON.stringify(response.data));
-            miracles = JSON.parse(JSON.stringify(response.data));
-      });
-      await axios.get("http://localhost:8080/api/spells/pyromancies").then((response) => {
-            //console.log('response: ' + JSON.stringify(response.data));
-            pyromancies = JSON.parse(JSON.stringify(response.data));
-      });
-      var tempArray = [...sorceries, ...miracles, ...pyromancies];
-      //console.log('tempArray: ' + JSON.stringify(tempArray));
 
-      setAllSpellsArray(tempArray);
-    }
-    getAllRings();
-    getAllArrows();
-    getAllBolts();
-    getAllWeapons();
-    getAllShields();
-    getAllFoci();
-    getAllHelms();
-    getAllChests();
-    getAllGauntlets();
-    getAllLegs();
-    getAllSpells();
-  }, []);
+    // useEffect(() => {
+    //   console.log('currentHelm: ' + JSON.stringify(currentHelm));
+    //   console.log('currentChest: ' + JSON.stringify(currentChest));
+    //   console.log('currentGauntlet: ' + JSON.stringify(currentGauntlet));
+    //   console.log('currentLeg: ' + JSON.stringify(currentLeg));
+    // }, [currentHelm, currentChest]);
+
   //State Handlers
 
   function handleHandState (newHandArray) {
@@ -311,6 +277,8 @@ export default function App() {
 
   function handleChestState (newChest){
     console.log('handleChestState: ' + JSON.stringify(newChest))
+    currentChestInfo = newChest;
+    console.log('currentChestInfo: ' + JSON.stringify(currentChestInfo));
     setCurrentChest(newChest)
   }
 
@@ -329,114 +297,56 @@ export default function App() {
     setCurrentEquippedSpells(newSpellArray)
   }
 
-  function handleStartingEquipmentState (classEquipsNames) {
-    setCurrentHelm(allHelmsArray.find(obj => obj.Name === classEquipsNames.helm));
-    setCurrentChest(allChestsArray.find(obj => obj.Name === classEquipsNames.chest));
-    setCurrentGauntlet(allGauntletsArray.find(obj => obj.Name === classEquipsNames.gauntlets));
-    setCurrentLeg(allLegsArray.find(obj => obj.Name === classEquipsNames.legs));
-  }
+  // const setter = async () => {
+  //   const rings = await axios.get("http://localhost:8080/api/rings");
+  //   const arrows = await axios.get("http://localhost:8080/api/arrows");
+  //   const bolts = await axios.get("http://localhost:8080/api/bolts");
 
-  function handleClassState (newClass){
-    const classObject = allClassesArray.find(obj => obj.Name === newClass);
-    const classEquipsNames = classesStartingEquipment.find(obj => obj.Name === newClass);
-    setCurrentClass(classObject);
-    setCurrentLevel(classObject.Level);
-    setCurrentVitality(classObject.Vitality);
-    setCurrentAttunement(classObject.Attunement);
-    setCurrentEndurance(classObject.Endurance);
-    setCurrentStrength(classObject.Strength);
-    setCurrentDexterity(classObject.Dexterity);
-    setCurrentResistance(classObject.Resistance);
-    setCurrentIntelligence(classObject.Intelligence);
-    setCurrentFaith(classObject.Faith);
-    setCurrentMaxAttunementSlots(JSON.stringify(attunementSlotsArray[classObject.Attunement]["Slots"]));
-    setCurrentAttunementSlotsUsed(0);
-    handleStartingEquipmentState(classEquipsNames);
-    setShowModal("none");
-  }
+  //   Promise.all([rings, arrows, bolts]).then((response) => {
+  //     setAllRingsArray(JSON.parse(JSON.stringify(response[0].data)));
+  //     setAllArrowsArray(JSON.parse(JSON.stringify(response[1].data)));
+  //     setAllBoltsArray(JSON.parse(JSON.stringify(response[2].data)));
+  //     setLoading(false);
+  //   });
+  // }
+
+  // useMemo(() => {
+  //   setter();
+  // }, []);
 
   return (
     <>
-    <div className="class-modal" id="class-modal" style={classModalStyle}>
-          <div className="modal-content">
-              <div className="modal-header">
-              Starting Class
-              </div>
-          <div className="modal-body">
-            <ClassSlot
-              className="class"
-              id="Warrior"
-              selectedClass={allClassesArray[0]}
-              position="right center"
-              handleClassState={handleClassState}
-              setCurrentHelm={setCurrentHelm}
-            />
-            <ClassSlot
-              className="class"
-              id="Knight"
-              selectedClass={allClassesArray[1]}
-              position="right center"
-              handleClassState={handleClassState}
-            />
-            <ClassSlot
-              className="class"
-              id="Wanderer"
-              selectedClass={allClassesArray[2]}
-              position="right center"
-              handleClassState={handleClassState}
-            />
-            <ClassSlot
-              className="class"
-              id="Thief"
-              selectedClass={allClassesArray[3]}
-              position="left center"
-              handleClassState={handleClassState}
-            />
-            <ClassSlot
-              className="class"
-              id="Bandit"
-              selectedClass={allClassesArray[4]}
-              position="left center"
-              handleClassState={handleClassState}
-            />
-            <ClassSlot
-              className="class"
-              id="Hunter"
-              selectedClass={allClassesArray[5]}
-              position="right center"
-              handleClassState={handleClassState}
-            />
-            <ClassSlot
-              className="class"
-              id="Sorcerer"
-              selectedClass={allClassesArray[6]}
-              position="right center"
-              handleClassState={handleClassState}
-            />
-            <ClassSlot
-              className="class"
-              id="Pyromancer"
-              selectedClass={allClassesArray[7]}
-              position="right center"
-              handleClassState={handleClassState}
-            />
-            <ClassSlot
-              className="class"
-              id="Cleric"
-              selectedClass={allClassesArray[8]}
-              position="left center"
-              handleClassState={handleClassState}
-            />
-            <ClassSlot
-              className="class"
-              id="Deprived"
-              selectedClass={allClassesArray[9]}
-              position="left center"
-              handleClassState={handleClassState}
-            />
-          </div>
-          </div>
-    </div>
+    <Modal
+      setCurrentClass={setCurrentClass}
+      setCurrentLevel = {setCurrentLevel}
+      setCurrentVitality = {setCurrentVitality}
+      setCurrentAttunement = {setCurrentAttunement}
+      setCurrentEndurance = {setCurrentEndurance}
+      setCurrentStrength = {setCurrentStrength}
+      setCurrentDexterity = {setCurrentDexterity}
+      setCurrentResistance = {setCurrentResistance}
+      setCurrentIntelligence = {setCurrentIntelligence}
+      setCurrentFaith = {setCurrentFaith}
+      setCurrentMaxAttunementSlots = {setCurrentMaxAttunementSlots}
+      setCurrentAttunementSlotsUsed = {setCurrentAttunementSlotsUsed}
+      setCurrentHelm={setCurrentHelm}
+      setCurrentChest={setCurrentChest}
+      setCurrentGauntlet={setCurrentGauntlet}
+      setCurrentLeg={setCurrentLeg}
+      setCurrentHandSlots={setCurrentHandSlots}
+      setCurrentEquippedSpells={setCurrentEquippedSpells}
+      setAllRingsArray={setAllRingsArray}
+      setAllArrowsArray={setAllArrowsArray}
+      setAllBoltsArray={setAllBoltsArray}
+      setAllWeaponsArray={setAllWeaponsArray}
+      setAllShieldsArray={setAllShieldsArray}
+      setAllFociArray={setAllFociArray}
+      setAllHelmsArray={setAllHelmsArray}
+      setAllChestsArray={setAllChestsArray}
+      setAllGauntletsArray={setAllGauntletsArray}
+      setAllLegsArray={setAllLegsArray}
+      setAllSpellsArray={setAllSpellsArray}
+    />
     <header className="App-header">
     Dark Souls Equipment Planner
     </header>
@@ -627,24 +537,85 @@ export default function App() {
                 currentGauntlet={currentGauntlet}
                 currentLeg={currentLeg}
               />
-              <Stat title = "VS Strike" id="strike-def" defaultValue="0" currentHelm={currentHelm} allHelmsArray={allHelmsArray} />
-              <Stat title = "VS Slash" id="slash-def" defaultValue="0" currentHelm={currentHelm} allHelmsArray={allHelmsArray} />
-              <Stat title = "VS Thrust" id="thrust-def" defaultValue="0" currentHelm={currentHelm} allHelmsArray={allHelmsArray} />
-              <Stat title = "Magic Def." id="magic-def" defaultValue="0" currentHelm={currentHelm} allHelmsArray={allHelmsArray} />
-              <Stat title = "Flame Def." id="flame-def" defaultValue="0" currentHelm={currentHelm} allHelmsArray={allHelmsArray} />
-              <Stat title = "Lightning Def." id="lightning-def" defaultValue="0" currentHelm={currentHelm} allHelmsArray={allHelmsArray} />
+              <Stat title = "VS Strike" id="strike-def"
+                defaultValue={0}
+                currentHelm={currentHelm}
+                currentChest={currentChest}
+                currentGauntlet={currentGauntlet}
+                currentLeg={currentLeg}
+              />
+              <Stat title = "VS Slash" id="slash-def"
+                defaultValue={0}
+                currentHelm={currentHelm}
+                currentChest={currentChest}
+                currentGauntlet={currentGauntlet}
+                currentLeg={currentLeg}
+              />
+              <Stat title = "VS Thrust" id="thrust-def"
+                defaultValue={0}
+                currentHelm={currentHelm}
+                currentChest={currentChest}
+                currentGauntlet={currentGauntlet}
+                currentLeg={currentLeg}
+              />
+              <Stat title = "Magic Def." id="magic-def"
+                defaultValue={0}
+                currentHelm={currentHelm}
+                currentChest={currentChest}
+                currentGauntlet={currentGauntlet}
+                currentLeg={currentLeg}
+              />
+              <Stat title = "Flame Def." id="flame-def"
+                defaultValue={0}
+                currentHelm={currentHelm}
+                currentChest={currentChest}
+                currentGauntlet={currentGauntlet}
+                currentLeg={currentLeg}
+              />
+              <Stat title = "Lightning Def." id="lightning-def"
+                defaultValue={0}
+                currentHelm={currentHelm}
+                currentChest={currentChest}
+                currentGauntlet={currentGauntlet}
+                currentLeg={currentLeg}
+              />
             </ul>
 
             <div className="grid-item-container" id="resistances">
 
               <ul className="resistances">
 
-                <Resistance title="Poise" id="poise" defaultValue="0" />
-                <Resistance title="Bleed Resist" id="bleed-resist" defaultValue="0" currentAttributes={currentEndurance} />
-                <Resistance title="Poison Resist" id="poison-resist" defaultValue="0" currentAttributes={currentResistance}/>
-                <Resistance title="Curse Resist" id="curse-resist" defaultValue="0" currentAttributes={currentHumanity} />
-                <Resistance title="Item Discovery" id="item-discovery" defaultValue="100" currentAttributes={currentHumanity}/>
-
+                <Resistance title="Poise" id="poise"
+                  defaultValue={0}
+                  currentHelm={currentHelm}
+                  currentChest={currentChest}
+                  currentGauntlet={currentGauntlet}
+                  currentLeg={currentLeg}
+                />
+                <Resistance title="Bleed Resist" id="bleed-resist"
+                  defaultValue={0}
+                  currentHelm={currentHelm}
+                  currentChest={currentChest}
+                  currentGauntlet={currentGauntlet}
+                  currentLeg={currentLeg}
+                  currentAttributes={currentEndurance}
+                />
+                <Resistance title="Poison Resist" id="poison-resist"
+                  defaultValue={0}
+                  currentHelm={currentHelm}
+                  currentChest={currentChest}
+                  currentGauntlet={currentGauntlet}
+                  currentLeg={currentLeg}
+                  currentAttributes={currentResistance}
+                />
+                <Resistance title="Curse Resist" id="curse-resist"
+                  defaultValue={0}
+                  currentAttributes={currentHumanity}
+                />
+                <Resistance title="Item Discovery" id="item-discovery"
+                  defaultValue={0}
+                  currentAttributes={currentHumanity}
+                />
               </ul>
 
               <div className="spells">

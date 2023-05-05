@@ -3,21 +3,37 @@ import PoisonResist_Table from "./Tables/PoisonResist_Table.json"
 import CurseResist_Table from "./Tables/CurseResist_Table.json"
 import ItemDiscovery from "./Tables/ItemDiscovery.json"
 
-export function Resistance({ id, title, defaultValue, currentAttributes}) {
+export function Resistance({ id, title, defaultValue, currentAttributes, currentHelm, currentChest, currentGauntlet, currentLeg }) {
 
 
         switch(id){
             case "bleed-resist":
-                defaultValue = JSON.stringify(BleedResist_Table[currentAttributes]["Bleed Resistance"]);
+                var count = 0;
+                count += BleedResist_Table[currentAttributes]["Bleed Resistance"];
+                count += currentHelm.BleedResistance;
+                count += currentChest.BleedResistance;
+                count += currentGauntlet.BleedResistance;
+                count += currentLeg.BleedResistance;
+                defaultValue = count;
                 break;
             case "poison-resist":
-                defaultValue = JSON.stringify(PoisonResist_Table[currentAttributes]["Poison Resistance"]);
+                var count = 0;
+                count += PoisonResist_Table[currentAttributes]["Poison Resistance"];
+                count += currentHelm.PoisonResistance;
+                count += currentChest.PoisonResistance;
+                count += currentGauntlet.PoisonResistance;
+                count += currentLeg.PoisonResistance;
+                defaultValue = count;
                 break;
             case "curse-resist":
-                defaultValue = JSON.stringify(CurseResist_Table[currentAttributes]["Curse Resist"]);
+                var count = 0;
+                count += CurseResist_Table[currentAttributes]["Curse Resist"];
+                defaultValue = count;
                 break;
             case "item-discovery":
-                defaultValue = JSON.stringify(ItemDiscovery[currentAttributes].ItemDiscoveryRate);
+                var count = 0;
+                count += ItemDiscovery[currentAttributes].ItemDiscoveryRate;
+                defaultValue = count;
             default:
                 break;
         }

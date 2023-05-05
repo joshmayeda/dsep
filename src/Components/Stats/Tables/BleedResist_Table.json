@@ -1,5 +1,9 @@
 [
     {
+      "Endurance": 0,
+      "Bleed Resistance": 10
+    },
+    {
       "Endurance": 1,
       "Bleed Resistance": 10
     },
