@@ -432,25 +432,29 @@ export default function App() {
           Armor
           <div className="grid-item-container" id="armor">
             <HelmSlot id="helm" title="Helm"
-              currentHelmet={currentHelm}
+              currentHelm={currentHelm}
+              setCurrentHelm={setCurrentHelm}
               allHelmsArray={allHelmsArray}
               handleHelmState={handleHelmState}
               position="right bottom"
             />
             <ChestSlot id="chest" title="Chest"
-              currentChestArmor={currentChest}
+              currentChest={currentChest}
+              setCurrentChest={setCurrentChest}
               allChestsArray={allChestsArray}
               handleChestState={handleChestState}
               position="right bottom"
             />
             <GauntletSlot id="gauntlet" title="Gauntlet"
-              currentGauntletArmor={currentGauntlet}
+              currentGauntlet={currentGauntlet}
+              setCurrentGauntlet={setCurrentGauntlet}
               allGauntletsArray={allGauntletsArray}
               handleGauntletState={handleGauntletState}
               position="left bottom"
             />
             <LegSlot id="gauntlet" title="Leg"
-              currentLegArmor={currentLeg}
+              currentLeg={currentLeg}
+              setCurrentLeg={setCurrentLeg}
               allLegsArray={allLegsArray}
               handleLegState={handleLegState}
               position="left bottom"

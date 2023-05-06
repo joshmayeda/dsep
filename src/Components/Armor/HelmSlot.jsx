@@ -2,11 +2,10 @@ import {useRef, useState} from 'react';
 import Popup from 'reactjs-popup';
 import {ArmorModal} from './ArmorModal';
 
-export function HelmSlot({ allHelmsArray, handleHelmState, position, currentHelmet}){
+export function HelmSlot({ currentHelm, setCurrentHelm ,allHelmsArray, handleHelmState, position}){
 
   const ref = useRef(null);
   const closeModal = () => ref.current.close();
-  const [currentHelm, setCurrentHelm] = useState(currentHelmet);
   const [slotColor, setSlotColor] = useState("");
   const styles = {
       "backgroundColor": slotColor,
@@ -29,8 +28,8 @@ export function HelmSlot({ allHelmsArray, handleHelmState, position, currentHelm
                       onMouseEnter={() => setSlotColor("#676949")}
                       onMouseLeave={() => setSlotColor("transparent")}
                       >
-                        <img className="slot-image" src={currentHelmet.ImageURL}></img>
-                        <div className="slot-name">{currentHelmet.Name}</div>
+                        <img className="slot-image" src={currentHelm.ImageURL}></img>
+                        <div className="slot-name">{currentHelm.Name}</div>
                       </button>} position="right bottom" closeOnDocumentClick={true} arrow={false}>
           <ArmorModal
             currentArmor={currentHelm}

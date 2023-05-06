@@ -7,8 +7,7 @@ export function ArmorModal({currentArmor, allArmorsArray, handleArmorState, hand
     function handleOnClick(newArmor){
         // console.log('handleOnClick: ' + JSON.stringify(ring));
         // console.log('ringSlotNum: ' + ringSlotNum);
-        currentArmor.Name = newArmor.Name;
-        currentArmor.ImageURL = newArmor.ImageURL;
+        currentArmor = newArmor;
         console.log('currentArmor: ' + JSON.stringify(currentArmor));
         handleArmorChange(newArmor);
         handleArmorState(currentArmor);
@@ -88,8 +87,11 @@ export function ArmorModal({currentArmor, allArmorsArray, handleArmorState, hand
                 <div className="header">
                   Weight
                 </div>
-                <div className="spacer">
+                <div className="header">
+                  Name
                 </div>
+                {/* <div className="spacer">
+                </div> */}
                 <div className="armor-bleed-resist">
                   {armor.BleedResistance}
                 </div>
@@ -107,6 +109,9 @@ export function ArmorModal({currentArmor, allArmorsArray, handleArmorState, hand
                 </div>
                 <div className="armor-weight">
                   {armor.Weight}
+                </div>
+                <div className="armor-name">
+                  {armor.Name}
                 </div>
               </div>
             </Popup>

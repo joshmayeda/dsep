@@ -7,6 +7,14 @@ export function Resistance({ id, title, defaultValue, currentAttributes, current
 
 
         switch(id){
+            case "poise":
+                var count = 0;
+                count += currentHelm.Stability;
+                count += currentChest.Stability;
+                count += currentGauntlet.Stability;
+                count += currentLeg.Stability;
+                defaultValue = count;
+                break;
             case "bleed-resist":
                 var count = 0;
                 count += BleedResist_Table[currentAttributes]["Bleed Resistance"];
