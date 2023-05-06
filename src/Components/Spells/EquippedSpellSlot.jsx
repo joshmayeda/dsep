@@ -2,11 +2,17 @@ import {useState, useRef} from 'react';
 import Popup from 'reactjs-popup';
 import { SpellModal } from './SpellModal';
 
-export function EquippedSpellSlot({ equippedSpellsArray, position, allSpellsArray, handleSpellState, currentSlots, setCurrentAttunementSlotsUsed }) {
+export function EquippedSpellSlot({
+    allSpellsArray,
+    handleSpellState,
+    currentSlot,
+    setCurrentSlot,
+    setCurrentAttunementSlotsUsed,
+    position
+}) {
 
     const ref = useRef(null);
     const closeModal = () => ref.current.close();
-    const [currentSpellSlot, setCurrentSpellSlot] = useState(currentSlots[position]);
 
     const [slotColor, setSlotColor] = useState("transparent");
     const styles = {
@@ -19,7 +25,7 @@ export function EquippedSpellSlot({ equippedSpellsArray, position, allSpellsArra
     }
 
     function handleSpellChange(spell, oldSpellSlots){
-      setCurrentSpellSlot(spell);
+      setCurrentSlot(spell);
       setCurrentAttunementSlotsUsed(currentAttunementSlotsUsed => currentAttunementSlotsUsed + spell.Slots - oldSpellSlots);
     }
 
@@ -30,15 +36,14 @@ export function EquippedSpellSlot({ equippedSpellsArray, position, allSpellsArra
                       onMouseEnter={() => setSlotColor("#676949")}
                       onMouseLeave={() => setSlotColor("transparent")}
                       >
-                        <img className="slot-image" src={currentSpellSlot.ImageURL}></img>
-                        <div>{currentSpellSlot.position}</div>
+                        <img className="slot-image" src={currentSlot.ImageURL}></img>
+                        <div>{currentSlot.position}</div>
                       </button>} position="left" closeOnDocumentClick={true} arrow={false}>
           <SpellModal
-            equippedSpellsArray={equippedSpellsArray}
-            position={position}
             allSpellsArray={allSpellsArray}
             handleSpellState={handleSpellState}
-            currentSlots={currentSlots}
+            currentSlot={currentSlot}
+            setCurrentSlot={setCurrentSlot}
             handleSpellClicked={handleSpellClicked}
             handleSpellChange={handleSpellChange}
           />

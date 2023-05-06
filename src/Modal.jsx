@@ -23,8 +23,12 @@ export function Modal ( {
   setCurrentChest,
   setCurrentGauntlet,
   setCurrentLeg,
-  setCurrentHandSlots,
-  setCurrentEquippedSpells,
+  setCurrentRightHand1,
+  setCurrentRightHand2,
+  setCurrentLeftHand1,
+  setCurrentLeftHand2,
+  setCurrentSlot1,
+  setCurrentArrow,
   setAllRingsArray,
   setAllArrowsArray,
   setAllBoltsArray,
@@ -35,12 +39,13 @@ export function Modal ( {
   setAllChestsArray,
   setAllGauntletsArray,
   setAllLegsArray,
-  setAllSpellsArray
+  setAllSpellsArray,
+  loading,
+  setLoading
 }) {
 
     //Classes State
   const [showModal, setShowModal] = useState("grid");
-  const [loading, setLoading] = useState(true);
 
   const classModalStyle = {
     "display" : showModal
@@ -84,6 +89,7 @@ export function Modal ( {
   }, []);
 
   function handleClassState (newClass){
+    setLoading(true);
     const classObject = allClassesArray.find(obj => obj.Name === newClass);
     //console.log('classObject: ', classObject);
 
@@ -98,15 +104,244 @@ export function Modal ( {
     setCurrentIntelligence(classObject.Intelligence);
     setCurrentFaith(classObject.Faith);
     setCurrentMaxAttunementSlots(JSON.stringify(attunementSlotsArray[classObject.Attunement]["Slots"]));
-    setCurrentAttunementSlotsUsed(0);
     //setClassEquips([...classEquips, classObject.helm, classObject.chest, classObject.gauntlets, classObject.legs, classObject.rhand1, classObject.rhand2, classObject.lhand1, classObject.lhand2, classObject.spell]);
+
+    if(classObject.helm === null){
+      classObject.helm = {
+        "ImageURL": "/images/transparent.png",
+        "Name": "Helm",
+        "Durability": 0,
+        "Weight": 0,
+        "PhysicalProtection": 0,
+        "StrikeProtection": 0,
+        "SlashProtection": 0,
+        "ThrustProtection": 0,
+        "MagicProtection": 0,
+        "FireProtection": 0,
+        "LightningProtection": 0,
+        "BleedResistance": 0,
+        "PoisonResistance": 0,
+        "CurseResistance": 0,
+        "Stability": 0
+      }
+    }
+    if(classObject.chest === null){
+      classObject.chest = {
+        "ImageURL": "/images/transparent.png",
+        "Name": "Chest",
+        "Durability": 0,
+        "Weight": 0,
+        "PhysicalProtection": 0,
+        "StrikeProtection": 0,
+        "SlashProtection": 0,
+        "ThrustProtection": 0,
+        "MagicProtection": 0,
+        "FireProtection": 0,
+        "LightningProtection": 0,
+        "BleedResistance": 0,
+        "PoisonResistance": 0,
+        "CurseResistance": 0,
+        "Stability": 0
+      }
+    }
+    if(classObject.gauntlets === null){
+      classObject.gauntlets = {
+        "ImageURL": "/images/transparent.png",
+        "Name": "Gauntlets",
+        "Durability": 0,
+        "Weight": 0,
+        "PhysicalProtection": 0,
+        "StrikeProtection": 0,
+        "SlashProtection": 0,
+        "ThrustProtection": 0,
+        "MagicProtection": 0,
+        "FireProtection": 0,
+        "LightningProtection": 0,
+        "BleedResistance": 0,
+        "PoisonResistance": 0,
+        "CurseResistance": 0,
+        "Stability": 0
+      }
+    }
+    if(classObject.legs === null){
+      classObject.legs = {
+        "ImageURL": "/images/transparent.png",
+        "Name": "Leggings",
+        "Durability": 0,
+        "Weight": 0,
+        "PhysicalProtection": 0,
+        "StrikeProtection": 0,
+        "SlashProtection": 0,
+        "ThrustProtection": 0,
+        "MagicProtection": 0,
+        "FireProtection": 0,
+        "LightningProtection": 0,
+        "BleedResistance": 0,
+        "PoisonResistance": 0,
+        "CurseResistance": 0,
+        "Stability": 0
+      }
+    }
+
     setCurrentHelm(classObject.helm);
     setCurrentChest(classObject.chest);
     setCurrentGauntlet(classObject.gauntlets);
     setCurrentLeg(classObject.legs);
-    setCurrentHandSlots([classObject.rhand1, classObject.rhand2, classObject.lhand1, classObject.lhand2]);
-    setCurrentEquippedSpells([classObject.spell]);
+
+    if(classObject.rhand1 === null){
+      classObject.rhand1 = {
+        "ImageURL": "/images/transparent.png",
+        "Name": "R. Hand 1",
+        "AttackPower": 0,
+        "PhysicalDamageReductionPercent": 0,
+        "MagicAttackPower": 0,
+        "MagicDamageReductionPercent": 0,
+        "FireAttackPower": 0,
+        "FireDamageReductionPercent": 0,
+        "LightningAttackPower": 0,
+        "LightningDamageReductionPercent": 0,
+        "CriticalAttackPower": 0,
+        "CriticalDamageReductionPercent": 0,
+        "BleedDamage": 0,
+        "PoisonDamage": 0,
+        "DivineDamage": 0,
+        "OccultDamage": 0,
+        "RequiredStrength": 0,
+        "BaseStrengthScaling": null,
+        "MaxStrengthScaling": null,
+        "RequiredDexterity": 0,
+        "BaseDexterityScaling": null,
+        "MaxDexterityScaling": null,
+        "RequiredIntelligence": 0,
+        "BaseIntelligenceScaling": null,
+        "MaxIntelligenceScaling": null,
+        "RequiredFaith": 0,
+        "BaseFaithScaling": null,
+        "MaxFaithScaling": null,
+        "Durability": 0,
+        "Weight": 0
+      };
+    }
+    if(classObject.rhand2 === null){
+      classObject.rhand2 = {
+        "ImageURL": "/images/transparent.png",
+        "Name": "R. Hand 2",
+        "AttackPower": 0,
+        "PhysicalDamageReductionPercent": 0,
+        "MagicAttackPower": 0,
+        "MagicDamageReductionPercent": 0,
+        "FireAttackPower": 0,
+        "FireDamageReductionPercent": 0,
+        "LightningAttackPower": 0,
+        "LightningDamageReductionPercent": 0,
+        "CriticalAttackPower": 0,
+        "CriticalDamageReductionPercent": 0,
+        "BleedDamage": 0,
+        "PoisonDamage": 0,
+        "DivineDamage": 0,
+        "OccultDamage": 0,
+        "RequiredStrength": 0,
+        "BaseStrengthScaling": null,
+        "MaxStrengthScaling": null,
+        "RequiredDexterity": 0,
+        "BaseDexterityScaling": null,
+        "MaxDexterityScaling": null,
+        "RequiredIntelligence": 0,
+        "BaseIntelligenceScaling": null,
+        "MaxIntelligenceScaling": null,
+        "RequiredFaith": 0,
+        "BaseFaithScaling": null,
+        "MaxFaithScaling": null,
+        "Durability": 0,
+        "Weight": 0
+      };
+    }
+    if(classObject.lhand1 === null){
+      classObject.lhand1 = {
+        "ImageURL": "/images/transparent.png",
+        "Name": "L. Hand 1",
+        "AttackPower": 0,
+        "PhysicalDamageReductionPercent": 0,
+        "MagicAttackPower": 0,
+        "MagicDamageReductionPercent": 0,
+        "FireAttackPower": 0,
+        "FireDamageReductionPercent": 0,
+        "LightningAttackPower": 0,
+        "LightningDamageReductionPercent": 0,
+        "CriticalAttackPower": 0,
+        "CriticalDamageReductionPercent": 0,
+        "BleedDamage": 0,
+        "PoisonDamage": 0,
+        "DivineDamage": 0,
+        "OccultDamage": 0,
+        "RequiredStrength": 0,
+        "BaseStrengthScaling": null,
+        "MaxStrengthScaling": null,
+        "RequiredDexterity": 0,
+        "BaseDexterityScaling": null,
+        "MaxDexterityScaling": null,
+        "RequiredIntelligence": 0,
+        "BaseIntelligenceScaling": null,
+        "MaxIntelligenceScaling": null,
+        "RequiredFaith": 0,
+        "BaseFaithScaling": null,
+        "MaxFaithScaling": null,
+        "Durability": 0,
+        "Weight": 0
+      };
+    }
+    if(classObject.lhand2 === null){
+      classObject.lhand2 = {
+        "ImageURL": "/images/transparent.png",
+        "Name": "L. Hand 2",
+        "AttackPower": 0,
+        "PhysicalDamageReductionPercent": 0,
+        "MagicAttackPower": 0,
+        "MagicDamageReductionPercent": 0,
+        "FireAttackPower": 0,
+        "FireDamageReductionPercent": 0,
+        "LightningAttackPower": 0,
+        "LightningDamageReductionPercent": 0,
+        "CriticalAttackPower": 0,
+        "CriticalDamageReductionPercent": 0,
+        "BleedDamage": 0,
+        "PoisonDamage": 0,
+        "DivineDamage": 0,
+        "OccultDamage": 0,
+        "RequiredStrength": 0,
+        "BaseStrengthScaling": null,
+        "MaxStrengthScaling": null,
+        "RequiredDexterity": 0,
+        "BaseDexterityScaling": null,
+        "MaxDexterityScaling": null,
+        "RequiredIntelligence": 0,
+        "BaseIntelligenceScaling": null,
+        "MaxIntelligenceScaling": null,
+        "RequiredFaith": 0,
+        "BaseFaithScaling": null,
+        "MaxFaithScaling": null,
+        "Durability": 0,
+        "Weight": 0
+      };
+    }
+    setCurrentRightHand1(classObject.rhand1);
+    setCurrentRightHand2(classObject.rhand2);
+    setCurrentLeftHand1(classObject.lhand1);
+    setCurrentLeftHand2(classObject.lhand2);
+    setCurrentArrow(classObject.arrow);
+    if(classObject.spell === null){
+      classObject.spell = {
+        "ImageURL": "/images/transparent.png",
+        "Name": "Spell",
+        "Uses": 0,
+        "Slots": 0,
+        "RequiredFaith": 0
+      }
+    }
+    setCurrentSlot1(classObject.spell);
+    setCurrentAttunementSlotsUsed(classObject.spell.Slots);
     setShowModal("none");
+    setLoading(false);
   }
 
   return (

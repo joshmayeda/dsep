@@ -3,17 +3,23 @@ import Popup from 'reactjs-popup';
 import { useRef } from 'react';
 import '../../modal.css';
 
-export function HandModal({ handSlotNum, allHandsArray, allWeaponsArray, allShieldsArray, allFociArray, handleHandState, currentSlots, handleHandClicked, handleHandChange, position }) {
-
-  const ref = useRef(null);
-  const closeModal = () => ref.current.close();
+export function HandModal({
+    allHandsArray,
+    allWeaponsArray,
+    allShieldsArray,
+    allFociArray,
+    handleHandState,
+    currentHandSlot,
+    handleHandClicked,
+    handleHandChange,
+    position
+}) {
 
   function handleOnClick(hand){
     // console.log('handleOnClick: ' + JSON.stringify(ring));
     // console.log('ringSlotNum: ' + ringSlotNum);
-    currentSlots[handSlotNum].Name = hand.Name;
-    currentSlots[handSlotNum].ImageURL = hand.ImageURL;
-    console.log('currentSlots: ' + JSON.stringify(currentSlots));
+    currentHandSlot = hand;
+    console.log('currentHandSlots: ' + JSON.stringify(currentHandSlot));
     handleHandChange(hand);
     handleHandState(currentSlots);
     handleHandClicked();
@@ -23,7 +29,7 @@ export function HandModal({ handSlotNum, allHandsArray, allWeaponsArray, allShie
     <div className="modal">
         <div className="hand-modal">
             {allHandsArray?.map((hand) => (
-            <Popup ref={ref} trigger={
+            <Popup trigger={
             <div key={hand.Name} className="hand-modal-item" onClick={() => handleOnClick(hand)}>
                 <img className="hand-modal-item-image"
                 src={hand.ImageURL}></img>

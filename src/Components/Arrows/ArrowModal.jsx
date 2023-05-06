@@ -3,7 +3,7 @@ import Popup from "reactjs-popup";
 import '../../modal.css';
 
 
-export function ArrowModal({currentArrow, allArrowsArray, handleArrowState, handleArrowClicked, handleArrowChange}){
+export function ArrowModal({currentArrow, allArrowsArray, handleArrowClicked, handleArrowChange}){
 
     function handleOnClick(newArrow){
         // console.log('handleOnClick: ' + JSON.stringify(ring));
@@ -12,7 +12,6 @@ export function ArrowModal({currentArrow, allArrowsArray, handleArrowState, hand
         currentArrow.ImageURL = newArrow.ImageURL;
         console.log('currentArrow: ' + JSON.stringify(currentArrow));
         handleArrowChange(newArrow);
-        handleArrowState(currentArrow);
         handleArrowClicked();
       }
 

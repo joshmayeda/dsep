@@ -2,7 +2,20 @@ import HP_Table from "./Tables/HP_Table.json"
 import Stamina_Table from "./Tables/Stamina_Table.json"
 import EquipLoad_Table from "./Tables/EquipLoad_Table.json"
 
-export function Stat({ id, title, defaultValue, currentAttributes, currentHelm, currentChest, currentGauntlet, currentLeg }){
+export function Stat({
+    id,
+    title,
+    defaultValue,
+    currentAttributes,
+    currentHelm,
+    currentChest,
+    currentGauntlet,
+    currentLeg,
+    currentRightHand1,
+    currentRightHand2,
+    currentLeftHand1,
+    currentLeftHand2
+}){
 
 
     switch(id){
@@ -14,6 +27,18 @@ export function Stat({ id, title, defaultValue, currentAttributes, currentHelm, 
             break;
         case "equip-load":
             defaultValue = JSON.stringify(EquipLoad_Table[currentAttributes].EquipBurden);
+            break;
+        case "rwep1":
+            defaultValue = currentRightHand1.AttackPower;
+            break;
+        case "rwep2":
+            defaultValue = currentRightHand2.AttackPower;
+            break;
+        case "lwep1":
+            defaultValue = currentLeftHand1.AttackPower;
+            break;
+        case "lwep2":
+            defaultValue = currentLeftHand2.AttackPower;
             break;
         case "strike-def":
             var count = 0;

@@ -2,7 +2,12 @@ import Popup from 'reactjs-popup';
 import { useRef } from 'react';
 import '../../modal.css';
 
-export function SpellModal({ equippedSpellsArray, position, allSpellsArray, handleSpellState, currentSlots, handleSpellClicked, handleSpellChange }) {
+export function SpellModal({
+  allSpellsArray,
+  currentSlot,
+  handleSpellClicked,
+  handleSpellChange,
+}) {
 
   const ref = useRef(null);
   const closeModal = () => ref.current.close();
@@ -11,17 +16,16 @@ export function SpellModal({ equippedSpellsArray, position, allSpellsArray, hand
     // console.log('handleOnClick: ' + JSON.stringify(ring));
     // console.log('ringSlotNum: ' + ringSlotNum);
     var oldSpellSlots = 0;
-    if(currentSlots[position].ImageURL !== "/images/transparent.png"){
-      console.log('currentSlots[position]: ' + JSON.stringify(currentSlots[position]));
-      oldSpellSlots = currentSlots[position].Slots;
+    if(currentSlot.ImageURL !== "/images/transparent.png"){
+      console.log('currentSlot: ' + JSON.stringify(currentSlot));
+      oldSpellSlots = currentSlot.Slots;
       console.log('oldSpellSlots after: ' + oldSpellSlots);
     }
-    currentSlots[position].Name = spell.Name;
-    currentSlots[position].ImageURL = spell.ImageURL;
-    currentSlots[position].Slots = spell.Slots;
+    currentSlot.Name = spell.Name;
+    currentSlot.ImageURL = spell.ImageURL;
+    currentSlot.Slots = spell.Slots;
     //console.log('currentSlots: ' + JSON.stringify(currentSlots));
     handleSpellChange(spell, oldSpellSlots);
-    handleSpellState(currentSlots);
     handleSpellClicked();
   }
 

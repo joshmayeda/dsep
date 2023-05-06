@@ -2,11 +2,10 @@ import {useRef, useState} from 'react';
 import Popup from 'reactjs-popup';
 import {ArrowModal} from './ArrowModal';
 
-export function ArrowSlot({currentArrowInfo, allArrowsArray, handleArrowState}){
+export function ArrowSlot({currentArrow, setCurrentArrow, allArrowsArray}){
 
   const ref = useRef(null);
   const closeModal = () => ref.current.close();
-  const [currentArrow, setCurrentArrow] = useState(currentArrowInfo);
   const [slotColor, setSlotColor] = useState("");
   const styles = {
       "backgroundColor": slotColor,
@@ -34,7 +33,6 @@ export function ArrowSlot({currentArrowInfo, allArrowsArray, handleArrowState}){
           <ArrowModal
             currentArrow={currentArrow}
             allArrowsArray={allArrowsArray}
-            handleArrowState={handleArrowState}
             handleArrowClicked={handleArrowClicked}
             handleArrowChange={handleArrowChange}
           />

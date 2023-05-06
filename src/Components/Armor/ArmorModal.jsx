@@ -2,7 +2,14 @@ import Popup from "reactjs-popup";
 import '../../modal.css';
 
 
-export function ArmorModal({currentArmor, allArmorsArray, handleArmorState, handleArmorClicked, handleArmorChange, position}){
+export function ArmorModal({
+   currentArmor,
+   allArmorsArray,
+   handleArmorState,
+   handleArmorClicked,
+   handleArmorChange,
+   position
+}){
 
     function handleOnClick(newArmor){
         // console.log('handleOnClick: ' + JSON.stringify(ring));

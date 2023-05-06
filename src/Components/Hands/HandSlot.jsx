@@ -2,13 +2,19 @@ import {useState, useRef} from 'react';
 import Popup from 'reactjs-popup';
 import { HandModal } from './HandModal';
 
-export function HandSlot({ handSlotsArray, handSlotNum, allWeaponsArray, allShieldsArray, allFociArray, handleHandState, currentSlots, position }) {
+export function HandSlot({
+    allWeaponsArray,
+    allShieldsArray,
+    allFociArray,
+    handleHandState,
+    currentHandSlot,
+    setCurrentHandSlot,
+    position
+  }) {
 
     const allHandsArray = [...allWeaponsArray, ...allShieldsArray, ...allFociArray];
     const ref = useRef(null);
     const closeModal = () => ref.current.close();
-    const [currentHandSlot, setCurrentHandSlot] = useState(currentSlots[handSlotNum]);
-
     const [slotColor, setSlotColor] = useState("");
     const styles = {
         "backgroundColor": slotColor,
@@ -34,14 +40,12 @@ export function HandSlot({ handSlotsArray, handSlotNum, allWeaponsArray, allShie
                         <div className="slot-name">{currentHandSlot.Name}</div>
                       </button>} position="right top" closeOnDocumentClick={true}>
           <HandModal
-            handSlotsArray={handSlotsArray}
-            handSlotNum={handSlotNum}
             allHandsArray={allHandsArray}
             allWeaponsArray={allWeaponsArray}
             allShieldsArray={allShieldsArray}
             allFociArray={allFociArray}
             handleHandState={handleHandState}
-            currentSlots={currentSlots}
+            currentHandSlot={currentHandSlot}
             handleHandClicked={handleHandClicked}
             handleHandChange={handleHandChange}
             position={position}
