@@ -523,13 +523,13 @@ export function App({ signOut }) {
 
   return (
     <>
-    {/* <View className="App">
+    <View className="App">
       <Card>
         <Image src='./images/ds_slot.png' className="App-logo" alt="logo" />
         <Heading level={1}>We now have Auth!</Heading>
       </Card>
       <Button onClick={signOut}>Sign Out</Button>
-    </View> */}
+    </View>
     <Modal
       setCurrentClass={setCurrentClass}
       setCurrentLevel = {setCurrentLevel}
