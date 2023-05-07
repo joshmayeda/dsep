@@ -11,5 +11,6 @@ export default defineConfig({
     alias: {
       './runtimeConfig': './runtimeConfig.browser',
     },
-}
+  },
+  define: {global: 'window'}
 })

@@ -16,9 +16,18 @@ import { LegSlot } from './Components/Armor/LegSlot'
 import { Modal } from './Modal'
 import './App.css'
 import axios from 'axios';
+import "@aws-amplify/ui-react/styles.css";
+import {
+  withAuthenticator,
+  Button,
+  Heading,
+  Image,
+  View,
+  Card,
+} from "@aws-amplify/ui-react";
 
 
-export default function App() {
+export function App({ signOut }) {
 
   const ringSlotsArray = [
     {
@@ -514,7 +523,14 @@ export default function App() {
 
   return (
     <>
-    <Modal
+    <View className="App">
+      <Card>
+        <Image src='./images/ds_slot.png' className="App-logo" alt="logo" />
+        <Heading level={1}>We now have Auth!</Heading>
+      </Card>
+      <Button onClick={signOut}>Sign Out</Button>
+    </View>
+    {/* <Modal
       setCurrentClass={setCurrentClass}
       setCurrentLevel = {setCurrentLevel}
       setCurrentVitality = {setCurrentVitality}
@@ -957,8 +973,9 @@ export default function App() {
         Current Starting Class: {currentClass.Name}
       </div>
 
-    </div>
+    </div> */}
     </>
   )
 }
 
+export default withAuthenticator(App);
