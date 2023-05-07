@@ -40,6 +40,14 @@ export function Stat({
         case "lwep2":
             defaultValue = currentLeftHand2.AttackPower;
             break;
+        case "phys-def":
+            var count = 0;
+            count += currentHelm.PhysicalProtection;
+            count += currentChest.PhysicalProtection;
+            count += currentGauntlet.PhysicalProtection;
+            count += currentLeg.PhysicalProtection;
+            defaultValue = count;
+            break;
         case "strike-def":
             var count = 0;
             count += currentHelm.StrikeProtection;
