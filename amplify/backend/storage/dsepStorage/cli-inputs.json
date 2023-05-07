@@ -1,0 +1,14 @@
+{
+  "resourceName": "dsepStorage",
+  "policyUUID": "90abe5a4",
+  "bucketName": "dsepde462af337b74683b220a6c5898edd8d",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}
