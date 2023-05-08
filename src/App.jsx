@@ -27,7 +27,7 @@ import {
 } from "@aws-amplify/ui-react";
 
 
-export function App({ signOut }) {
+export default function App({ signOut }) {
 
   const ringSlotsArray = [
     {
@@ -978,4 +978,4 @@ export function App({ signOut }) {
   )
 }
 
-export default withAuthenticator(App);
+//export default withAuthenticator(App);
