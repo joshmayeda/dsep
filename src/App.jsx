@@ -514,12 +514,6 @@ export default function App({ signOut }) {
     }
   }
 
-  // useEffect(() => {
-  //   console.log('currentEquippedSpells: ' + JSON.stringify(currentEquippedSpells));
-  //   // console.log('currentRightHand2: ' + JSON.stringify(currentRightHand2));
-  //   // console.log('currentLeftHand1: ' + JSON.stringify(currentLeftHand1));
-  //   // console.log('currentLeftHand2: ' + JSON.stringify(currentLeftHand2));
-  // }, [currentSlot1]);
 
   return (
     <>
@@ -978,4 +972,3 @@ export default function App({ signOut }) {
   )
 }
 
-//export default withAuthenticator(App);
