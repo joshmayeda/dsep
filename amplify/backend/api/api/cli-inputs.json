@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "paths": {
+    "/weapons": {
+      "name": "/weapons",
+      "lambdaFunction": "dsepf9be1fa0",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}

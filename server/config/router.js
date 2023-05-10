@@ -108,38 +108,6 @@ const classesRouter = require("koa-router")({
 const ClassesController = require('../controllers/ClassesController.js');
 classesRouter.get("/", ClassesController.allClasses, (err) => console.log(`Error in allClasses: ${err}`));
 
-// app.post('/:name', (req, res) => {
-
-//     return new Promise((resolve, reject) => {
-// 		const query = `INSERT INTO test (name) VALUES (?);`;
-// 		connection.query(
-// 			{
-// 				sql: query,
-// 				values: [req.params.name],
-// 			},
-// 			(error, tuples) => {
-// 				if (error) {
-// 					console.log("Connection error in post name", error);
-// 					req.body = [];
-// 					req.status = 200;
-// 					return reject(error);
-// 				}
-// 				req.body = tuples;
-// 				req.status = 200;
-// 				return resolve();
-// 			}
-// 		);
-//         res.send("Success");
-// 		//console.log(req.params);
-// 	}).catch((err) => {
-// 		console.log("Database connection error in addFollower.", err);
-// 		// The UI side will have to look for the value of status and
-// 		// if it is not 200, act appropriately.
-// 		req.body = [];
-// 		req.status = 500;
-// 	});
-// })
-
 router.use(
     "",
     handsRouter.routes(),

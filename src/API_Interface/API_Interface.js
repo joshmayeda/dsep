@@ -36,9 +36,4 @@ export default class APIInterface {
         //return allRings;
 	}
 
-	// async exerciseByName(workoutName) {
-	// 	console.log(`exercisesByName called for workoutName = ${workoutName}`);
-	// 	return axiosAgent.get(`exercises/${workoutName}`);
-	// }
-
 }

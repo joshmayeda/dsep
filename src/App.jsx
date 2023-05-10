@@ -16,9 +16,18 @@ import { LegSlot } from './Components/Armor/LegSlot'
 import { Modal } from './Modal'
 import './App.css'
 import axios from 'axios';
+import "@aws-amplify/ui-react/styles.css";
+import {
+  withAuthenticator,
+  Button,
+  Heading,
+  Image,
+  View,
+  Card,
+} from "@aws-amplify/ui-react";
 
 
-export default function App() {
+export default function App({ signOut }) {
 
   const ringSlotsArray = [
     {
@@ -505,15 +514,16 @@ export default function App() {
     }
   }
 
-  // useEffect(() => {
-  //   console.log('currentEquippedSpells: ' + JSON.stringify(currentEquippedSpells));
-  //   // console.log('currentRightHand2: ' + JSON.stringify(currentRightHand2));
-  //   // console.log('currentLeftHand1: ' + JSON.stringify(currentLeftHand1));
-  //   // console.log('currentLeftHand2: ' + JSON.stringify(currentLeftHand2));
-  // }, [currentSlot1]);
 
   return (
     <>
+    {/* <View className="App">
+      <Card>
+        <Image src='./images/ds_slot.png' className="App-logo" alt="logo" />
+        <Heading level={1}>We now have Auth!</Heading>
+      </Card>
+      <Button onClick={signOut}>Sign Out</Button>
+    </View> */}
     <Modal
       setCurrentClass={setCurrentClass}
       setCurrentLevel = {setCurrentLevel}

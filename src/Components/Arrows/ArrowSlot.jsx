@@ -4,6 +4,8 @@ import {ArrowModal} from './ArrowModal';
 
 export function ArrowSlot({currentArrow, setCurrentArrow, allArrowsArray}){
 
+  console.log('currentArrow: ', currentArrow);
+
   const ref = useRef(null);
   const closeModal = () => ref.current.close();
   const [slotColor, setSlotColor] = useState("");
