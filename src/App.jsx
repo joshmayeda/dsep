@@ -418,10 +418,10 @@ export default function App() {
 
   //State Handlers
 
-  function handleHandState (newHandArray) {
-    console.log('handleHandState: ' + JSON.stringify(newHandArray))
-    setCurrentHandSlots(newHandArray)
-  }
+  // function handleHandState (newHandArray) {
+  //   console.log('handleHandState: ' + JSON.stringify(newHandArray))
+  //   setCurrentHandSlots(newHandArray)
+  // }
 
   function handleRingState (newRingArray) {
     console.log('handleRingState: ' + JSON.stringify(newRingArray))
@@ -565,7 +565,7 @@ export default function App() {
               allWeaponsArray={allWeaponsArray}
               allShieldsArray={allShieldsArray}
               allFociArray={allFociArray}
-              handleHandState={handleHandState}
+              //handleHandState={handleHandState}
               currentHandSlot={currentRightHand1}
               setCurrentHandSlot={setCurrentRightHand1}
               position="bottom left"
@@ -574,7 +574,7 @@ export default function App() {
               allWeaponsArray={allWeaponsArray}
               allShieldsArray={allShieldsArray}
               allFociArray={allFociArray}
-              handleHandState={handleHandState}
+              //handleHandState={handleHandState}
               currentHandSlot={currentRightHand2}
               setCurrentHandSlot={setCurrentRightHand2}
               position="bottom left"
@@ -583,7 +583,7 @@ export default function App() {
               allWeaponsArray={allWeaponsArray}
               allShieldsArray={allShieldsArray}
               allFociArray={allFociArray}
-              handleHandState={handleHandState}
+              //handleHandState={handleHandState}
               currentHandSlot={currentLeftHand1}
               setCurrentHandSlot={setCurrentLeftHand1}
               position="bottom right"
@@ -592,7 +592,7 @@ export default function App() {
               allWeaponsArray={allWeaponsArray}
               allShieldsArray={allShieldsArray}
               allFociArray={allFociArray}
-              handleHandState={handleHandState}
+              //handleHandState={handleHandState}
               currentHandSlot={currentLeftHand2}
               setCurrentHandSlot={setCurrentLeftHand2}
               position="bottom right"
@@ -619,10 +619,12 @@ export default function App() {
             <ArrowSlot id="arrow" title="Arrow"
               currentArrow={currentArrow}
               setCurrentArrow={setCurrentArrow}
+              handleArrowState={handleArrowState}
               allArrowsArray={allArrowsArray}
             />
             <BoltSlot id="bolt" title="Bolt"
-              currentBoltInfo={currentBoltInfo}
+              currentBolt={currentBolt}
+              setCurrentBolt={setCurrentBolt}
               allBoltsArray={allBoltsArray}
             />
           </div>

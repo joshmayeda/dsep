@@ -3,15 +3,15 @@ import Popup from "reactjs-popup";
 import '../../modal.css';
 
 
-export function ArrowModal({currentArrow, allArrowsArray, handleArrowClicked, handleArrowChange}){
+export function ArrowModal({currentArrow, allArrowsArray, handleArrowState, handleArrowClicked, handleArrowChange}){
 
     function handleOnClick(newArrow){
         // console.log('handleOnClick: ' + JSON.stringify(ring));
         // console.log('ringSlotNum: ' + ringSlotNum);
-        currentArrow.Name = newArrow.Name;
-        currentArrow.ImageURL = newArrow.ImageURL;
+        currentArrow = newArrow;
         console.log('currentArrow: ' + JSON.stringify(currentArrow));
         handleArrowChange(newArrow);
+        handleArrowState(currentArrow);
         handleArrowClicked();
       }
 

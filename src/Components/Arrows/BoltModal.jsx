@@ -2,16 +2,12 @@ import { Searchbar } from "../Searchbar";
 import Popup from "reactjs-popup";
 
 
-export function BoltModal({currentBolt, allBoltsArray, handleBoltState, handleBoltClicked, handleBoltChange}){
+export function BoltModal({currentBolt, allBoltsArray, handleBoltChange, handleBoltClicked}){
 
     function handleOnClick(newBolt){
-        // console.log('handleOnClick: ' + JSON.stringify(ring));
-        // console.log('ringSlotNum: ' + ringSlotNum);
-        currentBolt.Name = newBolt.Name;
-        currentBolt.ImageURL = newBolt.ImageURL;
+        currentBolt = newBolt;
         console.log('currentBolt: ' + JSON.stringify(currentBolt));
-        handleBoltChange(newBolt);
-        handleBoltState(currentBolt);
+        handleBoltChange(currentBolt);
         handleBoltClicked();
       }
 

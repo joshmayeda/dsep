@@ -8,7 +8,7 @@ export function HandModal({
     allWeaponsArray,
     allShieldsArray,
     allFociArray,
-    handleHandState,
+    setCurrentHandSlot,
     currentHandSlot,
     handleHandClicked,
     handleHandChange,
@@ -19,9 +19,9 @@ export function HandModal({
     // console.log('handleOnClick: ' + JSON.stringify(ring));
     // console.log('ringSlotNum: ' + ringSlotNum);
     currentHandSlot = hand;
-    console.log('currentHandSlots: ' + JSON.stringify(currentHandSlot));
+    //console.log('currentHandSlots: ' + JSON.stringify(currentHandSlot));
     handleHandChange(hand);
-    handleHandState(currentSlots);
+    setCurrentHandSlot(currentHandSlot);
     handleHandClicked();
   }
 

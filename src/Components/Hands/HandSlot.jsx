@@ -44,7 +44,7 @@ export function HandSlot({
             allWeaponsArray={allWeaponsArray}
             allShieldsArray={allShieldsArray}
             allFociArray={allFociArray}
-            handleHandState={handleHandState}
+            setCurrentHandSlot={setCurrentHandSlot}
             currentHandSlot={currentHandSlot}
             handleHandClicked={handleHandClicked}
             handleHandChange={handleHandChange}

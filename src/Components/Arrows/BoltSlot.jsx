@@ -2,11 +2,10 @@ import {useRef, useState} from 'react';
 import Popup from 'reactjs-popup';
 import {BoltModal} from './BoltModal';
 
-export function BoltSlot({currentBoltInfo, allBoltsArray, handleBoltState}){
+export function BoltSlot({currentBolt, allBoltsArray, setCurrentBolt}){
 
   const ref = useRef(null);
   const closeModal = () => ref.current.close();
-  const [currentBolt, setCurrentBolt] = useState(currentBoltInfo);
   const [slotColor, setSlotColor] = useState("");
   const styles = {
       "backgroundColor": slotColor,
@@ -34,7 +33,6 @@ export function BoltSlot({currentBoltInfo, allBoltsArray, handleBoltState}){
           <BoltModal
             currentBolt={currentBolt}
             allBoltsArray={allBoltsArray}
-            handleBoltState={handleBoltState}
             handleBoltClicked={handleBoltClicked}
             handleBoltChange={handleBoltChange}
           />

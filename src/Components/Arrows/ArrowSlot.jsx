@@ -2,7 +2,7 @@ import {useRef, useState} from 'react';
 import Popup from 'reactjs-popup';
 import {ArrowModal} from './ArrowModal';
 
-export function ArrowSlot({currentArrow, setCurrentArrow, allArrowsArray}){
+export function ArrowSlot({currentArrow, setCurrentArrow, handleArrowState, allArrowsArray}){
 
   const ref = useRef(null);
   const closeModal = () => ref.current.close();
@@ -33,6 +33,7 @@ export function ArrowSlot({currentArrow, setCurrentArrow, allArrowsArray}){
           <ArrowModal
             currentArrow={currentArrow}
             allArrowsArray={allArrowsArray}
+            handleArrowState={handleArrowState}
             handleArrowClicked={handleArrowClicked}
             handleArrowChange={handleArrowChange}
           />
