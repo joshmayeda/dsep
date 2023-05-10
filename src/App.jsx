@@ -505,12 +505,12 @@ export default function App() {
     }
   }
 
-  // useEffect(() => {
-  //   console.log('currentEquippedSpells: ' + JSON.stringify(currentEquippedSpells));
-  //   // console.log('currentRightHand2: ' + JSON.stringify(currentRightHand2));
-  //   // console.log('currentLeftHand1: ' + JSON.stringify(currentLeftHand1));
-  //   // console.log('currentLeftHand2: ' + JSON.stringify(currentLeftHand2));
-  // }, [currentSlot1]);
+  useEffect(() => {
+    console.log('currentArrow: ' + JSON.stringify(currentArrow));
+    // console.log('currentRightHand2: ' + JSON.stringify(currentRightHand2));
+    // console.log('currentLeftHand1: ' + JSON.stringify(currentLeftHand1));
+    // console.log('currentLeftHand2: ' + JSON.stringify(currentLeftHand2));
+  }, [currentArrow]);
 
   return (
     <>

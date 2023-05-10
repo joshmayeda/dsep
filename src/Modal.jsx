@@ -328,6 +328,17 @@ export function Modal ( {
     setCurrentRightHand2(classObject.rhand2);
     setCurrentLeftHand1(classObject.lhand1);
     setCurrentLeftHand2(classObject.lhand2);
+    if(classObject.arrow === null){
+      classObject.arrow = {
+        "ImageURL": "/images/transparent.png",
+        "Name": "Arrow",
+        "AttackPower": 0,
+        "MagicAttackPower": 0,
+        "FireAttackPower": 0,
+        "LightningAttackPower": 0,
+        "CriticalAttackPower": 0
+      }
+    }
     setCurrentArrow(classObject.arrow);
     if(classObject.spell === null){
       classObject.spell = {
