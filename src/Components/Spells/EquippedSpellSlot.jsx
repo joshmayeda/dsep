@@ -46,6 +46,7 @@ export function EquippedSpellSlot({
             setCurrentSlot={setCurrentSlot}
             handleSpellClicked={handleSpellClicked}
             handleSpellChange={handleSpellChange}
+            position={position}
           />
       </Popup>
       </>

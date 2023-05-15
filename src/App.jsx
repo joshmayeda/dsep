@@ -862,7 +862,7 @@ export default function App() {
                     allSpellsArray={allSpellsArray}
                     handleSpellState={handleSpellState}
                     currentSlot={currentSlot3}
-                    setCurrentSlot1={setCurrentSlot3}
+                    setCurrentSlot={setCurrentSlot3}
                     setCurrentAttunementSlotsUsed={setCurrentAttunementSlotsUsed}
                     currentAttunement={currentAttunement}
                     position={3}
@@ -871,7 +871,7 @@ export default function App() {
                     allSpellsArray={allSpellsArray}
                     handleSpellState={handleSpellState}
                     currentSlot={currentSlot4}
-                    setCurrentSlot1={setCurrentSlot4}
+                    setCurrentSlot={setCurrentSlot4}
                     setCurrentAttunementSlotsUsed={setCurrentAttunementSlotsUsed}
                     currentAttunement={currentAttunement}
                     position={4}
@@ -880,7 +880,7 @@ export default function App() {
                     allSpellsArray={allSpellsArray}
                     handleSpellState={handleSpellState}
                     currentSlot={currentSlot5}
-                    setCurrentSlot1={setCurrentSlot5}
+                    setCurrentSlot={setCurrentSlot5}
                     setCurrentAttunementSlotsUsed={setCurrentAttunementSlotsUsed}
                     currentAttunement={currentAttunement}
                     position={5}
@@ -889,7 +889,7 @@ export default function App() {
                     allSpellsArray={allSpellsArray}
                     handleSpellState={handleSpellState}
                     currentSlot={currentSlot6}
-                    setCurrentSlot1={setCurrentSlot6}
+                    setCurrentSlot={setCurrentSlot6}
                     setCurrentAttunementSlotsUsed={setCurrentAttunementSlotsUsed}
                     currentAttunement={currentAttunement}
                     position={6}
@@ -898,7 +898,7 @@ export default function App() {
                     allSpellsArray={allSpellsArray}
                     handleSpellState={handleSpellState}
                     currentSlot={currentSlot7}
-                    setCurrentSlot1={setCurrentSlot7}
+                    setCurrentSlot={setCurrentSlot7}
                     setCurrentAttunementSlotsUsed={setCurrentAttunementSlotsUsed}
                     currentAttunement={currentAttunement}
                     position={7}
@@ -907,7 +907,7 @@ export default function App() {
                     allSpellsArray={allSpellsArray}
                     handleSpellState={handleSpellState}
                     currentSlot={currentSlot8}
-                    setCurrentSlot1={setCurrentSlot8}
+                    setCurrentSlot={setCurrentSlot8}
                     setCurrentAttunementSlotsUsed={setCurrentAttunementSlotsUsed}
                     currentAttunement={currentAttunement}
                     position={8}
@@ -916,7 +916,7 @@ export default function App() {
                     allSpellsArray={allSpellsArray}
                     handleSpellState={handleSpellState}
                     currentSlot={currentSlot9}
-                    setCurrentSlot1={setCurrentSlot9}
+                    setCurrentSlot={setCurrentSlot9}
                     setCurrentAttunementSlotsUsed={setCurrentAttunementSlotsUsed}
                     currentAttunement={currentAttunement}
                     position={9}
@@ -925,7 +925,7 @@ export default function App() {
                     allSpellsArray={allSpellsArray}
                     handleSpellState={handleSpellState}
                     currentSlot={currentSlot10}
-                    setCurrentSlot1={setCurrentSlot10}
+                    setCurrentSlot={setCurrentSlot10}
                     setCurrentAttunementSlotsUsed={setCurrentAttunementSlotsUsed}
                     currentAttunement={currentAttunement}
                     position={10}
@@ -934,7 +934,7 @@ export default function App() {
                     allSpellsArray={allSpellsArray}
                     handleSpellState={handleSpellState}
                     currentSlot={currentSlot11}
-                    setCurrentSlot1={setCurrentSlot11}
+                    setCurrentSlot={setCurrentSlot11}
                     setCurrentAttunementSlotsUsed={setCurrentAttunementSlotsUsed}
                     currentAttunement={currentAttunement}
                     position={11}
@@ -943,7 +943,7 @@ export default function App() {
                     allSpellsArray={allSpellsArray}
                     handleSpellState={handleSpellState}
                     currentSlot={currentSlot12}
-                    setCurrentSlot1={setCurrentSlot12}
+                    setCurrentSlot={setCurrentSlot12}
                     setCurrentAttunementSlotsUsed={setCurrentAttunementSlotsUsed}
                     currentAttunement={currentAttunement}
                     position={12}

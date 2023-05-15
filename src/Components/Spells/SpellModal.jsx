@@ -7,6 +7,7 @@ export function SpellModal({
   currentSlot,
   handleSpellClicked,
   handleSpellChange,
+  position
 }) {
 
   const ref = useRef(null);
@@ -21,9 +22,7 @@ export function SpellModal({
       oldSpellSlots = currentSlot.Slots;
       console.log('oldSpellSlots after: ' + oldSpellSlots);
     }
-    currentSlot.Name = spell.Name;
-    currentSlot.ImageURL = spell.ImageURL;
-    currentSlot.Slots = spell.Slots;
+    currentSlot = spell;
     //console.log('currentSlots: ' + JSON.stringify(currentSlots));
     handleSpellChange(spell, oldSpellSlots);
     handleSpellClicked();
